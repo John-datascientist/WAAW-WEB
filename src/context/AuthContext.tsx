@@ -27,6 +27,18 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+// Some Supabase Auth error responses (e.g. a 5xx from a paused/misconfigured
+// project) carry no usable error/msg field, so supabase-js falls back to
+// stringifying the raw body — which for an empty body is literally "{}".
+// Showing that verbatim in a form is meaningless, so fall back to a message
+// that at least points at where to look.
+function readableAuthError(message: string | undefined): string {
+  if (!message || message === '{}' || message === '[object Object]') {
+    return 'Sign up failed — open the browser console (F12) for details, and check that your Supabase project is active (not paused).';
+  }
+  return message;
+}
+
 // The website only ever registers founders — investors use the mobile app —
 // so role is hardcoded here rather than taken as a param like the app does.
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -60,37 +72,66 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function signUp(email: string, password: string, fullName: string, country: string) {
-    const { data, error } = await supabase.auth.signUp({ email, password });
-    if (error) return { error: error.message };
-    if (data.user) {
-      const referralCode = 'WAAW-' + Math.random().toString(36).slice(2, 7).toUpperCase();
-      await supabase.from('waaw_profiles').insert({
-        id: data.user.id,
-        email,
-        full_name: fullName,
-        role: 'founder',
-        country,
-        kyc_status: 'not_started',
-        tier: 'bronze',
-        total_committed: 0,
-        referral_code: referralCode,
-      });
+    try {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        // Some Supabase error responses don't carry a useful .message (e.g.
+        // an empty body on a 5xx/paused-project response stringifies to
+        // "{}") — logging the raw error lets it be inspected in DevTools
+        // even when there's nothing readable to show in the form itself.
+        console.error('WAAW sign up error:', error);
+        return { error: readableAuthError(error.message) };
+      }
+      if (data.user) {
+        const referralCode = 'WAAW-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+        await supabase.from('waaw_profiles').insert({
+          id: data.user.id,
+          email,
+          full_name: fullName,
+          role: 'founder',
+          country,
+          kyc_status: 'not_started',
+          tier: 'bronze',
+          total_committed: 0,
+          referral_code: referralCode,
+        });
+      }
+      return { error: null };
+    } catch {
+      // supabase-js rejects (rather than resolving with {error}) on a raw
+      // network failure — e.g. Safari's "Load failed" — so this needs its
+      // own catch, not just the {error} branch above.
+      return { error: "Couldn't reach the server. Check your connection and try again." };
     }
-    return { error: null };
   }
 
   async function verifySignup(email: string, token: string) {
-    const { error } = await supabase.auth.verifyOtp({ email, token, type: 'signup' });
-    return { error: error?.message ?? null };
+    try {
+      const { error } = await supabase.auth.verifyOtp({ email, token, type: 'signup' });
+      if (error) console.error('WAAW verify error:', error);
+      return { error: error ? readableAuthError(error.message) : null };
+    } catch {
+      return { error: "Couldn't reach the server. Check your connection and try again." };
+    }
   }
 
   async function resendSignupCode(email: string) {
-    await supabase.auth.resend({ type: 'signup', email });
+    try {
+      await supabase.auth.resend({ type: 'signup', email });
+    } catch {
+      // best-effort — the resend button's UI just shows "Code resent!"
+      // regardless, so a network failure here isn't otherwise surfaced.
+    }
   }
 
   async function signIn(email: string, password: string) {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error?.message ?? null };
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) console.error('WAAW sign in error:', error);
+      return { error: error ? readableAuthError(error.message) : null };
+    } catch {
+      return { error: "Couldn't reach the server. Check your connection and try again." };
+    }
   }
 
   async function signOut() {
