@@ -4,8 +4,8 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../../src/context/AuthContext';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
-import { EDUCATION_LEVELS, ID_TYPES, MIN_COFOUNDERS, ONBOARDING_STEPS } from '../../../src/data';
-import { CofounderRow } from '../../../src/lib/useFounderStartup';
+import { EDUCATION_LEVELS, ID_TYPES, MIN_COFOUNDERS, MIN_REFERENCES, ONBOARDING_STEPS, REFERENCE_TYPES } from '../../../src/data';
+import { CofounderRow, ReferenceEntry, WorkHistoryEntry } from '../../../src/lib/useFounderStartup';
 import { uploadFounderDocument } from '../../../src/lib/uploadDocument';
 import { CameraCapture } from '../../../src/components/CameraCapture';
 import { ErrorBanner, Field, GhostButton, GoldButton, StepFooter } from '../../../src/components/ui';
@@ -28,6 +28,93 @@ function Select({ label, value, onChange, options }: { label: string; value: str
   );
 }
 
+function WorkHistorySection({ entries, onChange }: { entries: WorkHistoryEntry[]; onChange: (next: WorkHistoryEntry[]) => void }) {
+  const [company, setCompany] = useState('');
+  const [role, setRole] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleAdd = () => {
+    if (!company.trim() || !role.trim() || !startDate.trim()) return;
+    onChange([...entries, { id: String(Date.now()), company: company.trim(), role: role.trim(), startDate, endDate, description: description.trim() }]);
+    setCompany('');
+    setRole('');
+    setStartDate('');
+    setEndDate('');
+    setDescription('');
+  };
+
+  return (
+    <div className="mb-5">
+      {entries.map((w) => (
+        <div key={w.id} className="mb-2 flex items-start justify-between rounded-md border border-ln bg-card p-3">
+          <div>
+            <p className="font-sans text-sm font-medium text-tx">{w.role} · {w.company}</p>
+            <p className="font-mono text-[10px] text-mu">{w.startDate} – {w.endDate || 'Present'}</p>
+            {w.description && <p className="mt-1 font-sans text-xs font-light text-mu">{w.description}</p>}
+          </div>
+          <button type="button" onClick={() => onChange(entries.filter((e) => e.id !== w.id))} className="shrink-0 font-sans text-xs text-da">
+            Remove
+          </button>
+        </div>
+      ))}
+
+      <div className="rounded-md border border-ln bg-card p-4">
+        <Field label="Company" value={company} onChange={setCompany} placeholder="Flutterwave" />
+        <Field label="Role" value={role} onChange={setRole} placeholder="Product Manager" />
+        <Field label="Start date" value={startDate} onChange={setStartDate} type="date" />
+        <Field label="End date (leave blank if current)" value={endDate} onChange={setEndDate} type="date" />
+        <Field label="What did you do there? (optional)" value={description} onChange={setDescription} placeholder="Led the payments team…" />
+        <GhostButton onClick={handleAdd}>Add work history entry</GhostButton>
+      </div>
+    </div>
+  );
+}
+
+function ReferencesSection({ entries, onChange }: { entries: ReferenceEntry[]; onChange: (next: ReferenceEntry[]) => void }) {
+  const [type, setType] = useState<string>('');
+  const [name, setName] = useState('');
+  const [relationship, setRelationship] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleAdd = () => {
+    if (!type || !name.trim() || !relationship.trim() || !phone.trim()) return;
+    onChange([...entries, { id: String(Date.now()), type: type as ReferenceEntry['type'], name: name.trim(), relationship: relationship.trim(), phone: phone.trim(), email: email.trim() }]);
+    setType('');
+    setName('');
+    setRelationship('');
+    setPhone('');
+    setEmail('');
+  };
+
+  return (
+    <div className="mb-5">
+      {entries.map((r) => (
+        <div key={r.id} className="mb-2 flex items-start justify-between rounded-md border border-ln bg-card p-3">
+          <div>
+            <p className="font-sans text-sm font-medium text-tx">{r.name} <span className="font-mono text-[9px] text-pu">· {r.type.toUpperCase()}</span></p>
+            <p className="font-mono text-[10px] text-mu">{r.relationship} · {r.phone}</p>
+          </div>
+          <button type="button" onClick={() => onChange(entries.filter((e) => e.id !== r.id))} className="shrink-0 font-sans text-xs text-da">
+            Remove
+          </button>
+        </div>
+      ))}
+
+      <div className="rounded-md border border-ln bg-card p-4">
+        <Select label="Reference type" value={type} onChange={setType} options={[...REFERENCE_TYPES]} />
+        <Field label="Full name" value={name} onChange={setName} placeholder="Ada Lovelace" />
+        <Field label="Relationship" value={relationship} onChange={setRelationship} placeholder="Former manager at Flutterwave" />
+        <Field label="Phone" value={phone} onChange={setPhone} placeholder="+234 801 234 5678" />
+        <Field label="Email (optional)" value={email} onChange={setEmail} placeholder="ada@example.com" />
+        <GhostButton onClick={handleAdd}>Add reference</GhostButton>
+      </div>
+    </div>
+  );
+}
+
 function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: () => void }) {
   const { user } = useAuth();
   const { updateCofounder } = useFounderStartupContext();
@@ -38,6 +125,10 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
   const [nationality, setNationality] = useState(cofounder.nationality ?? '');
   const [address, setAddress] = useState(cofounder.address_line ?? '');
   const [previousAddress, setPreviousAddress] = useState(cofounder.previous_address ?? '');
+  const [currentCity, setCurrentCity] = useState(cofounder.current_city ?? '');
+  const [stateOfOrigin, setStateOfOrigin] = useState(cofounder.state_of_origin ?? '');
+  const [stateOfResidence, setStateOfResidence] = useState(cofounder.state_of_residence ?? '');
+  const [postcode, setPostcode] = useState(cofounder.postcode ?? '');
   const [educationLevel, setEducationLevel] = useState(cofounder.education_level ?? '');
   const [educationInstitution, setEducationInstitution] = useState(cofounder.education_institution ?? '');
   const [idType, setIdType] = useState(cofounder.id_type ?? '');
@@ -45,12 +136,20 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
   const [socialLink, setSocialLink] = useState(cofounder.social_link ?? '');
   const [selfieUrl, setSelfieUrl] = useState(cofounder.selfie_url);
   const [idDocUrl, setIdDocUrl] = useState(cofounder.id_document_url);
+  const [workHistory, setWorkHistory] = useState<WorkHistoryEntry[]>(cofounder.work_history ?? []);
+  const [references, setReferences] = useState<ReferenceEntry[]>(cofounder.reference_list ?? []);
   const [uploadingId, setUploadingId] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
+  const hasWorkRef = references.some((r) => r.type === 'Work');
+  const hasCharacterRef = references.some((r) => r.type === 'Character');
+  const referencesOk = references.length >= MIN_REFERENCES && hasWorkRef && hasCharacterRef;
+
   const canSave =
-    dob.trim() && phone.trim() && nationality.trim() && address.trim() && educationLevel &&
+    dob.trim() && phone.trim() && nationality.trim() && address.trim() &&
+    currentCity.trim() && stateOfOrigin.trim() && stateOfResidence.trim() && postcode.trim() &&
+    workHistory.length > 0 && educationLevel && referencesOk &&
     idType && idNumber.trim() && selfieUrl && idDocUrl && socialLink.trim();
 
   const handleSelfieCapture = async (file: File) => {
@@ -82,8 +181,14 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
       nationality: nationality.trim(),
       address_line: address.trim(),
       previous_address: previousAddress.trim() || null,
+      current_city: currentCity.trim(),
+      state_of_origin: stateOfOrigin.trim(),
+      state_of_residence: stateOfResidence.trim(),
+      postcode: postcode.trim(),
       education_level: educationLevel,
       education_institution: educationInstitution.trim(),
+      work_history: workHistory,
+      reference_list: references,
       id_type: idType,
       id_number: idNumber.trim(),
       selfie_url: selfieUrl,
@@ -109,10 +214,35 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
       <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Address</p>
       <Field label="Current residential address" value={address} onChange={setAddress} placeholder="12 Adeola Odeku St, Victoria Island, Lagos" />
       <Field label="Previous address (if moved in the last 5 years)" value={previousAddress} onChange={setPreviousAddress} placeholder="Optional" />
+      <Field label="Current city" value={currentCity} onChange={setCurrentCity} placeholder="Lagos" />
+      <Field label="State of origin" value={stateOfOrigin} onChange={setStateOfOrigin} placeholder="Anambra" />
+      <Field label="State of residence" value={stateOfResidence} onChange={setStateOfResidence} placeholder="Lagos" />
+      <Field label="Postcode" value={postcode} onChange={setPostcode} placeholder="106104" />
+      <a
+        href="https://www.loca8tor.com/generate"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="-mt-3 mb-5 inline-block font-sans text-xs font-medium text-ch hover:underline"
+      >
+        Don&apos;t know your postcode? Generate one at loca8tor.com →
+      </a>
+
+      <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Work history</p>
+      <WorkHistorySection entries={workHistory} onChange={setWorkHistory} />
 
       <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Education</p>
       <Select label="Highest level of education" value={educationLevel} onChange={setEducationLevel} options={EDUCATION_LEVELS} />
       <Field label="Institution attended" value={educationInstitution} onChange={setEducationInstitution} placeholder="University of Lagos" />
+
+      <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">
+        References <span className="text-mu">(at least {MIN_REFERENCES}, including one work and one character reference)</span>
+      </p>
+      <ReferencesSection entries={references} onChange={setReferences} />
+      {references.length > 0 && !referencesOk && (
+        <p className="-mt-3 mb-5 font-sans text-xs text-warn">
+          Need at least {MIN_REFERENCES} references, including one Work and one Character reference.
+        </p>
+      )}
 
       <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Identity verification</p>
       <Select label="ID type" value={idType} onChange={setIdType} options={ID_TYPES} />

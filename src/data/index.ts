@@ -7,6 +7,8 @@ export const SOCIAL_PLATFORMS = ['Website', 'Twitter/X', 'Instagram', 'LinkedIn'
 export const MIN_COFOUNDERS = 2;
 export const EDUCATION_LEVELS = ['Secondary school', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other'];
 export const ID_TYPES = ['Passport', 'National ID', "Driver's license", "Voter's card"];
+export const REFERENCE_TYPES = ['Work', 'Character'] as const;
+export const MIN_REFERENCES = 2;
 
 export interface LegalDoc {
   title: string;

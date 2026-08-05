@@ -29,6 +29,24 @@ export interface StartupRow {
   verified: boolean;
 }
 
+export interface WorkHistoryEntry {
+  id: string;
+  company: string;
+  role: string;
+  startDate: string;
+  endDate: string; // '' means current role
+  description: string;
+}
+
+export interface ReferenceEntry {
+  id: string;
+  type: 'Work' | 'Character';
+  name: string;
+  relationship: string;
+  phone: string;
+  email: string;
+}
+
 export interface CofounderRow {
   id: string;
   startup_id: string;
@@ -42,12 +60,18 @@ export interface CofounderRow {
   nationality: string | null;
   address_line: string | null;
   previous_address: string | null;
+  current_city: string | null;
+  state_of_origin: string | null;
+  state_of_residence: string | null;
+  postcode: string | null;
   education_level: string | null;
   education_institution: string | null;
   id_type: string | null;
   id_number: string | null;
   selfie_url: string | null;
   id_document_url: string | null;
+  work_history: WorkHistoryEntry[];
+  reference_list: ReferenceEntry[];
 }
 
 // The onboarding wizard fills in a real waaw_startups row a little at a time
