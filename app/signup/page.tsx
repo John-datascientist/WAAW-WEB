@@ -59,10 +59,12 @@ export default function SignUpPage() {
     if (Object.keys(next).length > 0) return;
 
     setSubmitting(true);
-    const { error } = await signUp(email.trim(), password, name.trim(), country.trim());
+    const { error, needsVerification } = await signUp(email.trim(), password, name.trim(), country.trim());
     setSubmitting(false);
     if (error) { setErrors({ email: error }); return; }
-    router.push(`/verify?email=${encodeURIComponent(email.trim())}`);
+    // If "Confirm email" is off in Supabase, sign-up already returned a live
+    // session — there's no code to enter, so go straight to onboarding.
+    router.push(needsVerification ? `/verify?email=${encodeURIComponent(email.trim())}` : '/onboarding');
   };
 
   return (

@@ -18,7 +18,7 @@ interface AuthContextType {
   user: User | null;
   profile: Profile | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName: string, country: string) => Promise<{ error: string | null }>;
+  signUp: (email: string, password: string, fullName: string, country: string) => Promise<{ error: string | null; needsVerification: boolean }>;
   verifySignup: (email: string, token: string) => Promise<{ error: string | null }>;
   resendSignupCode: (email: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // "{}") — logging the raw error lets it be inspected in DevTools
         // even when there's nothing readable to show in the form itself.
         console.error('WAAW sign up error:', error);
-        return { error: readableAuthError(error.message) };
+        return { error: readableAuthError(error.message), needsVerification: false };
       }
       if (data.user) {
         const referralCode = 'WAAW-' + Math.random().toString(36).slice(2, 7).toUpperCase();
@@ -96,12 +96,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           referral_code: referralCode,
         });
       }
-      return { error: null };
+      // If "Confirm email" is off in Supabase, signUp returns a live session
+      // immediately and no OTP is ever sent — routing to the verify screen
+      // in that case would show "code sent" for a code that doesn't exist.
+      return { error: null, needsVerification: !data.session };
     } catch {
       // supabase-js rejects (rather than resolving with {error}) on a raw
       // network failure — e.g. Safari's "Load failed" — so this needs its
       // own catch, not just the {error} branch above.
-      return { error: "Couldn't reach the server. Check your connection and try again." };
+      return { error: "Couldn't reach the server. Check your connection and try again.", needsVerification: false };
     }
   }
 
