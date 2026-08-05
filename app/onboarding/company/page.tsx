@@ -1,26 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../../src/context/AuthContext';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { STARTUP_SECTORS, ONBOARDING_STEPS } from '../../../src/data';
+import { uploadFounderDocument } from '../../../src/lib/uploadDocument';
 import { Chip, ErrorBanner, Field, GoldButton, StepFooter, TextArea } from '../../../src/components/ui';
 
 const PITCH_MAX_LENGTH = 140;
 
 export default function CompanyPage() {
   const router = useRouter();
+  const { user } = useAuth();
   const { startup, updateStartup } = useFounderStartupContext();
+  const certInputRef = useRef<HTMLInputElement>(null);
   const [name, setName] = useState(startup?.name ?? '');
   const [regNumber, setRegNumber] = useState(startup?.registration_number ?? '');
   const [sector, setSector] = useState(startup?.sector ?? '');
   const [pitch, setPitch] = useState(startup?.pitch ?? '');
   const [raisingAmount, setRaisingAmount] = useState(startup?.raising_amount ? String(startup.raising_amount) : '');
-  const [certUploaded, setCertUploaded] = useState(!!startup?.name);
+  const [certUrl, setCertUrl] = useState(startup?.incorporation_cert_url ?? null);
+  const [uploadingCert, setUploadingCert] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const canSave = name.trim().length > 0 && regNumber.trim().length > 0 && !!sector && pitch.trim().length > 0 && Number(raisingAmount) > 0 && certUploaded;
+  const canSave = name.trim().length > 0 && regNumber.trim().length > 0 && !!sector && pitch.trim().length > 0 && Number(raisingAmount) > 0 && !!certUrl;
+
+  const handleCertFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !user) return;
+    setUploadingCert(true);
+    setError(null);
+    const { path, error: uploadError } = await uploadFounderDocument(user.id, file, 'incorporation-cert');
+    setUploadingCert(false);
+    if (uploadError) { setError(uploadError); return; }
+    setCertUrl(path);
+  };
 
   const handleSave = async () => {
     if (!canSave) return;
@@ -32,6 +48,7 @@ export default function CompanyPage() {
       sector,
       pitch: pitch.trim(),
       raising_amount: Number(raisingAmount),
+      incorporation_cert_url: certUrl,
       slug,
     });
     if (result.error) { setError(result.error); return; }
@@ -64,13 +81,15 @@ export default function CompanyPage() {
       <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">Certificate of incorporation</label>
       <button
         type="button"
-        onClick={() => setCertUploaded(true)}
+        onClick={() => certInputRef.current?.click()}
+        disabled={uploadingCert}
         className={`mb-5 w-full rounded-md border border-dashed px-4 py-8 text-center font-sans text-sm ${
-          certUploaded ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'
+          certUrl ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'
         }`}
       >
-        {certUploaded ? '✓ Certificate added' : '🏢 Upload certificate of incorporation'}
+        {uploadingCert ? 'Uploading…' : certUrl ? '✓ Certificate uploaded' : '🏢 Upload certificate of incorporation'}
       </button>
+      <input ref={certInputRef} type="file" accept="image/*,.pdf" onChange={handleCertFile} className="hidden" />
 
       <GoldButton onClick={handleSave} disabled={!canSave}>{saved ? 'Saved!' : 'Save company details'}</GoldButton>
 

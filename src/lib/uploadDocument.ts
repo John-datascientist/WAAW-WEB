@@ -1,6 +1,12 @@
 import { supabase } from './supabase';
 
-export type DocumentKind = 'pitch-deck' | 'business-plan' | 'pitch-video';
+export type DocumentKind =
+  | 'pitch-deck'
+  | 'business-plan'
+  | 'pitch-video'
+  | 'incorporation-cert'
+  | 'cofounder-selfie'
+  | 'cofounder-id';
 
 // The waaw-founder-docs bucket is private (RLS-gated to the uploading
 // founder), so what's stored in e.g. pitch_deck_url is a storage *path*,

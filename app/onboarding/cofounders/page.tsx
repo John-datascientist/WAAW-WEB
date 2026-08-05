@@ -1,23 +1,98 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../../src/context/AuthContext';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
-import { MIN_COFOUNDERS, ONBOARDING_STEPS } from '../../../src/data';
+import { EDUCATION_LEVELS, ID_TYPES, MIN_COFOUNDERS, ONBOARDING_STEPS } from '../../../src/data';
 import { CofounderRow } from '../../../src/lib/useFounderStartup';
+import { uploadFounderDocument } from '../../../src/lib/uploadDocument';
+import { CameraCapture } from '../../../src/components/CameraCapture';
 import { ErrorBanner, Field, GhostButton, GoldButton, StepFooter } from '../../../src/components/ui';
 
+function Select({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+  return (
+    <div className="mb-5">
+      <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">{label}</label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-md border border-ln bg-card px-4 py-3 font-sans text-sm text-tx outline-none focus:border-pu"
+      >
+        <option value="">Select…</option>
+        {options.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: () => void }) {
+  const { user } = useAuth();
   const { updateCofounder } = useFounderStartupContext();
-  const [selfieDone, setSelfieDone] = useState(cofounder.selfie_done);
-  const [idDone, setIdDone] = useState(cofounder.id_verified);
+  const idInputRef = useRef<HTMLInputElement>(null);
+
+  const [dob, setDob] = useState(cofounder.date_of_birth ?? '');
+  const [phone, setPhone] = useState(cofounder.phone ?? '');
+  const [nationality, setNationality] = useState(cofounder.nationality ?? '');
+  const [address, setAddress] = useState(cofounder.address_line ?? '');
+  const [previousAddress, setPreviousAddress] = useState(cofounder.previous_address ?? '');
+  const [educationLevel, setEducationLevel] = useState(cofounder.education_level ?? '');
+  const [educationInstitution, setEducationInstitution] = useState(cofounder.education_institution ?? '');
+  const [idType, setIdType] = useState(cofounder.id_type ?? '');
+  const [idNumber, setIdNumber] = useState(cofounder.id_number ?? '');
   const [socialLink, setSocialLink] = useState(cofounder.social_link ?? '');
+  const [selfieUrl, setSelfieUrl] = useState(cofounder.selfie_url);
+  const [idDocUrl, setIdDocUrl] = useState(cofounder.id_document_url);
+  const [uploadingId, setUploadingId] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const canSave = selfieDone && idDone && socialLink.trim().length > 0;
+  const [saving, setSaving] = useState(false);
+
+  const canSave =
+    dob.trim() && phone.trim() && nationality.trim() && address.trim() && educationLevel &&
+    idType && idNumber.trim() && selfieUrl && idDocUrl && socialLink.trim();
+
+  const handleSelfieCapture = async (file: File) => {
+    if (!user) return;
+    setError(null);
+    const { path, error: uploadError } = await uploadFounderDocument(user.id, file, 'cofounder-selfie');
+    if (uploadError) { setError(uploadError); return; }
+    setSelfieUrl(path);
+  };
+
+  const handleIdFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !user) return;
+    setUploadingId(true);
+    setError(null);
+    const { path, error: uploadError } = await uploadFounderDocument(user.id, file, 'cofounder-id');
+    setUploadingId(false);
+    if (uploadError) { setError(uploadError); return; }
+    setIdDocUrl(path);
+  };
 
   const handleSave = async () => {
+    if (!canSave) return;
+    setSaving(true);
     setError(null);
-    const result = await updateCofounder(cofounder.id, { selfie_done: selfieDone, id_verified: idDone, social_link: socialLink.trim() });
+    const result = await updateCofounder(cofounder.id, {
+      date_of_birth: dob.trim(),
+      phone: phone.trim(),
+      nationality: nationality.trim(),
+      address_line: address.trim(),
+      previous_address: previousAddress.trim() || null,
+      education_level: educationLevel,
+      education_institution: educationInstitution.trim(),
+      id_type: idType,
+      id_number: idNumber.trim(),
+      selfie_url: selfieUrl,
+      id_document_url: idDocUrl,
+      selfie_done: true,
+      id_verified: true,
+      social_link: socialLink.trim(),
+    });
+    setSaving(false);
     if (result.error) { setError(result.error); return; }
     onDone();
   };
@@ -25,22 +100,45 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
   return (
     <div className="mt-3 rounded-md border border-ln bg-bg p-4">
       <ErrorBanner message={error} />
-      <button
-        type="button"
-        onClick={() => setSelfieDone(true)}
-        className={`mb-2 w-full rounded-md border px-4 py-3 text-left font-sans text-xs ${selfieDone ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'}`}
-      >
-        {selfieDone ? '✓ Selfie captured' : '📷 Take a selfie'}
-      </button>
-      <button
-        type="button"
-        onClick={() => setIdDone(true)}
-        className={`mb-3 w-full rounded-md border px-4 py-3 text-left font-sans text-xs ${idDone ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'}`}
-      >
-        {idDone ? '✓ ID uploaded' : '🪪 Upload passport or national ID'}
-      </button>
+
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-pu">Personal details</p>
+      <Field label="Date of birth" value={dob} onChange={setDob} type="date" />
+      <Field label="Phone number" value={phone} onChange={setPhone} placeholder="+234 801 234 5678" />
+      <Field label="Nationality" value={nationality} onChange={setNationality} placeholder="Nigerian" />
+
+      <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Address</p>
+      <Field label="Current residential address" value={address} onChange={setAddress} placeholder="12 Adeola Odeku St, Victoria Island, Lagos" />
+      <Field label="Previous address (if moved in the last 5 years)" value={previousAddress} onChange={setPreviousAddress} placeholder="Optional" />
+
+      <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Education</p>
+      <Select label="Highest level of education" value={educationLevel} onChange={setEducationLevel} options={EDUCATION_LEVELS} />
+      <Field label="Institution attended" value={educationInstitution} onChange={setEducationInstitution} placeholder="University of Lagos" />
+
+      <p className="mb-3 mt-6 font-mono text-[10px] uppercase tracking-wider text-pu">Identity verification</p>
+      <Select label="ID type" value={idType} onChange={setIdType} options={ID_TYPES} />
+      <Field label="ID number" value={idNumber} onChange={setIdNumber} placeholder="A12345678" />
+
+      <CameraCapture label="Selfie" facingMode="user" onCapture={handleSelfieCapture} />
+      {selfieUrl && <p className="-mt-3 mb-5 font-mono text-[10px] uppercase tracking-wider text-su">✓ Selfie uploaded</p>}
+
+      <div className="mb-5">
+        <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">ID document</label>
+        <button
+          type="button"
+          onClick={() => idInputRef.current?.click()}
+          disabled={uploadingId}
+          className={`w-full rounded-md border border-dashed px-4 py-8 text-center font-sans text-sm ${
+            idDocUrl ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'
+          }`}
+        >
+          {uploadingId ? 'Uploading…' : idDocUrl ? '✓ ID document uploaded' : '🪪 Upload passport or national ID'}
+        </button>
+        <input ref={idInputRef} type="file" accept="image/*,.pdf" capture="environment" onChange={handleIdFile} className="hidden" />
+      </div>
+
       <Field label="Personal social link (LinkedIn, Twitter/X, Instagram)" value={socialLink} onChange={setSocialLink} placeholder="https://linkedin.com/in/yourname" />
-      <GoldButton onClick={handleSave} disabled={!canSave}>Save verification</GoldButton>
+
+      <GoldButton onClick={handleSave} disabled={!canSave || saving}>{saving ? 'Saving…' : 'Save verification'}</GoldButton>
     </div>
   );
 }
@@ -72,7 +170,7 @@ export default function CofoundersPage() {
       <h2 className="mb-2 font-serif text-xl text-tx">Verify co-founders</h2>
       <p className="mb-6 font-sans text-sm font-light text-mu">
         WAAW requires at least {MIN_COFOUNDERS} co-founders per startup. Every co-founder must
-        complete a selfie, ID check, and personal social link.
+        provide personal details, address, education, a selfie, and a government ID for review.
       </p>
 
       <ErrorBanner message={error} />

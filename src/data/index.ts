@@ -5,6 +5,8 @@ export const BUSINESS_STAGES = ['Idea', 'Pre-seed', 'Seed', 'Pre-Series A', 'Ser
 export const STARTUP_SECTORS = ['AgriTech', 'FinTech', 'HealthTech', 'EdTech', 'Logistics', 'Other'];
 export const SOCIAL_PLATFORMS = ['Website', 'Twitter/X', 'Instagram', 'LinkedIn', 'Facebook', 'TikTok', 'YouTube'];
 export const MIN_COFOUNDERS = 2;
+export const EDUCATION_LEVELS = ['Secondary school', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other'];
+export const ID_TYPES = ['Passport', 'National ID', "Driver's license", "Voter's card"];
 
 export interface LegalDoc {
   title: string;

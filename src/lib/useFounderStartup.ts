@@ -25,6 +25,7 @@ export interface StartupRow {
   interview_requested: boolean;
   interview_scheduled_for: string | null;
   onboarding_complete: boolean;
+  incorporation_cert_url: string | null;
   verified: boolean;
 }
 
@@ -36,6 +37,17 @@ export interface CofounderRow {
   selfie_done: boolean;
   id_verified: boolean;
   social_link: string | null;
+  date_of_birth: string | null;
+  phone: string | null;
+  nationality: string | null;
+  address_line: string | null;
+  previous_address: string | null;
+  education_level: string | null;
+  education_institution: string | null;
+  id_type: string | null;
+  id_number: string | null;
+  selfie_url: string | null;
+  id_document_url: string | null;
 }
 
 // The onboarding wizard fills in a real waaw_startups row a little at a time
