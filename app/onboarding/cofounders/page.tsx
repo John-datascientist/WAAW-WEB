@@ -5,22 +5,26 @@ import { useRouter } from 'next/navigation';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { MIN_COFOUNDERS, ONBOARDING_STEPS } from '../../../src/data';
 import { CofounderRow } from '../../../src/lib/useFounderStartup';
-import { Field, GhostButton, GoldButton, StepFooter } from '../../../src/components/ui';
+import { ErrorBanner, Field, GhostButton, GoldButton, StepFooter } from '../../../src/components/ui';
 
 function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: () => void }) {
   const { updateCofounder } = useFounderStartupContext();
   const [selfieDone, setSelfieDone] = useState(cofounder.selfie_done);
   const [idDone, setIdDone] = useState(cofounder.id_verified);
   const [socialLink, setSocialLink] = useState(cofounder.social_link ?? '');
+  const [error, setError] = useState<string | null>(null);
   const canSave = selfieDone && idDone && socialLink.trim().length > 0;
 
   const handleSave = async () => {
-    await updateCofounder(cofounder.id, { selfie_done: selfieDone, id_verified: idDone, social_link: socialLink.trim() });
+    setError(null);
+    const result = await updateCofounder(cofounder.id, { selfie_done: selfieDone, id_verified: idDone, social_link: socialLink.trim() });
+    if (result.error) { setError(result.error); return; }
     onDone();
   };
 
   return (
     <div className="mt-3 rounded-md border border-ln bg-bg p-4">
+      <ErrorBanner message={error} />
       <button
         type="button"
         onClick={() => setSelfieDone(true)}
@@ -48,13 +52,16 @@ export default function CofoundersPage() {
   const [adding, setAdding] = useState(false);
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const meetsMinimum = cofounders.length >= MIN_COFOUNDERS;
   const allVerified = cofounders.every((c) => c.selfie_done && c.id_verified && !!c.social_link);
 
   const handleAdd = async () => {
     if (!name.trim() || !role.trim()) return;
-    await addCofounder(name.trim(), role.trim());
+    setError(null);
+    const result = await addCofounder(name.trim(), role.trim());
+    if (result.error) { setError(result.error); return; }
     setName('');
     setRole('');
     setAdding(false);
@@ -67,6 +74,8 @@ export default function CofoundersPage() {
         WAAW requires at least {MIN_COFOUNDERS} co-founders per startup. Every co-founder must
         complete a selfie, ID check, and personal social link.
       </p>
+
+      <ErrorBanner message={error} />
 
       {!meetsMinimum && (
         <div className="mb-4 rounded-md border border-warnBorder bg-warnLight p-3 font-sans text-xs text-warn">

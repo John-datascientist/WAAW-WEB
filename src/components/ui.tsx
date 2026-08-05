@@ -32,9 +32,21 @@ export function GoldButton({
   );
 }
 
-export function GhostButton({ children, onClick, href }: { children: React.ReactNode; onClick?: () => void; href?: string }) {
-  const cls =
-    'inline-flex items-center justify-center rounded-md border border-ln px-6 py-3 font-mono text-xs uppercase tracking-wider text-mu transition-colors hover:border-pu hover:text-pu';
+export function GhostButton({
+  children,
+  onClick,
+  href,
+  inverted,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  href?: string;
+  /** Use on dark (e.g. purple hero) backgrounds instead of the default light-surface style. */
+  inverted?: boolean;
+}) {
+  const cls = inverted
+    ? 'inline-flex items-center justify-center rounded-md border border-white/40 px-6 py-3 font-mono text-xs uppercase tracking-wider text-white transition-colors hover:border-white hover:bg-white/10'
+    : 'inline-flex items-center justify-center rounded-md border border-ln px-6 py-3 font-mono text-xs uppercase tracking-wider text-mu transition-colors hover:border-pu hover:text-pu';
   if (href) {
     return (
       <Link href={href} className={cls}>
@@ -158,6 +170,15 @@ export function StepFooter({
     <div className="mt-8 flex items-center justify-between">
       {backHref ? <GhostButton href={backHref}>Back</GhostButton> : <span />}
       <GoldButton onClick={onContinue} disabled={disabled}>{continueLabel}</GoldButton>
+    </div>
+  );
+}
+
+export function ErrorBanner({ message }: { message: string | null }) {
+  if (!message) return null;
+  return (
+    <div className="mb-4 rounded-md border border-daBorder bg-daLight px-4 py-3 font-sans text-xs text-da">
+      {message}
     </div>
   );
 }

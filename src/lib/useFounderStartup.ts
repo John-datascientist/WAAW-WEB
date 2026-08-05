@@ -63,9 +63,12 @@ export function useFounderStartup() {
 
   useEffect(() => { refetch(); }, [refetch]);
 
-  async function ensureStartup(): Promise<StartupRow | null> {
-    if (startup) return startup;
-    if (!user) return null;
+  // ensureStartup used to swallow its own insert error entirely (silent
+  // `return null` — the exact failure mode that hid the auth.users trigger
+  // bug earlier), so every write path now logs and surfaces a real message.
+  async function ensureStartup(): Promise<{ row: StartupRow | null; error: string | null }> {
+    if (startup) return { row: startup, error: null };
+    if (!user) return { row: null, error: 'Not signed in.' };
     const placeholderSlug = 'draft-' + Math.random().toString(36).slice(2, 10);
     const { data, error } = await supabase
       .from('waaw_startups')
@@ -83,45 +86,56 @@ export function useFounderStartup() {
       })
       .select()
       .single();
-    if (error || !data) return null;
+    if (error || !data) {
+      console.error('WAAW create startup draft error:', error);
+      return { row: null, error: error?.message ?? 'Could not start onboarding — open the browser console for details.' };
+    }
     const row = data as StartupRow;
     setStartup(row);
     // Seed the founder themselves as co-founder #1, matching how the
     // mobile app's onboarding pre-fills the first co-founder slot.
-    await supabase.from('waaw_cofounders').insert({
+    const { error: cofounderError } = await supabase.from('waaw_cofounders').insert({
       startup_id: row.id,
       name: profile?.full_name ?? '',
       role: 'Founder',
     });
+    if (cofounderError) console.error('WAAW seed cofounder error:', cofounderError);
     await refetch();
-    return row;
+    return { row, error: null };
   }
 
   async function updateStartup(patch: Partial<StartupRow>) {
-    const row = await ensureStartup();
-    if (!row) return { error: 'Not authenticated' };
+    const { row, error: ensureError } = await ensureStartup();
+    if (!row) return { error: ensureError };
     const { error } = await supabase.from('waaw_startups').update(patch).eq('id', row.id);
-    if (!error) setStartup((prev) => (prev ? { ...prev, ...patch } : prev));
-    return { error: error?.message ?? null };
+    if (error) {
+      console.error('WAAW update startup error:', error);
+      return { error: error.message };
+    }
+    setStartup((prev) => (prev ? { ...prev, ...patch } : prev));
+    return { error: null };
   }
 
   async function addCofounder(name: string, role: string) {
-    const row = await ensureStartup();
-    if (!row) return { error: 'Not authenticated' };
+    const { row, error: ensureError } = await ensureStartup();
+    if (!row) return { error: ensureError };
     const { error } = await supabase.from('waaw_cofounders').insert({ startup_id: row.id, name, role });
-    if (!error) await refetch();
+    if (error) console.error('WAAW add cofounder error:', error);
+    else await refetch();
     return { error: error?.message ?? null };
   }
 
   async function updateCofounder(id: string, patch: Partial<CofounderRow>) {
     const { error } = await supabase.from('waaw_cofounders').update(patch).eq('id', id);
-    if (!error) await refetch();
+    if (error) console.error('WAAW update cofounder error:', error);
+    else await refetch();
     return { error: error?.message ?? null };
   }
 
   async function removeCofounder(id: string) {
     const { error } = await supabase.from('waaw_cofounders').delete().eq('id', id);
-    if (!error) setCofounders((prev) => prev.filter((c) => c.id !== id));
+    if (error) console.error('WAAW remove cofounder error:', error);
+    else setCofounders((prev) => prev.filter((c) => c.id !== id));
     return { error: error?.message ?? null };
   }
 

@@ -4,16 +4,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { ONBOARDING_STEPS } from '../../../src/data';
-import { Field, GoldButton, StepFooter } from '../../../src/components/ui';
+import { ErrorBanner, Field, GoldButton, StepFooter } from '../../../src/components/ui';
 
 export default function AddressPage() {
   const router = useRouter();
   const { startup, updateStartup } = useFounderStartupContext();
   const [address, setAddress] = useState(startup?.address_line ?? '');
+  const [error, setError] = useState<string | null>(null);
 
   const handleVerify = async () => {
     if (!address.trim()) return;
-    await updateStartup({ address_line: address.trim(), address_verified: true, city: address.trim() });
+    setError(null);
+    const result = await updateStartup({ address_line: address.trim(), address_verified: true, city: address.trim() });
+    if (result.error) setError(result.error);
   };
 
   return (
@@ -22,6 +25,8 @@ export default function AddressPage() {
       <p className="mb-6 font-sans text-sm font-light text-mu">
         Enter your registered business address. WAAW confirms this during your founder interview.
       </p>
+
+      <ErrorBanner message={error} />
 
       <Field label="Business address" value={address} onChange={setAddress} placeholder="12 Adeola Odeku St, Victoria Island, Lagos" />
 

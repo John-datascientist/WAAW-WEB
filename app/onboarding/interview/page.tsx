@@ -1,26 +1,31 @@
 'use client';
 
+import { useState } from 'react';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { ONBOARDING_STEPS, nextInterviewSlot } from '../../../src/data';
 import { isStepDone } from '../../../src/lib/onboardingProgress';
-import { GhostButton, GoldButton } from '../../../src/components/ui';
+import { ErrorBanner, GhostButton, GoldButton } from '../../../src/components/ui';
 
 export default function InterviewPage() {
   const { startup, cofounders, updateStartup } = useFounderStartupContext();
+  const [error, setError] = useState<string | null>(null);
   const requested = !!startup?.interview_requested;
   const ready = ONBOARDING_STEPS.filter((s) => s.id !== 'interview').every((s) => isStepDone(s.id, startup, cofounders));
 
   const handleRequest = async () => {
     if (!ready) return;
-    await updateStartup({
+    setError(null);
+    const result = await updateStartup({
       interview_requested: true,
       interview_scheduled_for: nextInterviewSlot(3),
       onboarding_complete: true,
     });
+    if (result.error) setError(result.error);
   };
 
   return (
     <div className="text-center">
+      <ErrorBanner message={error} />
       <p className="mb-4 text-4xl">{requested ? '✓' : '🗓️'}</p>
       <h2 className="mb-3 font-serif text-2xl text-tx">{requested ? 'Interview requested' : 'Founder interview'}</h2>
       <p className="mx-auto mb-6 max-w-md font-sans text-sm font-light leading-relaxed text-mu">

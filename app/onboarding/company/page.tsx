@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { STARTUP_SECTORS, ONBOARDING_STEPS } from '../../../src/data';
-import { Chip, Field, GoldButton, StepFooter, TextArea } from '../../../src/components/ui';
+import { Chip, ErrorBanner, Field, GoldButton, StepFooter, TextArea } from '../../../src/components/ui';
 
 const PITCH_MAX_LENGTH = 140;
 
@@ -18,13 +18,15 @@ export default function CompanyPage() {
   const [raisingAmount, setRaisingAmount] = useState(startup?.raising_amount ? String(startup.raising_amount) : '');
   const [certUploaded, setCertUploaded] = useState(!!startup?.name);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const canSave = name.trim().length > 0 && regNumber.trim().length > 0 && !!sector && pitch.trim().length > 0 && Number(raisingAmount) > 0 && certUploaded;
 
   const handleSave = async () => {
     if (!canSave) return;
+    setError(null);
     const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Math.random().toString(36).slice(2, 7);
-    await updateStartup({
+    const result = await updateStartup({
       name: name.trim(),
       registration_number: regNumber.trim(),
       sector,
@@ -32,6 +34,7 @@ export default function CompanyPage() {
       raising_amount: Number(raisingAmount),
       slug,
     });
+    if (result.error) { setError(result.error); return; }
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -42,6 +45,8 @@ export default function CompanyPage() {
       <p className="mb-6 font-sans text-sm font-light text-mu">
         Confirm your registered business details and how investors will see you.
       </p>
+
+      <ErrorBanner message={error} />
 
       <Field label="Registered company name" value={name} onChange={setName} placeholder="FarmLink Ltd" />
       <Field label="Registration number" value={regNumber} onChange={setRegNumber} placeholder="RC1234567" />

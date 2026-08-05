@@ -4,24 +4,29 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
 import { SOCIAL_PLATFORMS, ONBOARDING_STEPS } from '../../../src/data';
-import { Field, GoldButton, StepFooter } from '../../../src/components/ui';
+import { ErrorBanner, Field, GoldButton, StepFooter } from '../../../src/components/ui';
 
 export default function SocialLinksPage() {
   const router = useRouter();
   const { startup, updateStartup } = useFounderStartupContext();
   const [platform, setPlatform] = useState(SOCIAL_PLATFORMS[0]);
   const [url, setUrl] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const links = startup?.business_social_links ?? [];
 
   const handleAdd = async () => {
     if (!url.trim()) return;
+    setError(null);
     const next = [...links, { id: String(Date.now()), platform, url: url.trim() }];
-    await updateStartup({ business_social_links: next });
+    const result = await updateStartup({ business_social_links: next });
+    if (result.error) { setError(result.error); return; }
     setUrl('');
   };
 
   const handleRemove = async (id: string) => {
-    await updateStartup({ business_social_links: links.filter((l) => l.id !== id) });
+    setError(null);
+    const result = await updateStartup({ business_social_links: links.filter((l) => l.id !== id) });
+    if (result.error) setError(result.error);
   };
 
   return (
@@ -30,6 +35,8 @@ export default function SocialLinksPage() {
       <p className="mb-6 font-sans text-sm font-light text-mu">
         Add your startup&apos;s social platforms. These will show on your public investor profile.
       </p>
+
+      <ErrorBanner message={error} />
 
       {links.map((l) => (
         <div key={l.id} className="mb-2 flex items-center justify-between rounded-md border border-ln bg-card p-4">

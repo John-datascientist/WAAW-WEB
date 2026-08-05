@@ -28,9 +28,10 @@ function DocRow({ row }: { row: (typeof DOC_ROWS)[number] }) {
     setUploading(true);
     setError(null);
     const { path, error: uploadError } = await uploadFounderDocument(user.id, file, row.kind);
+    if (uploadError) { setUploading(false); setError(uploadError); return; }
+    const result = await updateStartup({ [row.column]: path } as any);
     setUploading(false);
-    if (uploadError) { setError(uploadError); return; }
-    await updateStartup({ [row.column]: path } as any);
+    if (result.error) setError(result.error);
   };
 
   return (
