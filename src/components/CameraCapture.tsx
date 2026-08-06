@@ -5,7 +5,7 @@ import { GhostButton, GoldButton } from './ui';
 
 interface Props {
   label: string;
-  onCapture: (file: File) => void;
+  onSubmit: (file: File) => void;
   /** 'user' opens the front-facing camera (selfies); 'environment' opens the back camera. */
   facingMode?: 'user' | 'environment';
 }
@@ -13,17 +13,37 @@ interface Props {
 // Uses getUserMedia directly (rather than an <input capture> file picker) so
 // this reliably opens a live camera preview on both laptops and phones —
 // the capture attribute is mobile-only and inconsistently supported.
-export function CameraCapture({ label, onCapture, facingMode = 'user' }: Props) {
+export function CameraCapture({ label, onSubmit, facingMode = 'user' }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [active, setActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [captured, setCaptured] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewFile, setPreviewFile] = useState<File | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => () => stop(), []);
+  // Only stop tracks on unmount here — attaching the stream to the <video>
+  // element happens in the effect below, once the element actually exists.
+  useEffect(() => {
+    return () => {
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+    };
+  }, []);
+
+  // The <video> element only mounts once `active` is true, so the stream
+  // can't be attached in the same handler that requests it — the ref is
+  // still null at that point. Attaching it here, keyed on `active`, runs
+  // after React has actually put the element in the DOM.
+  useEffect(() => {
+    if (!active || !videoRef.current || !streamRef.current) return;
+    const video = videoRef.current;
+    video.srcObject = streamRef.current;
+    video.play().catch(() => setError('Could not start the camera preview — try again.'));
+  }, [active]);
 
   const start = async () => {
     setError(null);
+    setSubmitted(false);
     if (!navigator.mediaDevices?.getUserMedia) {
       setError('Camera access is not available in this browser.');
       return;
@@ -31,17 +51,13 @@ export function CameraCapture({ label, onCapture, facingMode = 'user' }: Props) 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
       streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
       setActive(true);
     } catch {
       setError('Could not access the camera — check your browser/device permissions and try again.');
     }
   };
 
-  const stop = () => {
+  const stopStream = () => {
     streamRef.current?.getTracks().forEach((t) => t.stop());
     streamRef.current = null;
     setActive(false);
@@ -49,7 +65,7 @@ export function CameraCapture({ label, onCapture, facingMode = 'user' }: Props) 
 
   const capture = () => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !video.videoWidth) return;
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
@@ -57,10 +73,9 @@ export function CameraCapture({ label, onCapture, facingMode = 'user' }: Props) 
     canvas.toBlob(
       (blob) => {
         if (!blob) return;
-        const file = new File([blob], `capture-${Date.now()}.jpg`, { type: 'image/jpeg' });
-        setCaptured(URL.createObjectURL(blob));
-        onCapture(file);
-        stop();
+        setPreviewUrl(URL.createObjectURL(blob));
+        setPreviewFile(new File([blob], `capture-${Date.now()}.jpg`, { type: 'image/jpeg' }));
+        stopStream();
       },
       'image/jpeg',
       0.9
@@ -68,26 +83,51 @@ export function CameraCapture({ label, onCapture, facingMode = 'user' }: Props) 
   };
 
   const retake = () => {
-    setCaptured(null);
+    setPreviewUrl(null);
+    setPreviewFile(null);
     start();
   };
+
+  const confirm = () => {
+    if (!previewFile) return;
+    onSubmit(previewFile);
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="mb-5">
+        <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">{label}</label>
+        <div className="flex items-center justify-between rounded-md border border-suBorder bg-suLight px-4 py-3">
+          <span className="font-sans text-sm text-su">✓ Photo submitted</span>
+          <button type="button" onClick={retake} className="font-sans text-xs font-semibold text-pu">Retake</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-5">
       <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">{label}</label>
 
-      {captured ? (
+      {previewUrl ? (
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={captured} alt="Captured" className="mb-2 w-full rounded-md border border-suBorder" />
-          <GhostButton onClick={retake}>Retake</GhostButton>
+          <img src={previewUrl} alt="Captured preview" className="mb-2 aspect-video w-full rounded-md border border-ln object-cover" />
+          <div className="flex gap-2">
+            <GoldButton onClick={confirm}>Use this photo</GoldButton>
+            <GhostButton onClick={retake}>Retake</GhostButton>
+          </div>
         </div>
       ) : active ? (
         <div>
-          <video ref={videoRef} className="mb-2 w-full rounded-md border border-ln" muted playsInline />
+          <p className="mb-2 font-sans text-xs font-light text-mu">
+            💡 Stand in a well-lit place, facing the camera directly, before capturing.
+          </p>
+          <video ref={videoRef} className="mb-2 aspect-video w-full rounded-md border border-ln bg-deeper object-cover" muted playsInline autoPlay />
           <div className="flex gap-2">
             <GoldButton onClick={capture}>Capture</GoldButton>
-            <GhostButton onClick={stop}>Cancel</GhostButton>
+            <GhostButton onClick={stopStream}>Cancel</GhostButton>
           </div>
         </div>
       ) : (

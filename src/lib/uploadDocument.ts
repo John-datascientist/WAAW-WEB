@@ -6,7 +6,10 @@ export type DocumentKind =
   | 'pitch-video'
   | 'incorporation-cert'
   | 'cofounder-selfie'
-  | 'cofounder-id';
+  | 'cofounder-id'
+  | 'cofounder-id-back'
+  | 'proof-of-address'
+  | 'bank-account-proof';
 
 // The waaw-founder-docs bucket is private (RLS-gated to the uploading
 // founder), so what's stored in e.g. pitch_deck_url is a storage *path*,

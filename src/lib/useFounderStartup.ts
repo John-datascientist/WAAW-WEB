@@ -26,6 +26,18 @@ export interface StartupRow {
   interview_scheduled_for: string | null;
   onboarding_complete: boolean;
   incorporation_cert_url: string | null;
+  registration_country: string | null;
+  cofounders_on_docs_confirmed: boolean;
+  bank_name: string | null;
+  bank_account_name: string | null;
+  bank_account_number: string | null;
+  bank_currency: string | null;
+  bank_proof_url: string | null;
+  active_users: number | null;
+  monthly_revenue: number | null;
+  prior_funding_raised: number | null;
+  proof_of_address_type: string | null;
+  proof_of_address_url: string | null;
   verified: boolean;
 }
 
@@ -70,6 +82,7 @@ export interface CofounderRow {
   id_number: string | null;
   selfie_url: string | null;
   id_document_url: string | null;
+  id_document_back_url: string | null;
   work_history: WorkHistoryEntry[];
   reference_list: ReferenceEntry[];
 }

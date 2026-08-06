@@ -7,8 +7,30 @@ export const SOCIAL_PLATFORMS = ['Website', 'Twitter/X', 'Instagram', 'LinkedIn'
 export const MIN_COFOUNDERS = 2;
 export const EDUCATION_LEVELS = ['Secondary school', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other'];
 export const ID_TYPES = ['Passport', 'National ID', "Driver's license", "Voter's card"];
+// These carry identity information on both sides; passport and voter's card don't.
+export const ID_TYPES_REQUIRING_BACK = ['National ID', "Driver's license"];
 export const REFERENCE_TYPES = ['Work', 'Character'] as const;
 export const MIN_REFERENCES = 2;
+
+export const REGISTRATION_COUNTRIES = ['Nigeria', 'Ghana', 'Kenya', 'South Africa', 'United Kingdom', 'United States', 'Canada', 'Other'];
+
+// WAAW staff still verify the actual document during review — this only
+// changes the label/placeholder so founders know what to look for, it's
+// not a claim that the platform enforces each country's legal requirements.
+export const INCORPORATION_DOC_LABELS: Record<string, string> = {
+  Nigeria: 'CAC Certificate of Incorporation',
+  Ghana: 'Certificate of Incorporation (Registrar General’s Department)',
+  Kenya: 'Certificate of Incorporation (Business Registration Service)',
+  'South Africa': 'CIPC Certificate of Incorporation',
+  'United Kingdom': 'Certificate of Incorporation (Companies House)',
+  'United States': 'Articles of Incorporation',
+  Canada: 'Certificate of Incorporation',
+  Other: 'Certificate of incorporation / business registration document',
+};
+
+export const BANK_CURRENCIES = ['USD', 'NGN', 'GHS', 'KES', 'ZAR', 'GBP', 'CAD'];
+
+export const PROOF_OF_ADDRESS_TYPES = ['Utility bill', 'Bank statement', 'Tenancy agreement', 'Government-issued letter'];
 
 export interface LegalDoc {
   title: string;

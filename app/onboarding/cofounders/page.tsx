@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../../src/context/AuthContext';
 import { useFounderStartupContext } from '../../../src/context/FounderStartupContext';
-import { EDUCATION_LEVELS, ID_TYPES, MIN_COFOUNDERS, MIN_REFERENCES, ONBOARDING_STEPS, REFERENCE_TYPES } from '../../../src/data';
+import { EDUCATION_LEVELS, ID_TYPES, ID_TYPES_REQUIRING_BACK, MIN_COFOUNDERS, MIN_REFERENCES, ONBOARDING_STEPS, REFERENCE_TYPES } from '../../../src/data';
 import { CofounderRow, ReferenceEntry, WorkHistoryEntry } from '../../../src/lib/useFounderStartup';
 import { uploadFounderDocument } from '../../../src/lib/uploadDocument';
 import { CameraCapture } from '../../../src/components/CameraCapture';
@@ -119,6 +119,7 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
   const { user } = useAuth();
   const { updateCofounder } = useFounderStartupContext();
   const idInputRef = useRef<HTMLInputElement>(null);
+  const idBackInputRef = useRef<HTMLInputElement>(null);
 
   const [dob, setDob] = useState(cofounder.date_of_birth ?? '');
   const [phone, setPhone] = useState(cofounder.phone ?? '');
@@ -136,21 +137,24 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
   const [socialLink, setSocialLink] = useState(cofounder.social_link ?? '');
   const [selfieUrl, setSelfieUrl] = useState(cofounder.selfie_url);
   const [idDocUrl, setIdDocUrl] = useState(cofounder.id_document_url);
+  const [idDocBackUrl, setIdDocBackUrl] = useState(cofounder.id_document_back_url);
   const [workHistory, setWorkHistory] = useState<WorkHistoryEntry[]>(cofounder.work_history ?? []);
   const [references, setReferences] = useState<ReferenceEntry[]>(cofounder.reference_list ?? []);
   const [uploadingId, setUploadingId] = useState(false);
+  const [uploadingIdBack, setUploadingIdBack] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
   const hasWorkRef = references.some((r) => r.type === 'Work');
   const hasCharacterRef = references.some((r) => r.type === 'Character');
   const referencesOk = references.length >= MIN_REFERENCES && hasWorkRef && hasCharacterRef;
+  const needsIdBack = ID_TYPES_REQUIRING_BACK.includes(idType);
 
   const canSave =
     dob.trim() && phone.trim() && nationality.trim() && address.trim() &&
     currentCity.trim() && stateOfOrigin.trim() && stateOfResidence.trim() && postcode.trim() &&
     workHistory.length > 0 && educationLevel && referencesOk &&
-    idType && idNumber.trim() && selfieUrl && idDocUrl && socialLink.trim();
+    idType && idNumber.trim() && selfieUrl && idDocUrl && (!needsIdBack || idDocBackUrl) && socialLink.trim();
 
   const handleSelfieCapture = async (file: File) => {
     if (!user) return;
@@ -169,6 +173,17 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
     setUploadingId(false);
     if (uploadError) { setError(uploadError); return; }
     setIdDocUrl(path);
+  };
+
+  const handleIdBackFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !user) return;
+    setUploadingIdBack(true);
+    setError(null);
+    const { path, error: uploadError } = await uploadFounderDocument(user.id, file, 'cofounder-id-back');
+    setUploadingIdBack(false);
+    if (uploadError) { setError(uploadError); return; }
+    setIdDocBackUrl(path);
   };
 
   const handleSave = async () => {
@@ -193,6 +208,7 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
       id_number: idNumber.trim(),
       selfie_url: selfieUrl,
       id_document_url: idDocUrl,
+      id_document_back_url: needsIdBack ? idDocBackUrl : null,
       selfie_done: true,
       id_verified: true,
       social_link: socialLink.trim(),
@@ -248,11 +264,13 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
       <Select label="ID type" value={idType} onChange={setIdType} options={ID_TYPES} />
       <Field label="ID number" value={idNumber} onChange={setIdNumber} placeholder="A12345678" />
 
-      <CameraCapture label="Selfie" facingMode="user" onCapture={handleSelfieCapture} />
+      <CameraCapture label="Selfie" facingMode="user" onSubmit={handleSelfieCapture} />
       {selfieUrl && <p className="-mt-3 mb-5 font-mono text-[10px] uppercase tracking-wider text-su">✓ Selfie uploaded</p>}
 
       <div className="mb-5">
-        <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">ID document</label>
+        <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">
+          {needsIdBack ? 'ID document (front)' : 'ID document'}
+        </label>
         <button
           type="button"
           onClick={() => idInputRef.current?.click()}
@@ -261,10 +279,27 @@ function VerifyForm({ cofounder, onDone }: { cofounder: CofounderRow; onDone: ()
             idDocUrl ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'
           }`}
         >
-          {uploadingId ? 'Uploading…' : idDocUrl ? '✓ ID document uploaded' : '🪪 Upload passport or national ID'}
+          {uploadingId ? 'Uploading…' : idDocUrl ? '✓ Front uploaded' : `🪪 Upload ${idType || 'ID'} (front)`}
         </button>
         <input ref={idInputRef} type="file" accept="image/*,.pdf" capture="environment" onChange={handleIdFile} className="hidden" />
       </div>
+
+      {needsIdBack && (
+        <div className="mb-5">
+          <label className="mb-2 block font-mono text-[10px] uppercase tracking-wider text-mu">ID document (back)</label>
+          <button
+            type="button"
+            onClick={() => idBackInputRef.current?.click()}
+            disabled={uploadingIdBack}
+            className={`w-full rounded-md border border-dashed px-4 py-8 text-center font-sans text-sm ${
+              idDocBackUrl ? 'border-suBorder bg-suLight text-su' : 'border-ln text-mu'
+            }`}
+          >
+            {uploadingIdBack ? 'Uploading…' : idDocBackUrl ? '✓ Back uploaded' : `🪪 Upload ${idType} (back)`}
+          </button>
+          <input ref={idBackInputRef} type="file" accept="image/*,.pdf" capture="environment" onChange={handleIdBackFile} className="hidden" />
+        </div>
+      )}
 
       <Field label="Personal social link (LinkedIn, Twitter/X, Instagram)" value={socialLink} onChange={setSocialLink} placeholder="https://linkedin.com/in/yourname" />
 
