@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, Divider, ErrorBanner, Field, GoldButton } from '../../src/components/ui';
 import { NotificationPrefs, useAuth } from '../../src/context/AuthContext';
+import { useAuthGate } from '../../src/lib/useAuthGate';
 import { supabase } from '../../src/lib/supabase';
 
 const DEFAULT_PREFS: NotificationPrefs = { commitments: true, deals: true, marketing: false };
@@ -36,18 +37,9 @@ export default function AccountPage() {
       .then(({ count }) => setReferredCount(count ?? 0));
   }, [profile?.referral_code]);
 
-  if (!profile) {
-    return (
-      <div>
-        <InvestorNav />
-        <BackButton fallbackHref="/" />
-        <main className="mx-auto max-w-md px-6 py-16 text-center">
-          <p className="mb-4 font-sans text-sm text-mu">Sign in to view your account.</p>
-          <Link href="/signin" className="font-mono text-xs uppercase tracking-wider text-pu">Sign in →</Link>
-        </main>
-      </div>
-    );
-  }
+  const gate = useAuthGate({ fallbackHref: '/', signedOutMessage: 'Sign in to view your account.' });
+  if (gate) return gate;
+  if (!profile) return null;
 
   const handleChangePassword = async () => {
     setPasswordError(null);

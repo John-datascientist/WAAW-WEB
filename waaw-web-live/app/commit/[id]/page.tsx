@@ -19,7 +19,7 @@ const RISKS = [
 ];
 
 export default function CommitPage({ params }: { params: { id: string } }) {
-  const { profile } = useAuth();
+  const { user, profile, loading: authLoading } = useAuth();
   const { startup, loading } = useStartup(params.id);
   const { createCommitment } = useCommitments();
   const [riskAccepted, setRiskAccepted] = useState(false);
@@ -76,7 +76,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
     );
   }
 
-  if (!profile) {
+  if (!user) {
     return (
       <div>
         <InvestorNav />
@@ -84,6 +84,31 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         <main className="mx-auto max-w-md px-6 py-16 text-center">
           <p className="mb-4 font-sans text-sm text-mu">Sign in with an investor account to commit capital.</p>
           <GoldButton href="/signup?role=investor">Create an account</GoldButton>
+        </main>
+      </div>
+    );
+  }
+
+  if (authLoading) {
+    return (
+      <div>
+        <InvestorNav />
+        <BackButton fallbackHref="/startups" />
+        <main className="mx-auto max-w-md px-6 py-16 text-center"><p className="font-sans text-sm text-mu">Loading…</p></main>
+      </div>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <div>
+        <InvestorNav />
+        <BackButton fallbackHref="/startups" />
+        <main className="mx-auto max-w-md px-6 py-16 text-center">
+          <p className="mb-4 font-sans text-sm text-mu">You&apos;re signed in, but your account details couldn&apos;t be loaded.</p>
+          <button type="button" onClick={() => window.location.reload()} className="font-mono text-xs uppercase tracking-wider text-pu">
+            Try again →
+          </button>
         </main>
       </div>
     );

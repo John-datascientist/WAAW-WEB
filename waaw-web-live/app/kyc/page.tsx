@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, ErrorBanner, Field, GoldButton } from '../../src/components/ui';
 import { useAuth } from '../../src/context/AuthContext';
+import { useAuthGate } from '../../src/lib/useAuthGate';
 import { supabase } from '../../src/lib/supabase';
 
 function KycForm() {
@@ -51,6 +52,9 @@ function KycForm() {
       type: 'kyc',
     });
   };
+
+  const gate = useAuthGate({ fallbackHref: '/', signedOutMessage: 'Sign in to verify your identity.' });
+  if (gate) return gate;
 
   return (
     <div>

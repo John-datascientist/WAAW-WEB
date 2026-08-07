@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, Divider, VerifiedBadge } from '../../src/components/ui';
 import { useAuth } from '../../src/context/AuthContext';
+import { useAuthGate } from '../../src/lib/useAuthGate';
 import { useFounderStartup } from '../../src/lib/useFounderStartup';
 import { onboardingProgress } from '../../src/lib/onboardingProgress';
 import { supabase } from '../../src/lib/supabase';
@@ -34,18 +35,9 @@ export default function DashboardPage() {
       .then(({ data }) => setCommitments((data as CommitmentSummary[]) ?? []));
   }, [startup]);
 
-  if (!profile) {
-    return (
-      <div>
-        <InvestorNav />
-        <BackButton fallbackHref="/" />
-        <main className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <p className="mb-4 font-sans text-sm text-mu">Sign in to view your dashboard.</p>
-          <Link href="/signin" className="font-mono text-xs uppercase tracking-wider text-pu">Sign in →</Link>
-        </main>
-      </div>
-    );
-  }
+  const gate = useAuthGate({ fallbackHref: '/', signedOutMessage: 'Sign in to view your dashboard.' });
+  if (gate) return gate;
+  if (!profile) return null;
 
   if (profile.role !== 'founder') {
     return (

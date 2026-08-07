@@ -77,7 +77,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   async function fetchProfile(userId: string) {
-    const { data } = await supabase.from('waaw_profiles').select('*').eq('id', userId).single();
+    // This used to swallow the error entirely — a failed fetch (RLS denial,
+    // a dropped connection, the profile row not existing yet right after
+    // signup) left `profile` null forever with nothing logged, which reads
+    // to a genuinely signed-in user as "it says I'm not signed in" with no
+    // way to tell why. Logging it doesn't fix the underlying cause, but it
+    // stops the failure from being invisible.
+    const { data, error } = await supabase.from('waaw_profiles').select('*').eq('id', userId).single();
+    if (error) console.error('WAAW fetch profile error:', error);
     setProfile(data);
     setLoading(false);
   }

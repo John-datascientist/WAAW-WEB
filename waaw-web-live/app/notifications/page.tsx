@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, Chip } from '../../src/components/ui';
 import { useAuth } from '../../src/context/AuthContext';
+import { useAuthGate } from '../../src/lib/useAuthGate';
 import { NotificationRow, useNotifications } from '../../src/lib/useInvestor';
 
 type FilterChip = 'all' | 'commitments' | 'deals' | 'general';
@@ -28,18 +29,9 @@ export default function NotificationsPage() {
   const { notifications, unread, markAllRead, toggleRead } = useNotifications();
   const [filter, setFilter] = useState<FilterChip>('all');
 
-  if (!profile) {
-    return (
-      <div>
-        <InvestorNav />
-        <BackButton fallbackHref="/" />
-        <main className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <p className="mb-4 font-sans text-sm text-mu">Sign in to view your notifications.</p>
-          <Link href="/signin" className="font-mono text-xs uppercase tracking-wider text-pu">Sign in →</Link>
-        </main>
-      </div>
-    );
-  }
+  const gate = useAuthGate({ fallbackHref: '/', signedOutMessage: 'Sign in to view your notifications.' });
+  if (gate) return gate;
+  if (!profile) return null;
 
   const filtered = notifications.filter((n) => matchesChip(n, filter));
 

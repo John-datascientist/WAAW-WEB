@@ -72,7 +72,14 @@ function SignUpForm() {
   // an investor should never have to see or click past founder framing,
   // and vice versa. The toggle only shows up for a generic /signup visit.
   const roleLocked = roleParam === 'founder' || roleParam === 'investor';
-  const initialRole = roleLocked ? (roleParam as 'investor' | 'founder') : draft.role ?? 'investor';
+  // Deliberately NOT falling back to `draft.role` here: a saved draft can be
+  // old (someone poked the founder tab weeks ago, never submitted, and the
+  // draft — which has no expiry — is still sitting in localStorage), and
+  // silently pre-selecting a stale role is exactly how someone ends up
+  // submitting as a founder while believing they chose investor. A neutral
+  // /signup visit always starts on investor; only an explicit ?role= link
+  // locks a different starting tab.
+  const initialRole = roleLocked ? (roleParam as 'investor' | 'founder') : 'investor';
   const [role, setRole] = useState<'investor' | 'founder'>(initialRole);
   const [name, setName] = useState(draft.name ?? '');
   const [email, setEmail] = useState(draft.email ?? '');

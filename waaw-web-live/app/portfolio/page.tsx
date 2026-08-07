@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, Chip, Divider } from '../../src/components/ui';
 import { useAuth } from '../../src/context/AuthContext';
+import { useAuthGate } from '../../src/lib/useAuthGate';
 import { CommitmentRow, useCommitments, useStartups, useWatchlist } from '../../src/lib/useInvestor';
 
 const fmt = (n: number) => '$' + n.toLocaleString();
@@ -38,18 +39,9 @@ export default function PortfolioPage() {
   const [statusFilter, setStatusFilter] = useState<string>('All');
   const [confirmingId, setConfirmingId] = useState<string | null>(null);
 
-  if (!profile) {
-    return (
-      <div>
-        <InvestorNav />
-        <BackButton fallbackHref="/" />
-        <main className="mx-auto max-w-3xl px-6 py-16 text-center">
-          <p className="mb-4 font-sans text-sm text-mu">Sign in to view your portfolio.</p>
-          <Link href="/signin" className="font-mono text-xs uppercase tracking-wider text-pu">Sign in →</Link>
-        </main>
-      </div>
-    );
-  }
+  const gate = useAuthGate({ fallbackHref: '/', signedOutMessage: 'Sign in to view your portfolio.' });
+  if (gate) return gate;
+  if (!profile) return null;
 
   const active = commitments.filter((c) => c.status !== 'refunded');
   const refunded = commitments.filter((c) => c.status === 'refunded');
