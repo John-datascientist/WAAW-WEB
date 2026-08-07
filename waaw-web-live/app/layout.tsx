@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Newsreader, IBM_Plex_Mono, Inter } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '../src/context/AuthContext';
@@ -12,6 +12,14 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600'], 
 export const metadata: Metadata = {
   title: 'WAAW — Invest in Black-founded startups',
   description: 'Browse verified Black-founded startups, commit capital through protected escrow, and register your own startup to raise.',
+};
+
+// Next.js applies a sensible default even without this, but the site was
+// reported rendering as a shrunk desktop layout on real phones — making it
+// explicit removes any doubt about which viewport rules are actually in effect.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

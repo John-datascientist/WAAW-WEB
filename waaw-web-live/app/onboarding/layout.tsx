@@ -58,7 +58,32 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
     return <div className="px-6 py-16 text-center font-sans text-sm text-mu">Loading…</div>;
   }
 
-  if (profile && profile.role !== 'founder') {
+  // `profile` can be null here for two different reasons — the fetch is
+  // done and genuinely found nothing, or it errored — and both used to
+  // fall through this check silently (since `profile && ...` is false for
+  // null) straight into the founder wizard. That let an account whose
+  // profile row failed to load (regardless of its real role) register a
+  // startup it has no waaw_profiles row to be the founder_id of, which
+  // fails at the database with a foreign-key violation instead of a
+  // legible error. Blocking on missing profile too closes that gap.
+  if (!profile) {
+    return (
+      <div className="mx-auto max-w-md px-6 py-16 text-center">
+        <p className="mb-4 font-sans text-sm text-mu">
+          Your account details couldn&apos;t be loaded, so startup registration is unavailable right now.
+        </p>
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          className="font-mono text-xs uppercase tracking-wider text-pu"
+        >
+          Try again →
+        </button>
+      </div>
+    );
+  }
+
+  if (profile.role !== 'founder') {
     return (
       <div className="mx-auto max-w-md px-6 py-16 text-center">
         <p className="mb-4 font-sans text-sm text-mu">
