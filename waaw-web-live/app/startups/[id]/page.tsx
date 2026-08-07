@@ -228,7 +228,16 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
           </>
         )}
 
-        <button type="button" onClick={handleShare} className="mt-8 w-full rounded-md border border-pu py-3 text-center font-mono text-xs uppercase tracking-wider text-pu hover:bg-puXlight">
+        <Divider />
+
+        <Link
+          href={`/startups/${startup.id}/data-room`}
+          className="mb-3 block w-full rounded-md border border-ln py-3 text-center font-mono text-xs uppercase tracking-wider text-mu hover:border-pu hover:text-pu"
+        >
+          View data room — pitch deck, business plan & more →
+        </Link>
+
+        <button type="button" onClick={handleShare} className="w-full rounded-md border border-pu py-3 text-center font-mono text-xs uppercase tracking-wider text-pu hover:bg-puXlight">
           {shareCopied ? 'Link copied to clipboard!' : 'Share this deal ↗'}
         </button>
 

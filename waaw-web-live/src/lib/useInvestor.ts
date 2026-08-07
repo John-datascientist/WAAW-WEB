@@ -37,6 +37,16 @@ export interface StartupRow {
   business_social_links: SocialLink[];
   created_at: string;
   waaw_cofounders?: CofounderSummary[];
+  // Data room fields — founder-supplied during onboarding, gated behind
+  // sign-in + NDA acceptance in the UI (see useNdaAcceptance below).
+  registration_number: string | null;
+  incorporation_cert_url: string | null;
+  pitch_deck_url: string | null;
+  business_plan_url: string | null;
+  pitch_video_url: string | null;
+  active_users: number | null;
+  monthly_revenue: number | null;
+  prior_funding_raised: number | null;
 }
 
 export interface CommitmentRow {
@@ -266,4 +276,39 @@ export function useNotifications() {
   }
 
   return { notifications, loading, unread, markAllRead, toggleRead };
+}
+
+// ─── DEAL DATA ROOM ─────────────────────────────────────────────────────────
+export function useNdaAcceptance(startupId: string) {
+  const { user } = useAuth();
+  const [accepted, setAccepted] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [accepting, setAccepting] = useState(false);
+
+  useEffect(() => {
+    if (!user || !startupId) { setLoading(false); return; }
+    supabase
+      .from('waaw_nda_acceptances')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('startup_id', startupId)
+      .maybeSingle()
+      .then(({ data }) => {
+        setAccepted(!!data);
+        setLoading(false);
+      });
+  }, [user, startupId]);
+
+  async function accept() {
+    if (!user) return { error: 'Not authenticated' };
+    setAccepting(true);
+    const { error } = await supabase
+      .from('waaw_nda_acceptances')
+      .insert({ user_id: user.id, startup_id: startupId });
+    setAccepting(false);
+    if (!error) setAccepted(true);
+    return { error: error?.message ?? null };
+  }
+
+  return { accepted, loading, accepting, accept };
 }

@@ -203,13 +203,34 @@ export function ErrorBanner({ message }: { message: string | null }) {
 }
 
 export function VerifiedBadge({ verified }: { verified: boolean }) {
+  const [open, setOpen] = React.useState(false);
   return (
-    <span
-      className={`inline-block rounded-sm px-2 py-1 font-mono text-[9px] uppercase tracking-wider ${
-        verified ? 'bg-pu text-white' : 'bg-ln text-mu'
-      }`}
-    >
-      {verified ? 'Verified' : 'Pending'}
+    <span className="relative inline-block">
+      <button
+        type="button"
+        onClick={(e) => {
+          // VerifiedBadge is used both standalone and nested inside a
+          // startup card <Link> on /startups — without stopping
+          // propagation, this click also bubbles up and triggers the
+          // card's navigation instead of just toggling the explanation.
+          e.preventDefault();
+          e.stopPropagation();
+          setOpen((v) => !v);
+        }}
+        className={`inline-flex items-center gap-1 rounded-sm px-2 py-1 font-mono text-[9px] uppercase tracking-wider ${
+          verified ? 'bg-pu text-white' : 'bg-ln text-mu'
+        }`}
+      >
+        {verified ? 'Verified' : 'Pending'}
+        <span className="opacity-70">ⓘ</span>
+      </button>
+      {open && (
+        <span className="absolute left-0 top-full z-10 mt-2 w-64 rounded-md border border-ln bg-card p-3 font-sans text-xs font-light leading-relaxed text-tx shadow-lg">
+          {verified
+            ? 'WAAW has reviewed the founder’s identity, company registration, and pitch before listing this deal. It doesn’t mean WAAW has audited every figure the founder reports — see the data room for what’s founder-reported vs. independently confirmed.'
+            : 'This deal hasn’t completed WAAW’s review yet. It isn’t listed publicly until it has.'}
+        </span>
+      )}
     </span>
   );
 }
