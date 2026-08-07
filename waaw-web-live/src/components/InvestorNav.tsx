@@ -44,7 +44,14 @@ export function InvestorNav() {
 
   const navItems = () => (
     <>
-      {!profile && (
+      {/* This standalone link is only for the fully-signed-out case — a
+          signed-in user already gets "Startups" from `links` below (it's
+          the first entry in INVESTOR_LINKS). Gating this on `!profile`
+          instead of `!user` meant it also rendered whenever someone was
+          signed in but their profile hadn't loaded (or failed to), which
+          is exactly the missing-profile-row state — showing "Startups"
+          twice in the nav. */}
+      {!user && (
         <Link
           href="/startups"
           onClick={() => setMenuOpen(false)}
