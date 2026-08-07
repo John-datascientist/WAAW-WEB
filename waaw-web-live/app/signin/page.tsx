@@ -23,11 +23,27 @@ export default function SignInPage() {
 
     const { data: authData } = await supabase.auth.getUser();
     let role: string | undefined;
+    let profileLoadFailed = false;
     if (authData.user) {
-      const { data: profileRow } = await supabase.from('waaw_profiles').select('role').eq('id', authData.user.id).single();
+      const { data: profileRow, error: profileError } = await supabase
+        .from('waaw_profiles')
+        .select('role')
+        .eq('id', authData.user.id)
+        .single();
+      if (profileError) { console.error('WAAW sign-in profile fetch error:', profileError); profileLoadFailed = true; }
       role = profileRow?.role;
     }
     setSubmitting(false);
+
+    // A failed/missing profile fetch used to fall straight into the founder
+    // branch below (role stays undefined, which !== 'investor'), silently
+    // treating "we don't know who you are" the same as "you're a founder" —
+    // sending people to /onboarding with no explanation. Routing to /account
+    // instead surfaces the real "couldn't load your account" state there.
+    if (profileLoadFailed) {
+      router.push('/account');
+      return;
+    }
     if (role === 'investor') {
       router.push('/startups');
       return;
