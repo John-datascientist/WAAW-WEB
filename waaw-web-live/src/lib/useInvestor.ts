@@ -229,8 +229,17 @@ export function useNotifications() {
 
   useEffect(() => {
     if (!user) return;
+    // This hook runs concurrently in more than one place — InvestorNav
+    // subscribes for its unread badge on every page, and the notifications
+    // page subscribes again for its own list. A shared, static channel name
+    // meant the second `.channel(...).on(...)` call reused the first
+    // instance's already-subscribed channel and threw synchronously
+    // ("cannot add postgres_changes callbacks... after subscribe()"),
+    // crashing the whole page. Scoping the name per user + mount keeps each
+    // subscription independent.
+    const channelName = `waaw-web-notifications-${user.id}-${Math.random().toString(36).slice(2)}`;
     const channel = supabase
-      .channel('waaw-web-notifications')
+      .channel(channelName)
       .on(
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'waaw_notifications', filter: `user_id=eq.${user.id}` },
