@@ -1,0 +1,37 @@
+import type { Metadata, Viewport } from 'next';
+import { Newsreader, IBM_Plex_Mono, Inter, Archivo } from 'next/font/google';
+import './globals.css';
+import { AuthProvider } from '../src/context/AuthContext';
+import { isSupabaseConfigured } from '../src/lib/supabase';
+import { ConfigError } from '../src/components/ui';
+
+const newsreader = Newsreader({ subsets: ['latin'], weight: ['500', '600'], style: ['normal', 'italic'], variable: '--font-newsreader' });
+const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '600'], variable: '--font-plex-mono' });
+const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-inter' });
+// A heavy grotesk reserved for the landing page's hero headline only — the
+// rest of the site keeps Newsreader, this gives the hero its own bold,
+// oversized display weight (matching the reference layout's type scale).
+const archivo = Archivo({ subsets: ['latin'], weight: ['700', '800'], variable: '--font-archivo' });
+
+export const metadata: Metadata = {
+  title: 'WAAW — Invest in Black-founded startups',
+  description: 'Browse verified Black-founded startups, commit capital through protected escrow, and register your own startup to raise.',
+};
+
+// Next.js applies a sensible default even without this, but the site was
+// reported rendering as a shrunk desktop layout on real phones — making it
+// explicit removes any doubt about which viewport rules are actually in effect.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${newsreader.variable} ${plexMono.variable} ${inter.variable} ${archivo.variable}`}>
+      <body className="min-h-screen bg-bg font-sans text-tx antialiased">
+        {isSupabaseConfigured ? <AuthProvider>{children}</AuthProvider> : <ConfigError />}
+      </body>
+    </html>
+  );
+}
