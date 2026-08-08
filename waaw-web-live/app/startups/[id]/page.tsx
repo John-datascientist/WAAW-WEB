@@ -27,6 +27,7 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
   const [shareCopied, setShareCopied] = useState(false);
   const [calcAmount, setCalcAmount] = useState('');
   const [currency, setCurrency] = useState<string | null>(null);
+  const [showDiluted, setShowDiluted] = useState(false);
 
   if (loading) {
     return (
@@ -58,6 +59,11 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
   const calcNum = parseInt(calcAmount.replace(/\D/g, ''), 10) || 0;
   const estStake =
     startup.post_money_valuation && calcNum > 0 ? (calcNum / startup.post_money_valuation) * 100 : null;
+  // Illustrative only — a typical future priced round dilutes existing
+  // holders by roughly this much; real dilution depends on that round's
+  // actual size and terms, which don't exist yet for an unraised round.
+  const FUTURE_ROUND_DILUTION = 0.20;
+  const dilutedStake = estStake !== null ? estStake * (1 - FUTURE_ROUND_DILUTION) : null;
   const saved = watchlist.includes(startup.id);
   const dealUrl = typeof window !== 'undefined' ? `${window.location.origin}/startups/${startup.id}` : '';
 
@@ -102,6 +108,15 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
         </p>
 
         <p className="mb-6 font-sans text-base font-light leading-relaxed text-tx">{startup.pitch}</p>
+
+        {startup.pitch_video_url && (
+          <div className="mb-6 overflow-hidden rounded-md border border-ln">
+            <video controls className="w-full" src={startup.pitch_video_url} preload="metadata">
+              Your browser doesn&apos;t support embedded video.{' '}
+              <a href={startup.pitch_video_url} target="_blank" rel="noopener noreferrer">Watch the pitch video ↗</a>
+            </video>
+          </div>
+        )}
 
         <Divider />
 
@@ -170,9 +185,73 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
                 ≈ {estStake < 0.01 ? '<0.01' : estStake.toFixed(2)}% equity stake at {fmt(startup.post_money_valuation)} post-money
               </p>
             )}
+            {estStake !== null && (
+              <label className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-mu">
+                <input type="checkbox" checked={showDiluted} onChange={(e) => setShowDiluted(e.target.checked)} className="accent-pu" />
+                Show estimate after a future funding round
+              </label>
+            )}
+            {showDiluted && dilutedStake !== null && (
+              <p className="mt-2 font-sans text-xs font-light text-mu">
+                ≈ {dilutedStake < 0.01 ? '<0.01' : dilutedStake.toFixed(2)}% after a typical future round
+                (illustrative {(FUTURE_ROUND_DILUTION * 100).toFixed(0)}% dilution — the real number depends on
+                that round&apos;s actual size and terms).
+              </p>
+            )}
             <p className="mt-1 font-mono text-[9px] text-mu">Estimate only — final terms are set in your term sheet.</p>
           </div>
         )}
+
+        <Divider />
+
+        <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">What WAAW checked</p>
+        <div className="mb-6 rounded-md border border-ln bg-card px-4">
+          {[
+            {
+              label: 'Company registration on file',
+              done: !!startup.registration_number,
+              tag: 'Founder-reported' as const,
+            },
+            {
+              label: 'Business address verified',
+              done: startup.address_verified,
+              tag: 'Verified by WAAW' as const,
+            },
+            {
+              label: 'Team identity checks',
+              done: team.length > 0 && team.every((m) => m.id_verified),
+              tag: 'Verified by WAAW' as const,
+            },
+            {
+              label: 'Financials shared',
+              done: startup.active_users != null || startup.monthly_revenue != null || startup.prior_funding_raised != null,
+              tag: 'Founder-reported' as const,
+            },
+            {
+              label: 'Founder interview',
+              done: !!startup.interview_scheduled_for,
+              tag: startup.interview_requested ? (startup.interview_scheduled_for ? 'Scheduled' : 'Requested') : 'Not yet',
+            },
+          ].map((row) => (
+            <div key={row.label} className="flex items-center justify-between border-b border-ln py-3 last:border-0">
+              <span className="font-sans text-sm text-tx">{row.label}</span>
+              <span className="flex items-center gap-2">
+                <span className={`font-mono text-xs ${row.done ? 'text-su' : 'text-mu'}`}>{row.done ? '✓' : '○'}</span>
+                <span
+                  className={`rounded-sm px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-wider ${
+                    row.tag === 'Verified by WAAW' ? 'bg-pu text-white' : 'bg-deeper text-mu'
+                  }`}
+                >
+                  {row.tag}
+                </span>
+              </span>
+            </div>
+          ))}
+        </div>
+        <p className="mb-6 font-mono text-[9px] text-mu">
+          This reflects what WAAW has checked so far, not a guarantee — see the{' '}
+          <Link href={`/startups/${startup.id}/data-room`} className="text-pu hover:underline">data room</Link> for supporting documents.
+        </p>
 
         <Divider />
 
@@ -185,6 +264,11 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
                   <p className="font-serif text-base italic text-tx">{m.name}</p>
                   <p className="font-mono text-[9px] uppercase tracking-wider text-mu">{m.role}</p>
                 </div>
+                {m.id_verified && (
+                  <span className="rounded-sm bg-suLight px-2 py-1 font-mono text-[8px] uppercase tracking-wider text-su">
+                    ID verified
+                  </span>
+                )}
               </div>
             ))}
           </>

@@ -13,6 +13,7 @@ export interface SocialLink {
 export interface CofounderSummary {
   name: string;
   role: string;
+  id_verified: boolean;
 }
 
 export interface StartupRow {
@@ -47,6 +48,10 @@ export interface StartupRow {
   active_users: number | null;
   monthly_revenue: number | null;
   prior_funding_raised: number | null;
+  // Due diligence scorecard fields.
+  address_verified: boolean;
+  interview_requested: boolean;
+  interview_scheduled_for: string | null;
 }
 
 export interface CommitmentRow {
@@ -81,7 +86,7 @@ export function useStartups() {
   useEffect(() => {
     supabase
       .from('waaw_startups')
-      .select('*, waaw_cofounders(name, role)')
+      .select('*, waaw_cofounders(name, role, id_verified)')
       .eq('verified', true)
       .order('created_at', { ascending: false })
       .then(({ data }) => {
@@ -101,7 +106,7 @@ export function useStartup(id: string) {
     if (!id) return;
     supabase
       .from('waaw_startups')
-      .select('*, waaw_cofounders(name, role)')
+      .select('*, waaw_cofounders(name, role, id_verified)')
       .eq('id', id)
       .single()
       .then(({ data }) => {
