@@ -317,3 +317,67 @@ export function useNdaAcceptance(startupId: string) {
 
   return { accepted, loading, accepting, accept };
 }
+
+// ─── INVESTOR CATEGORISATION ────────────────────────────────────────────────
+export type InvestorCategory =
+  | 'restricted_investor'
+  | 'high_net_worth'
+  | 'self_certified_sophisticated'
+  | 'certified_sophisticated'
+  | 'professional';
+
+export interface CategorisationRow {
+  jurisdiction: string;
+  category: InvestorCategory;
+  certified_at: string;
+  expires_at: string;
+}
+
+const CATEGORISATION_VALID_MONTHS = 12;
+
+export function useInvestorCategorisation() {
+  const { user } = useAuth();
+  const [categorisation, setCategorisation] = useState<CategorisationRow | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  const fetch = useCallback(async () => {
+    if (!user) { setLoading(false); return; }
+    const { data } = await supabase
+      .from('waaw_investor_categorisations')
+      .select('jurisdiction, category, certified_at, expires_at')
+      .eq('user_id', user.id)
+      .maybeSingle();
+    setCategorisation((data as CategorisationRow) ?? null);
+    setLoading(false);
+  }, [user]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
+
+  const isValid = !!categorisation && new Date(categorisation.expires_at).getTime() > Date.now();
+
+  async function certify(jurisdiction: string, category: InvestorCategory) {
+    if (!user) return { error: 'Not authenticated' };
+    setSaving(true);
+    const certifiedAt = new Date();
+    const expiresAt = new Date(certifiedAt);
+    expiresAt.setMonth(expiresAt.getMonth() + CATEGORISATION_VALID_MONTHS);
+    const { error } = await supabase.from('waaw_investor_categorisations').upsert(
+      {
+        user_id: user.id,
+        jurisdiction,
+        category,
+        certified_at: certifiedAt.toISOString(),
+        expires_at: expiresAt.toISOString(),
+      },
+      { onConflict: 'user_id' }
+    );
+    setSaving(false);
+    if (!error) await fetch();
+    return { error: error?.message ?? null };
+  }
+
+  return { categorisation, isValid, loading, saving, certify };
+}

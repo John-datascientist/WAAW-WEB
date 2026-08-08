@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { InvestorNav } from '../../../src/components/InvestorNav';
 import { BackButton, ErrorBanner, GoldButton } from '../../../src/components/ui';
 import { useAuth } from '../../../src/context/AuthContext';
-import { useCommitments, useStartup } from '../../../src/lib/useInvestor';
+import { useCommitments, useInvestorCategorisation, useStartup } from '../../../src/lib/useInvestor';
 
 const MIN_AMOUNT = 100;
 const PRESETS = [500, 1000, 2500, 5000];
@@ -22,6 +22,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
   const { user, profile, loading: authLoading } = useAuth();
   const { startup, loading } = useStartup(params.id);
   const { createCommitment } = useCommitments();
+  const { isValid: categorisationValid, loading: categorisationLoading } = useInvestorCategorisation();
   const [riskAccepted, setRiskAccepted] = useState(false);
   const [amount, setAmount] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -134,6 +135,32 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         <main className="mx-auto max-w-md px-6 py-16 text-center">
           <p className="mb-4 font-sans text-sm text-mu">Complete identity verification before committing capital.</p>
           <GoldButton href={`/kyc?returnTo=/commit/${startup.id}`}>Verify your identity</GoldButton>
+        </main>
+      </div>
+    );
+  }
+
+  if (categorisationLoading) {
+    return (
+      <div>
+        <InvestorNav />
+        <BackButton fallbackHref="/startups" />
+        <main className="mx-auto max-w-md px-6 py-16 text-center"><p className="font-sans text-sm text-mu">Loading…</p></main>
+      </div>
+    );
+  }
+
+  if (!categorisationValid) {
+    return (
+      <div>
+        <InvestorNav />
+        <BackButton fallbackHref="/startups" />
+        <main className="mx-auto max-w-md px-6 py-16 text-center">
+          <p className="mb-4 font-sans text-sm text-mu">
+            Confirm your investor category before committing capital — this is a required legal
+            self-certification, not a background check.
+          </p>
+          <GoldButton href={`/investor/categorisation?returnTo=/commit/${startup.id}`}>Confirm investor category</GoldButton>
         </main>
       </div>
     );
