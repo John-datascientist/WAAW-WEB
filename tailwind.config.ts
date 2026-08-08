@@ -31,12 +31,16 @@ const config: Config = {
         warn: '#92400e',
         warnLight: '#fefce8',
         warnBorder: '#fde68a',
+        // Dark, near-black hero cover (landing page only) — everything else
+        // on the site stays on the cream/purple palette above.
+        heroBg: '#07050d',
+        heroBg2: '#140a2b',
       },
       fontFamily: {
         serif: ['var(--font-newsreader)', 'serif'],
         mono: ['var(--font-plex-mono)', 'monospace'],
         sans: ['var(--font-inter)', 'sans-serif'],
-        display: ['var(--font-fraunces)', 'serif'],
+        display: ['var(--font-archivo)', 'sans-serif'],
       },
       borderRadius: {
         sm: '8px',

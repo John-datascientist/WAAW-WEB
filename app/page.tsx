@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { HeroBanner } from '../src/components/HeroBanner';
+import { FeaturedFounders } from '../src/components/FeaturedFounders';
 
 export default function LandingPage() {
   return (
     <main>
       <HeroBanner />
+      <FeaturedFounders />
 
       <section id="how-it-works" className="border-b border-ln bg-card px-6 py-16">
         <div className="mx-auto grid max-w-4xl gap-8 sm:grid-cols-3">
