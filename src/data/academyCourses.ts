@@ -26,6 +26,8 @@ export interface AcademyCourse {
    * published lessons yet — shown as a disabled card rather than invented
    * content. */
   comingSoon?: boolean;
+  /** Open to everyone, never gated behind another course's completion. */
+  free?: boolean;
 }
 
 // Content supplied directly by the user for the Foundations course — all 6
@@ -1267,6 +1269,843 @@ const HOW_TO_RAISE_LESSONS: AcademyLesson[] = [
 ];
 
 
+const DOCUMENTS_LESSONS: AcademyLesson[] = [
+  {
+    slug: 'how-they-fit-together',
+    title: 'How the Documents Fit Together',
+    teaser: 'A raise runs on paperwork. Before we look at each document, this lesson gives you the map, so you can see how the pieces connect.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 1,
+    sections: [
+      {
+        heading: 'The three groups of documents',
+        body: [
+          'When a raise moves from interest to closing, a stack of documents appears, and founders who do not understand them sign whatever is put in front of them. You do not need to become a lawyer, but you should understand what each document is for and how they fit together.',
+          'The documents in a raise fall into three broad groups. The first sets the terms of the deal: the term sheet, which summarises what both sides have agreed, and then the main investment document that puts those terms into a binding contract, whether that is a SAFE, a convertible note, or a subscription agreement.',
+          'The second group governs the company and the relationship between its owners after the money is in: the shareholders’ agreement and the articles of association, which together decide how the company is run, who controls what, and what happens when shares change hands.',
+          'The third group is the supporting paperwork that makes the deal valid and safe: the cap table and register of members, the warranties and disclosure letter, the board and shareholder resolutions, intellectual property assignments, identity and anti-money-laundering documents, and the filings that update the public record.',
+        ],
+      },
+      {
+        heading: 'Why they must line up',
+        body: [
+          'These documents are not independent. They refer to one another and must agree. The binding investment document must reflect the term sheet. The articles must match the shareholders’ agreement. The cap table must match the shares actually issued. When documents conflict, one of them will usually state which prevails, and an investor’s lawyers will check that everything is consistent. Contradictions between documents are a common cause of delay and mistrust, so consistency is not a detail. It is the whole point.',
+        ],
+      },
+      {
+        heading: 'Binding and non-binding',
+        body: [
+          'Some documents are binding contracts you must honour, such as the subscription agreement and the shareholders’ agreement. Others, most notably the term sheet, are mostly non-binding, though they often contain a few binding clauses, such as confidentiality or exclusivity. Knowing which is which tells you where the real commitment sits, and where you still have room to negotiate.',
+        ],
+      },
+      {
+        heading: 'Who prepares them',
+        body: [
+          'Your solicitor prepares and reviews these documents, and the investor’s solicitor reviews them too. Your job is not to draft them, but to understand them well enough to know what you are agreeing to, to spot terms that matter to you, and to ask the right questions. A founder who understands the documents negotiates from strength and closes faster.',
+        ],
+      },
+      {
+        heading: 'How this course works',
+        body: [
+          'Each of the next fourteen lessons takes one document or one group and explains what it is, what it decides, and where the important choices sit. By the end you will be able to open any document in your raise and know what you are looking at. Keep this map in mind as you go, so each document sits in its place in the whole.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Raise documents fall into three groups: those that set the deal terms, those that govern the company, and the supporting paperwork.',
+          'The documents refer to one another and must be consistent, or the deal stalls.',
+          'Some documents are binding contracts; the term sheet is mostly non-binding but sets the direction.',
+          'Solicitors prepare and review the documents; your job is to understand them well enough to negotiate and ask good questions.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a qualified solicitor prepare and review your raise documents.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-term-sheet',
+    title: 'The Term Sheet',
+    teaser: 'The term sheet is where the raise takes shape. It is short, mostly non-binding, and yet it decides more than almost any document that follows.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 2,
+    sections: [
+      {
+        heading: 'What a term sheet contains',
+        body: [
+          'The term sheet is the starting document of a deal. It is a short summary of the key terms that both sides have agreed, written before the long binding contracts are drafted. Because those later contracts are built to match it, the term sheet is where the negotiation that matters most usually happens.',
+          'A term sheet sets out the essentials of the deal in a few pages. It states the amount being raised and the instrument, whether that is a priced round, a SAFE, or a convertible note. It states the valuation, or the cap and discount if the valuation is being delayed. And it sets out the main rights that come with the investment, such as any liquidation preference, board arrangements, the decisions that will need investor consent, and rights like pre-emption and information rights.',
+        ],
+      },
+      {
+        heading: 'Mostly non-binding, with exceptions',
+        body: [
+          'A term sheet is mostly non-binding, which means agreeing it does not force either side to complete the deal. Its purpose is to record agreement in principle so the lawyers can draft the binding documents with confidence. There are usually a few binding clauses, though, and you should know which they are. Common ones include confidentiality, which keeps the terms private, exclusivity, which stops you talking to other investors for a period, and a clause on who pays legal costs. Read these carefully, because they bind you even though the rest does not.',
+        ],
+      },
+      {
+        heading: 'Why it carries so much weight',
+        body: [
+          'Since the binding documents are drafted to match the term sheet, the terms you accept here tend to stick. Trying to reopen a term after the term sheet is agreed is difficult and damages goodwill, because the other side reasonably feels it was already settled. This is why founders should negotiate the term sheet properly rather than treating it as a formality.',
+        ],
+      },
+      {
+        heading: 'The exclusivity clause deserves attention',
+        body: [
+          'The exclusivity clause, sometimes called a no-shop, is worth singling out. It prevents you from negotiating with other investors for a set period while the deal is finalised. That is reasonable for an investor who is about to spend money on diligence and legal work, but a long exclusivity period can leave you stuck if the deal then falls through, having lost your momentum with everyone else. Keep the period as short as is fair, so you are not trapped.',
+        ],
+      },
+      {
+        heading: 'Get advice before you sign',
+        body: [
+          'Even though it is mostly non-binding, have a solicitor review the term sheet before you sign. They will spot an unusual term, explain what each right means in practice, and flag anything that will be hard to live with later.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The term sheet summarises the key terms and sets the direction for every binding document that follows.',
+          'It is mostly non-binding, but usually includes binding clauses such as confidentiality, exclusivity, and costs.',
+          'Terms accepted in the term sheet tend to stick, so negotiate them properly rather than treating it as a formality.',
+          'Have a solicitor review it before signing, and keep any exclusivity period as short as is fair.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a solicitor review a term sheet before you sign.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-safe-and-asa',
+    title: 'The SAFE and the Advanced Subscription Agreement',
+    teaser: 'When you want to raise quickly and delay the valuation, a SAFE or an advanced subscription agreement is often the tool. This lesson explains how they work.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 3,
+    sections: [
+      {
+        heading: 'What a SAFE is',
+        body: [
+          'At the earliest stage, agreeing a valuation can be hard, and setting up a full priced round can be slow and costly. A **SAFE**, and its close UK relative the advanced subscription agreement, let an investor put money in now and receive shares later, when a future priced round sets the value.',
+          'SAFE stands for Simple Agreement for Future Equity. An investor pays now, and in exchange the company promises to issue them shares in the future, usually when the next priced round happens. A SAFE is not a loan. It carries no interest and no repayment date. It simply sits in place until the event that converts it into shares.',
+          'Because there is no valuation set today, a SAFE usually carries a valuation cap, which is the maximum valuation at which the investor’s money will convert into shares. The cap rewards the early investor for taking early risk. A SAFE may also include a discount, which gives the early investor a reduction on the price of the next round.',
+        ],
+      },
+      {
+        heading: 'The UK version: the advanced subscription agreement',
+        body: [
+          'SAFEs came from the United States and are very common there. In the United Kingdom, a similar document called an advanced subscription agreement, or ASA, is often used instead. An ASA works on the same idea: money now, shares later, at the next round, usually with a cap or discount.',
+          'There is an important difference to understand. To keep the tax reliefs SEIS and EIS available, which many UK investors value, an ASA generally must convert into shares within a set period, often no more than six months, and the money must not be repayable. This is one reason UK early-stage raises often use a carefully drafted ASA rather than a standard US SAFE.',
+        ],
+      },
+      {
+        heading: 'What converts a SAFE or ASA',
+        body: [
+          'The usual trigger is the next qualifying priced round. When that round happens and sets a valuation, the SAFE or ASA converts into shares, applying the cap or discount to work out how many shares the early investor receives. Read the conversion terms, because they decide exactly what the early investor ends up owning.',
+        ],
+      },
+      {
+        heading: 'What to watch',
+        body: [
+          'Understand how the cap and any discount interact, because together they set how much of the company the early investor eventually gets, and stacking several SAFEs with low caps can dilute founders more than expected at conversion. Keep track of every SAFE or ASA you issue, because they all convert later and their combined effect can surprise you if you have not modelled it. And if SEIS or EIS matters to your investors, make sure the document is drafted to preserve eligibility.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A SAFE lets an investor pay now for shares later at the next priced round, with no interest and no repayment date.',
+          'The UK equivalent, an advanced subscription agreement, works similarly but usually must convert within a set period to preserve SEIS and EIS eligibility.',
+          'A cap sets the maximum conversion valuation, and a discount reduces the next round’s price; together they decide the early investor’s eventual stake.',
+          'Track every SAFE or ASA and model their combined conversion, and use careful drafting where tax relief matters.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. SAFEs and advanced subscription agreements should be drafted by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-convertible-loan-note',
+    title: 'The Convertible Loan Note',
+    teaser: 'A convertible note raises money now as a loan that turns into shares later. This lesson explains how it differs from a SAFE and when founders use it.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 4,
+    sections: [
+      {
+        heading: 'What a convertible note is',
+        body: [
+          'A convertible loan note, often just called a convertible note, is another way to raise early money while delaying the valuation. Like a SAFE, it converts into shares at a later round. The key difference is that a convertible note is legally a loan, and that difference brings features a SAFE does not have.',
+          'When an investor buys a convertible note, they are lending money to the company. That loan is intended to convert into shares at a future event, usually the next priced round, rather than being repaid in cash. Because it is a loan, a convertible note normally carries interest and a maturity date, sometimes called a longstop date, by which it either converts or must be dealt with. Like a SAFE, it usually carries a valuation cap, a discount, or both.',
+        ],
+      },
+      {
+        heading: 'Interest and the maturity date',
+        body: [
+          'The interest on a convertible note usually does not get paid in cash along the way. Instead it adds to the amount that converts into shares, so the investor ends up with slightly more shares to reflect the time their money was at work. The maturity date is the deadline. If no qualifying round has happened by then, the note terms decide what occurs, which might be conversion at a set valuation, an extension, or repayment. A note that falls due before you have raised your next round can create pressure at an awkward time.',
+        ],
+      },
+      {
+        heading: 'How it differs from a SAFE',
+        body: [
+          'The practical differences flow from the note being a loan. A note carries interest and a repayment deadline, while a SAFE carries neither. A note sits on the company’s books as debt until it converts, which affects how the company looks financially. And because it is a loan, a convertible note generally does not qualify for the SEIS and EIS tax reliefs that UK investors often want, whereas a carefully drafted advanced subscription agreement can.',
+        ],
+      },
+      {
+        heading: 'When founders use a note',
+        body: [
+          'Convertible notes are common where an investor wants the protections that come with being a lender, such as interest and a repayment right if things stall, or where the parties are comfortable with debt on the books for a while. They are also used for bridge financing, a short raise meant to carry a company between larger rounds.',
+        ],
+      },
+      {
+        heading: 'What to watch',
+        body: [
+          'Read the conversion terms, the cap and discount, the interest rate, and above all the maturity date, because that deadline is where notes cause founders the most trouble. Keep a clear record of every note issued and model how they all convert together, and take advice on the tax position, since the loan structure changes what reliefs are available.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A convertible note raises money as a loan that converts into shares at a later round.',
+          'Being a loan, it usually carries interest and a maturity date, unlike a SAFE.',
+          'Convertible notes generally do not qualify for SEIS and EIS relief, which often makes an ASA preferable in the UK.',
+          'Watch the maturity date and the conversion terms, and model all notes together so their effect is never a surprise.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Convertible notes should be drafted and reviewed by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-subscription-agreement',
+    title: 'The Subscription Agreement',
+    teaser: 'In a priced round, the subscription agreement is the contract under which investors buy their shares. This lesson explains what it does and what it contains.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 5,
+    sections: [
+      {
+        heading: 'What the subscription agreement does',
+        body: [
+          'When you raise a priced round, meaning you agree a valuation and issue shares now, the subscription agreement is the document that makes the purchase happen. It is the binding contract in which an investor agrees to subscribe for, meaning to buy, newly issued shares in your company at the agreed price. Where a SAFE or note delays the share purchase, a subscription agreement carries it out today.',
+          'At its heart the agreement records a simple exchange: the investor pays the agreed amount, and the company issues them the agreed number of new shares at the agreed price. In a round with several investors, it usually lists all of them and the amount each is subscribing.',
+        ],
+      },
+      {
+        heading: 'Conditions to completion',
+        body: [
+          'The agreement often includes conditions that must be satisfied before the money changes hands and the shares are issued, such as adopting new articles, passing the necessary resolutions, or completing due diligence to the investor’s satisfaction. Founders should track these conditions closely, because the round does not complete until they are met.',
+        ],
+      },
+      {
+        heading: 'Warranties often live here',
+        body: [
+          'In many priced rounds, the founders and the company give warranties, formal statements that certain things are true, for example that the company is properly incorporated, owns its key assets, and has no undisclosed legal problems. These warranties frequently sit in the subscription agreement. If a warranty turns out to be untrue, the investor may have a claim, and the disclosure letter, covered later in this course, is how founders protect themselves by disclosing exceptions in advance.',
+        ],
+      },
+      {
+        heading: 'How it relates to the other documents',
+        body: [
+          'The subscription agreement works alongside the shareholders’ agreement and the articles. The subscription agreement handles the act of buying the shares, while the shareholders’ agreement and articles govern the ongoing relationship and the rights those shares carry. Investors usually sign all of these at completion, so they take effect together.',
+        ],
+      },
+      {
+        heading: 'What to watch',
+        body: [
+          'Pay attention to the warranties, since these are where your personal exposure often sits, and make sure anything that qualifies them is properly captured in the disclosure letter. Check the conditions to completion, and confirm that the share numbers, prices, and amounts match your cap table and the term sheet exactly.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The subscription agreement is the binding contract under which investors buy newly issued shares in a priced round.',
+          'It records the amount, the number of shares, the price, and the timing of completion for each investor.',
+          'It often contains conditions to completion and the warranties founders give, so read both closely.',
+          'It works alongside the shareholders’ agreement and articles, and every figure must match your cap table and term sheet.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. A subscription agreement should be prepared and reviewed by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'shareholders-agreement-control',
+    title: 'The Shareholders’ Agreement, Part One: Control',
+    teaser: 'The shareholders’ agreement governs how your company is run after the money is in. This lesson covers the control side: the board, consent rights, and information.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 6,
+    sections: [
+      {
+        heading: 'What the shareholders’ agreement is for',
+        body: [
+          'The shareholders’ agreement, often called the SHA, is one of the most important documents you will ever sign, because it sets the rules for how the company is governed once investors are on board. It answers a set of practical questions: who sits on the board, which decisions can the founders make alone, and what information must the company give its investors.',
+        ],
+      },
+      {
+        heading: 'The board',
+        body: [
+          'The board of directors makes the company’s most important decisions, so its make-up matters as much as who owns the shares. Early on, founders usually control the board. As investors come in, they may want a seat, and one investor seat at an early round is common. What you should guard against is giving away board control too early, because whoever controls the board controls the big decisions.',
+        ],
+      },
+      {
+        heading: 'Reserved matters and consent rights',
+        body: [
+          'Alongside the board, the SHA usually lists reserved matters, sometimes called consent matters: decisions the company cannot take without the approval of certain investors, such as raising more money, selling the company, taking on large debt, or spending above a set amount. Some reserved matters are normal and reasonable. The danger is a list so long and so tightly drawn that you cannot run the company without asking permission at every turn.',
+        ],
+      },
+      {
+        heading: 'Information rights',
+        body: [
+          'Investors will want regular information about the company: accounts, reports, and access to key numbers, usually on an agreed schedule. Be clear about the frequency and level of detail you are committing to, so that reporting is a manageable routine rather than a constant burden.',
+        ],
+      },
+      {
+        heading: 'Founder commitments',
+        body: [
+          'The SHA often includes commitments from the founders, such as agreeing to work full time on the company and not to compete with it. Investors ask for these because at the early stage they are backing the founders above all, and they want to know the team is committed.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The shareholders’ agreement is a private contract that governs how the company is run after investment.',
+          'Guard board control, and understand exactly how many seats each side holds.',
+          'Reserved matters give investors a say on major decisions; keep the list reasonable so you can still run the company.',
+          'Agree information rights and founder commitments you can genuinely meet, then honour them.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. A shareholders’ agreement should be prepared and reviewed by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'shareholders-agreement-shares-and-exits',
+    title: 'The Shareholders’ Agreement, Part Two: Shares and Exits',
+    teaser: 'The second half of the shareholders’ agreement governs what happens to shares over time: how they move, and what happens when the company is sold or a founder leaves.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 7,
+    sections: [
+      {
+        heading: 'Restrictions on transferring shares',
+        body: [
+          'A private company does not want shares moving to just anyone, so the SHA restricts how shares can be transferred. The most common tool is pre-emption on transfers, which means that a shareholder wanting to sell must first offer their shares to the existing shareholders before selling to an outsider. This keeps ownership within the known group.',
+        ],
+      },
+      {
+        heading: 'Tag-along and drag-along',
+        body: [
+          'Two linked provisions deal with a sale of the company. A tag-along right lets minority shareholders join a sale on the same terms if larger holders sell, so a small investor cannot be left behind. A drag-along right lets a majority force the minority to join a sale, so a small holder cannot block a good exit that most owners want. Know the thresholds that trigger each one.',
+        ],
+      },
+      {
+        heading: 'Leaver provisions and vesting',
+        body: [
+          'Investors frequently require that founders earn their shares over time, known as vesting, typically over several years. If a founder leaves early, leaver provisions decide what happens to their unvested shares, and sometimes their vested ones. A distinction is often drawn between a good leaver, who leaves for reasons like ill health, and a bad leaver, who leaves in circumstances that justify harsher treatment. Negotiate the details, such as credit for time already served.',
+        ],
+      },
+      {
+        heading: 'Anti-dilution and pre-emption on new shares',
+        body: [
+          'The SHA usually gives investors pre-emption rights on new shares, meaning that when the company issues more shares in a future round, existing investors get the chance to buy enough to maintain their percentage. Some agreements also include anti-dilution protection, which shields investors if the company later raises at a lower valuation. The detailed negotiation of anti-dilution is covered in the advanced Founder track, but you should know the term exists and where it lives.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The SHA restricts share transfers, usually through pre-emption, to keep ownership within the known group.',
+          'Tag-along and drag-along rights keep a sale of the company fair and possible.',
+          'Leaver provisions and vesting decide what happens to a founder’s shares if they leave, so negotiate the details.',
+          'Pre-emption on new shares and anti-dilution protect investors’ stakes in future rounds; know where these terms sit.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. A shareholders’ agreement should be prepared and reviewed by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'articles-of-association',
+    title: 'The Articles of Association',
+    teaser: 'The articles are your company’s public constitution. This lesson explains what they contain and how they relate to the shareholders’ agreement.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 8,
+    sections: [
+      {
+        heading: 'What the articles cover',
+        body: [
+          'The articles of association are the constitution of your company. They set the rules for how the company operates, and unlike the shareholders’ agreement, they are filed publicly at the company registry, so anyone can read them. They define the classes of shares and the rights attached to each, how directors are appointed, and how meetings and votes work.',
+        ],
+      },
+      {
+        heading: 'Share classes',
+        body: [
+          'Before a raise, many companies have a single class of ordinary shares. When investors come in, new share classes are often created, such as preference shares that carry special rights, for example a liquidation preference deciding who is paid first if the company is sold. The articles are where these classes and their rights are formally defined.',
+        ],
+      },
+      {
+        heading: 'How the articles relate to the shareholders’ agreement',
+        body: [
+          'The articles and the shareholders’ agreement must line up, because they cover overlapping ground. The difference is in their nature: the articles are public and bind the company itself, while the shareholders’ agreement is private and binds the shareholders who sign it. Your solicitor makes sure they are consistent, and an investor’s lawyers will check.',
+        ],
+      },
+      {
+        heading: 'Public versus private',
+        body: [
+          'A useful way to think about it is that the articles are the version of your rules the world can see, while the shareholders’ agreement holds the terms the parties prefer to keep private. Sensitive commercial terms are often kept in the agreement rather than the articles for this reason.',
+        ],
+      },
+      {
+        heading: 'Adopting new articles',
+        body: [
+          'Adopting new articles is a formal act that requires shareholder approval, usually by a special resolution, and the new articles must then be filed at the company registry. This is one of the steps that happens at completion of a raise, and it is covered again in the lesson on resolutions and the lesson on filings.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The articles of association are the company’s public constitution, filed at the company registry.',
+          'They define share classes and their rights, and the rules for directors, meetings, and votes.',
+          'The articles bind the company and are public, while the shareholders’ agreement is private and binds the shareholders; the two must be consistent.',
+          'Adopting new articles requires shareholder approval and a filing, and usually happens at completion of a raise.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Articles of association should be prepared and reviewed by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cap-table-and-register-of-members',
+    title: 'The Cap Table and the Register of Members',
+    teaser: 'Two records track who owns your company: the cap table you manage, and the register of members that is the legal truth. This lesson explains both and why they must agree.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 9,
+    sections: [
+      {
+        heading: 'The cap table',
+        body: [
+          'The capitalisation table, or cap table, lists every shareholder and the number and percentage of shares they hold. Early on it might be just two founders. After a raise it adds the new investors and shows how everyone’s percentage has changed. The cap table is your management tool for understanding ownership, modelling how a new round would dilute existing holders, and planning future raises.',
+          'A good cap table also tracks the instruments that will become shares later, such as SAFEs, advanced subscription agreements, and convertible notes, and any share options, giving you a fully diluted picture of ownership, which is what investors look at.',
+        ],
+      },
+      {
+        heading: 'The register of members',
+        body: [
+          'The register of members is the company’s official, legal record of who its shareholders are. This, not the cap table spreadsheet, is what legally determines ownership. When shares are issued at completion of a raise, they must be entered in the register of members, and share certificates are usually issued to the holders.',
+        ],
+      },
+      {
+        heading: 'Why they must agree',
+        body: [
+          'The cap table and the register of members should always tell the same story. The register is the legal truth, and the cap table should mirror it while adding the management detail and the forward-looking modelling. When the two drift apart, ownership becomes uncertain, which alarms investors and derails future rounds.',
+        ],
+      },
+      {
+        heading: 'Why investors check this closely',
+        body: [
+          'An investor running diligence will look hard at your ownership records, because they are about to become part of them. A messy or inconsistent cap table suggests you do not have control of your own company. A clean, clear, fully diluted cap table that matches your register signals a founder who is organised and trustworthy.',
+        ],
+      },
+      {
+        heading: 'Keeping it right',
+        body: [
+          'Update both records every time ownership changes, whether through a raise, a share issue, an option grant, or a transfer. Store them in your data room so investors can see them, and make updating the register and the cap table part of your completion checklist.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The cap table is your working record of ownership and your tool for modelling dilution; the register of members is the legal record.',
+          'A good cap table shows fully diluted ownership, including SAFEs, ASAs, notes, and options.',
+          'The two records must always agree, because drift between them creates ownership uncertainty.',
+          'Investors scrutinise ownership records closely, so keep both clean, current, and matching.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Maintaining statutory registers should be done with a solicitor or company secretary.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'warranties-and-disclosure-letter',
+    title: 'Warranties and the Disclosure Letter',
+    teaser: 'Warranties are your formal promises that certain things are true. The disclosure letter is how you protect yourself. This lesson explains both and why they matter to founders personally.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 10,
+    sections: [
+      {
+        heading: 'What warranties are',
+        body: [
+          'In many priced rounds, founders and the company give warranties to investors, and alongside them sits a disclosure letter. A warranty is a formal statement that something is true, given as part of the contract — for example, that the company is properly incorporated, that it owns its key assets and intellectual property, that its accounts are accurate, and that it has complied with the laws that apply to it.',
+          'The reason warranties matter is that if one turns out to be untrue, the investor may have a claim against whoever gave it. Founders should read every warranty carefully and make sure they can genuinely stand behind each one, rather than signing a long list without checking.',
+        ],
+      },
+      {
+        heading: 'What the disclosure letter does',
+        body: [
+          'No company is perfect, and some warranties will not be completely true as written. This is where the disclosure letter comes in. It is the document in which the founders tell the investor, in advance, about any exceptions to the warranties. Anything properly disclosed cannot later be treated as a breach of warranty, because the investor knew about it and invested anyway.',
+        ],
+      },
+      {
+        heading: 'Why founders must take this seriously',
+        body: [
+          'Because warranties can create personal liability, and because the disclosure letter is your shield, this pair deserves real care. It is better to over-disclose a minor issue than to stay silent and risk a claim later. Work through each warranty and ask whether there is anything the investor should know, then disclose it clearly.',
+        ],
+      },
+      {
+        heading: 'Negotiating warranties',
+        body: [
+          'Founders can and do negotiate the scope of warranties. It is reasonable to limit them to matters within your knowledge, to cap the total liability they can create, and to set a time limit after which claims can no longer be brought. A solicitor experienced in these deals will help you negotiate sensible limits.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Warranties are formal statements that certain things about the company are true, and an untrue one can create a claim.',
+          'The disclosure letter records exceptions to the warranties in advance, and anything properly disclosed cannot later be treated as a breach.',
+          'Be thorough and honest in disclosure, because every gap is a gap in your protection.',
+          'Negotiate sensible limits on warranties, such as knowledge qualifiers, a liability cap, and a time limit for claims.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Warranties and disclosure letters carry personal risk and should be handled with a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'board-and-shareholder-resolutions',
+    title: 'Board and Shareholder Resolutions',
+    teaser: 'Issuing shares and changing your company are formal acts that need approval. This lesson explains the resolutions that give a raise its legal authority.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 11,
+    sections: [
+      {
+        heading: 'The two kinds of resolution',
+        body: [
+          'A raise makes real changes to your company: new shares are created, new articles are adopted, and new agreements take effect. Each of these changes has to be formally approved to be valid, and that approval is recorded in resolutions.',
+          'There are two main kinds. Board resolutions are decisions made by the directors, who run the company day to day. Shareholder resolutions are decisions made by the owners of the company, who must approve the biggest changes. A raise typically needs both. Resolutions can be passed at a meeting or, very commonly for small companies, in writing.',
+        ],
+      },
+      {
+        heading: 'What resolutions a raise needs',
+        body: [
+          'The directors normally resolve to approve the deal documents and to allot the new shares once they have the authority to do so. The shareholders usually need to approve certain things, such as granting the directors authority to issue the new shares, setting aside existing shareholders’ first refusal on new shares, and adopting the new articles of association.',
+        ],
+      },
+      {
+        heading: 'Why they matter',
+        body: [
+          'Resolutions are the legal authority for the changes a raise makes. If shares are issued without the proper authority, or articles are changed without the proper approval, the company’s records can be defective, and that causes problems later, especially when a future investor runs diligence and finds that a past step was not done correctly.',
+        ],
+      },
+      {
+        heading: 'Ordinary and special resolutions',
+        body: [
+          'Shareholder resolutions come in different types depending on how significant the decision is. Some decisions can be passed by a simple majority, while more significant ones, such as adopting new articles, require a higher threshold. The more fundamental the change, the greater the level of shareholder approval it requires.',
+        ],
+      },
+      {
+        heading: 'Keeping the records',
+        body: [
+          'Once passed, resolutions become part of your company’s records, and some must be filed with the company registry. Keep signed copies safely, store them in your data room, and treat them as part of the permanent record of your company.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Board resolutions are decisions of the directors; shareholder resolutions are decisions of the owners, and a raise usually needs both.',
+          'Resolutions can be passed at a meeting or, commonly for small companies, in writing.',
+          'A raise typically needs approval to grant share-issue authority, to set aside existing shareholders’ first refusal, and to adopt new articles.',
+          'Resolutions are the legal authority for the raise; getting them right keeps your records clean for future rounds.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Company resolutions should be prepared with a qualified solicitor or company secretary.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'intellectual-property-assignments',
+    title: 'Intellectual Property Assignments',
+    teaser: 'Investors want the company to own what it relies on. This lesson explains IP assignments and why missing ones are one of the most common problems in a raise.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 12,
+    sections: [
+      {
+        heading: 'What intellectual property assignment means',
+        body: [
+          'For most startups, the intellectual property is the company. The code, the brand, the designs, and the content are what give the business its value. Under the law in many countries, the person who creates something often owns it by default, unless it has been transferred. An intellectual property assignment is a document in which the creator formally transfers their ownership to the company, so that the company clearly owns what it uses.',
+        ],
+      },
+      {
+        heading: 'Where the gaps usually appear',
+        body: [
+          'A few situations commonly leave IP in the wrong place. Work a founder created before incorporating the company may never have been formally transferred in. Contractors and freelancers who built part of the product may own what they made unless their contract assigned it to the company. Even employees, in some cases, need clear assignment terms in their contracts.',
+        ],
+      },
+      {
+        heading: 'Why investors care so much',
+        body: [
+          'If the company does not clearly own its core intellectual property, then what an investor is buying is not fully in the company’s hands. Investors know this risk well, so they check IP ownership carefully. Unresolved IP is not just a legal technicality to them. It is a question about whether the company truly owns its most valuable asset.',
+        ],
+      },
+      {
+        heading: 'Getting it right',
+        body: [
+          'Make sure every founder has assigned to the company any relevant IP they created. Make sure contractor and freelancer agreements include proper assignment of what they produce. Where past work was never assigned, put an assignment in place now, before diligence, rather than being caught out during it.',
+        ],
+      },
+      {
+        heading: 'Keep the evidence',
+        body: [
+          'Once your IP is properly assigned, keep the documents that prove it: the founder assignments, the contractor agreements, and the relevant employment terms. Store them in your data room so an investor can confirm ownership quickly.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The creator of work often owns it by default, so code, designs, and content may not belong to the company unless assigned.',
+          'Gaps commonly appear with founder work created before incorporation, and with contractors and freelancers.',
+          'Investors treat unresolved IP as a serious risk, because it questions whether the company owns its core asset.',
+          'Assign all relevant IP to the company, fix past gaps before diligence, and keep the evidence in your data room.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Intellectual property assignments should be prepared by a qualified solicitor.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'kyc-aml-and-verification-documents',
+    title: 'KYC, AML, and Verification Documents',
+    teaser: 'Money will not move until identities are verified. This lesson explains the identity and anti-money-laundering documents that a raise now requires.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 13,
+    sections: [
+      {
+        heading: 'Why these checks exist',
+        body: [
+          'Modern fundraising involves checks on who everyone is and where the money comes from, known as know your customer, or KYC, and anti-money-laundering, or AML, requirements. Because a raise moves money between people and across borders, it is exactly the kind of activity these rules are designed to cover. Payment providers, escrow providers, and platforms are legally required to run these checks, so they are not optional and not a sign of distrust.',
+        ],
+      },
+      {
+        heading: 'What documents are involved',
+        body: [
+          'The typical documents fall into a few types. Proof of identity, such as a passport or national identity card, confirms who a person is. Proof of address, such as a recent utility bill or bank statement, confirms where they live. For companies, documents confirming the company’s existence and its ownership are needed, including who ultimately owns and controls it. In some cases, evidence of the source of the funds being invested is required.',
+        ],
+      },
+      {
+        heading: 'Who gets checked',
+        body: [
+          'Founders and the company are usually checked as part of onboarding to a platform or an escrow arrangement. Investors are typically checked before their money is accepted, which is why an investor may need to complete verification before they can commit. On WAAW, this verification is built into the process, and it is part of what protected escrow depends on.',
+        ],
+      },
+      {
+        heading: 'How to make it smooth',
+        body: [
+          'The checks are quicker when you are prepared. Have clear, current identity and address documents ready, make sure your company’s registration and ownership details are accurate and up to date, and be ready to explain your ownership structure if it is anything other than simple. Delays usually come from missing or out-of-date documents, or from unclear ownership arrangements.',
+        ],
+      },
+      {
+        heading: 'A note on privacy',
+        body: [
+          'These documents contain sensitive personal information, so they must be handled carefully and stored securely, in line with data protection rules. As a founder collecting or handling any such information, be mindful of your own data protection obligations, and rely on your provider’s secure processes rather than keeping sensitive documents loosely.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'KYC and AML checks are legal requirements that stop financial crime, and they apply to both founders and investors.',
+          'Typical documents include proof of identity, proof of address, company ownership details, and sometimes source of funds.',
+          'On a platform with escrow, verification is built in and is part of what makes it trustworthy.',
+          'Prepare clear, current documents and accurate ownership details to keep checks fast, and handle sensitive information securely.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Follow the verification steps required by your platform and providers.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'registry-filings-and-statutory-records',
+    title: 'Registry Filings and Statutory Records',
+    teaser: 'A raise changes the public record of your company. This lesson explains the filings and statutory records that keep everything official and correct.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 14,
+    sections: [
+      {
+        heading: 'The company registry',
+        body: [
+          'Issuing shares and changing your company are not only private acts between you and your investors. They also update the public record held by the company registry. Every company is recorded at a public registry — in the United Kingdom this is Companies House, and in Nigeria it is the Corporate Affairs Commission. When a raise changes any of these, the registry must be updated so the public record stays accurate.',
+        ],
+      },
+      {
+        heading: 'The filings a raise triggers',
+        body: [
+          'Several filings commonly arise from a raise. When new shares are issued, a return recording that share issue is filed, so the registry reflects the new share capital. When you adopt new articles of association, the updated articles are filed. Changes in who significantly owns or controls the company may need to be recorded as well.',
+        ],
+      },
+      {
+        heading: 'Statutory registers',
+        body: [
+          'Alongside the public filings, your company must keep its own internal statutory registers. The most important for a raise is the register of members, the legal record of who owns shares. Companies also keep registers of directors and, in some jurisdictions, a register of the people who significantly control the company. These registers must be kept current and accurate, and they must agree with what is filed at the registry.',
+        ],
+      },
+      {
+        heading: 'Why this matters',
+        body: [
+          'Filings and registers might feel like pure administration, but they are load-bearing. If a share issue was never properly filed, or the register of members does not match what was actually issued, your company’s records are inconsistent. When a future investor runs diligence, these inconsistencies surface, raise doubts, and slow or even derail the round.',
+        ],
+      },
+      {
+        heading: 'Deadlines and good habits',
+        body: [
+          'Many filings have deadlines, and missing them can carry penalties, so they should be done promptly at completion rather than left for later. Treat filings and register updates as part of your closing checklist, done at the same time as issuing shares and updating your cap table.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Issuing shares and changing your company update the public record at the registry, such as Companies House or the Corporate Affairs Commission.',
+          'A raise commonly triggers filings for the new share issue, the adopted articles, and changes in significant ownership.',
+          'Companies must also keep accurate internal statutory registers, including the register of members, which must match what is filed.',
+          'Filings have deadlines, so make them part of your closing checklist and keep records current for smoother future raises.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Registry filings and statutory records should be handled with a qualified solicitor or company secretary.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'side-letters-options-and-the-complete-pack',
+    title: 'Side Letters, Option Schemes, and the Complete Pack',
+    teaser: 'A few remaining documents round out a raise, and then everything comes together into one organised pack. This final lesson covers both.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 15,
+    sections: [
+      {
+        heading: 'Side letters',
+        body: [
+          'Most of a raise runs on the core documents covered so far, but a few others appear often enough to understand. A side letter is a short agreement that gives a particular investor rights that are additional to, or different from, the main documents — extra information rights, a right to invest again in future rounds, or a promise that they will get terms at least as good as any other investor. Keep a clear record of every side letter and make sure they are consistent with the shareholders’ agreement.',
+        ],
+      },
+      {
+        heading: 'Share option schemes',
+        body: [
+          'Recall from earlier that companies often set aside a pool of shares to give to future employees, called the option pool. A share option scheme is the set of documents that governs how those options work: who receives them, over what period they vest, and on what terms they can be exercised. In the United Kingdom, a widely used and tax-advantaged scheme for employees is called **EMI**, which offers favourable tax treatment when the conditions are met. Set the scheme up properly, because getting the tax treatment wrong is costly to fix.',
+        ],
+      },
+      {
+        heading: 'Other documents you may meet',
+        body: [
+          'Depending on your deal, a few more documents can appear: a directors’ service agreement or employment contract updated for founders, consents from existing shareholders or third parties, and any earlier instruments such as SAFEs, advanced subscription agreements, or convertible notes, which come back into play at a priced round when they convert.',
+        ],
+      },
+      {
+        heading: 'Assembling the complete pack',
+        body: [
+          'Once you understand every document, the final task is to bring them together into one organised place, your data room. Group the documents the way this course did: the deal terms, the governance documents, and the supporting paperwork. Make sure every figure agrees across documents, that the cap table matches the register, and that nothing is missing or out of date.',
+        ],
+      },
+      {
+        heading: 'Bringing the course together',
+        body: [
+          'You now know the full set of documents a raise involves, what each one does, and where the important choices sit. You do not need to draft them, and you should always have a qualified solicitor prepare and review them, but you can now open any document in your raise and understand what you are looking at.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Side letters give particular investors extra rights; keep a clear record of them and make sure they are consistent with the main documents.',
+          'Share option schemes govern the option pool that rewards employees, and in the UK the EMI scheme offers tax advantages when conditions are met.',
+          'Other documents, such as founder service agreements, consents, and converting instruments, may round out a deal.',
+          'Assemble everything into one organised, consistent pack in your data room, since completeness and consistency signal a well-run company.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a qualified solicitor prepare and review your raise documents. This completes the WAAW Academy course The Documents Required: 15 lessons covering every document a founder meets in a raise, from the term sheet to the complete pack.',
+        ],
+      },
+    ],
+  },
+];
+
 export const ACADEMY_COURSES: AcademyCourse[] = [
   {
     slug: 'foundations',
@@ -1274,6 +2113,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     track: 'foundations',
     description: 'Start here — what a startup is, what equity means, how funding rounds work, and the vocabulary that ties it together.',
     lessons: FOUNDATIONS_LESSONS,
+    free: true,
   },
   {
     slug: 'how-to-raise',
@@ -1295,8 +2135,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: 'The Documents',
     track: 'founder',
     description: 'Term sheets, cap tables, and the paperwork behind a raise.',
-    lessons: [],
-    comingSoon: true,
+    lessons: DOCUMENTS_LESSONS,
   },
   {
     slug: 'valuation',
@@ -1362,4 +2201,48 @@ export function findLesson(courseSlug: string, lessonSlug: string) {
   const lesson = course.lessons.find((l) => l.slug === lessonSlug);
   if (!lesson) return null;
   return { course, lesson };
+}
+
+function lessonKey(courseSlug: string, lessonSlug: string) {
+  return `${courseSlug}/${lessonSlug}`;
+}
+
+export function courseCompletedCount(course: AcademyCourse, completed: Set<string>): number {
+  return course.lessons.filter((l) => completed.has(lessonKey(course.slug, l.slug))).length;
+}
+
+export function isCourseFullyRead(course: AcademyCourse, completed: Set<string>): boolean {
+  return course.lessons.length > 0 && courseCompletedCount(course, completed) === course.lessons.length;
+}
+
+// Courses with lessons unlock in order within their track, skipping over
+// any "coming soon" placeholders (which have no lessons and so could never
+// be "finished") when working out what the previous real course was.
+// Foundations, and free courses generally, have no prerequisite.
+function readableCoursesInTrack(track: AcademyTrack): AcademyCourse[] {
+  return ACADEMY_COURSES.filter((c) => c.track === track && c.lessons.length > 0);
+}
+
+export function previousCourseInTrack(courseSlug: string): AcademyCourse | null {
+  const course = ACADEMY_COURSES.find((c) => c.slug === courseSlug);
+  if (!course || course.free) return null;
+  const readable = readableCoursesInTrack(course.track);
+  const idx = readable.findIndex((c) => c.slug === courseSlug);
+  if (idx <= 0) return null;
+  return readable[idx - 1];
+}
+
+export function isCourseUnlocked(courseSlug: string, completed: Set<string>): boolean {
+  const course = ACADEMY_COURSES.find((c) => c.slug === courseSlug);
+  if (!course) return false;
+  if (course.free) return true;
+  const prev = previousCourseInTrack(courseSlug);
+  if (!prev) return true;
+  return isCourseFullyRead(prev, completed);
+}
+
+export function nextLessonToRead(course: AcademyCourse, completed: Set<string>): AcademyLesson | null {
+  if (course.lessons.length === 0) return null;
+  const sorted = [...course.lessons].sort((a, b) => a.order - b.order);
+  return sorted.find((l) => !completed.has(lessonKey(course.slug, l.slug))) ?? sorted[0];
 }

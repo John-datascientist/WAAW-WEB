@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { InvestorNav } from '../../../../src/components/InvestorNav';
 import { BackButton } from '../../../../src/components/ui';
+import { LessonCompleteToggle, LockedBanner } from '../../../../src/components/AcademyProgressControls';
 import { ACADEMY_COURSES, findLesson } from '../../../../src/data/academyCourses';
 
 export function generateStaticParams() {
@@ -43,6 +44,8 @@ export default function AcademyLessonPage({ params }: { params: { course: string
       <div className="mx-auto max-w-2xl px-6 py-16">
         <BackButton fallbackHref="/academy" label="Academy" />
 
+        <LockedBanner courseSlug={course.slug} />
+
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className="rounded-sm bg-puXlight px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-pu">
             {course.title}
@@ -83,7 +86,9 @@ export default function AcademyLessonPage({ params }: { params: { course: string
           WAAW Academy is educational and general. It is not investment, legal, or tax advice.
         </p>
 
-        <div className="mt-14 flex items-center justify-between border-t border-ln pt-6">
+        <LessonCompleteToggle courseSlug={course.slug} lessonSlug={lesson.slug} />
+
+        <div className="mt-8 flex items-center justify-between border-t border-ln pt-6">
           {prev ? (
             <Link href={`/academy/${course.slug}/${prev.slug}`} className="font-mono text-xs uppercase tracking-wider text-mu hover:text-pu">
               ← {prev.title}
