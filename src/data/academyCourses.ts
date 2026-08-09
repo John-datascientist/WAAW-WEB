@@ -28,12 +28,10 @@ export interface AcademyCourse {
   comingSoon?: boolean;
 }
 
-// Content supplied directly by the user for the Foundations course (4 of 6
-// planned lessons). Reproduced verbatim from the source articles, just
+// Content supplied directly by the user for the Foundations course — all 6
+// planned lessons. Reproduced verbatim from the source articles, just
 // restructured into heading/body sections for rendering — nothing here is
-// invented. Lessons 5 and 6 of Foundations aren't written yet, so the
-// course shows 4 lessons rather than a placeholder for content that
-// doesn't exist.
+// invented.
 const FOUNDATIONS_LESSONS: AcademyLesson[] = [
   {
     slug: 'what-a-startup-is',
@@ -254,6 +252,138 @@ const FOUNDATIONS_LESSONS: AcademyLesson[] = [
         heading: 'Your task',
         body: [
           'Start a personal glossary sheet from the provided template. Add each term above in your own words, and add any new term you meet as you move through the Academy.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'risk-reward-and-the-power-law',
+    title: 'Risk, Reward, and the Power Law',
+    teaser: 'Startup investing offers real rewards and real losses. This article is the honest one. Read it before you ever commit money.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 5,
+    sections: [
+      {
+        heading: 'Most startups fail',
+        body: [
+          'The plain truth is that most early-stage companies do not succeed. Many return nothing to their investors. This is not a flaw in the system; it is the nature of backing young companies attempting hard things. Any investor who ignores this will eventually be hurt by it.',
+        ],
+      },
+      {
+        heading: 'The power law',
+        body: [
+          'Here is the pattern that makes startup investing work despite the failure rate. Returns are not spread evenly. In a group of startups, a small number of big winners can produce more value than all the others combined, while many return little or nothing. This is called the power law.',
+          'The practical consequence is important. You cannot reliably pick the one winner in advance. Experienced investors therefore spread their money across several companies, expecting most to disappoint and a few to carry the whole portfolio. Betting everything on a single company is how people lose everything.',
+        ],
+      },
+      {
+        heading: 'Illiquidity',
+        body: [
+          'Illiquidity means you cannot easily turn your investment back into cash. There is usually no market to sell early-stage shares, and no guarantee anyone will buy them. You may hold an investment for many years, or forever. Only invest money you will not need in the meantime.',
+        ],
+      },
+      {
+        heading: 'Dilution over time',
+        body: [
+          'As a company raises more rounds, your ownership percentage falls unless you invest again. That can be fine if the company’s value grows faster than your slice shrinks, but it means your early percentage is not your final one. Expect it and factor it in.',
+        ],
+      },
+      {
+        heading: 'No safety net for losses',
+        body: [
+          'If a startup you back fails, no compensation scheme reimburses your investment loss. Protections that cover some other financial products do not cover poor startup performance. The money you put in is genuinely at risk.',
+        ],
+      },
+      {
+        heading: 'Investing sensibly anyway',
+        body: [
+          'None of this means avoid startup investing. It means approach it with clear eyes. Invest only what you can afford to lose. Spread across several companies rather than one. Treat it as a small, high-risk part of your wider finances. Be patient. These simple habits are what separate careful investors from hopeful ones.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Most startups fail, and that is normal.',
+          'The power law means a few winners drive returns, so diversification matters more than picking one.',
+          'Early-stage investments are illiquid; you may not get your money out for years.',
+          'There is no compensation scheme for investment losses, so only invest what you can afford to lose.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'Write a short personal risk statement: how much of your money, if any, you would be willing to put into startups, across how many companies, and over what time horizon. Compare it against the WAAW Risk Disclosure Statement.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'This article discusses financial loss and risk. WAAW Academy is educational and general. It is not investment, legal, or tax advice. If a deal ever pressures you to invest quickly or promises guaranteed returns, treat that as a warning sign.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-african-and-diaspora-context',
+    title: 'The African and Diaspora Context',
+    teaser: 'WAAW exists for a specific reason. This article explains the market it serves and why it is different from the startup world you may read about elsewhere.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 6,
+    sections: [
+      {
+        heading: 'The ecosystems',
+        body: [
+          'Nigeria, Ghana, and Kenya each have fast-growing startup scenes, strongest in areas like payments, logistics, commerce, and services that solve everyday problems for large populations. These markets have real challenges, including infrastructure and access to capital, and those challenges are also where the opportunities sit. A company solving a hard local problem well can reach an enormous number of people.',
+        ],
+      },
+      {
+        heading: 'Why diaspora capital matters',
+        body: [
+          'Africans abroad send large sums home every year, and many want to do more than send money. They want to invest in businesses building the future of the places they come from. That desire is powerful, but until recently it was hard to act on, because there was no trusted, structured way for someone in London or Toronto to back a verified startup in Lagos or Nairobi.',
+          'That gap is what WAAW is built to close. Diaspora investors bring not only capital but also networks, skills, and market knowledge that founders value.',
+        ],
+      },
+      {
+        heading: 'Currency and cross-border realities',
+        body: [
+          'Investing across borders adds moving parts. Deals and payments on WAAW may involve several currencies, including US dollars, British pounds, Nigerian naira, Ghanaian cedi, and Kenyan shilling. Exchange rates move, and that movement can raise or lower the value of an investment or a return. Sending and receiving money across countries also involves local payment methods and rules. These are manageable, but they are real, and later articles cover them in detail.',
+        ],
+      },
+      {
+        heading: 'The regulators, briefly',
+        body: [
+          'Two sets of rules matter most here. In the United Kingdom, the Financial Conduct Authority regulates how investments can be promoted and who can invest in what. In Nigeria, the Securities and Exchange Commission regulates investment crowdfunding. These rules exist to protect investors. On WAAW you will meet them as steps such as confirming your investor category and acknowledging risk warnings. They are there for your benefit, not to slow you down.',
+        ],
+      },
+      {
+        heading: 'What verified and protected escrow mean',
+        body: [
+          'Two WAAW terms will recur. A verified deal is one that has passed the checks WAAW describes, which reduces some risks but never removes investment risk. Protected escrow means an investor’s money is held by a licensed third party and released only under agreed conditions, rather than handed straight to a founder. Both are trust features, and both have limits you should understand, which the investor track explains.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'WAAW serves African-market founders and diaspora investors, a context with its own opportunities and challenges.',
+          'Diaspora capital brings money plus networks and knowledge, and WAAW gives it a trusted route.',
+          'Cross-border investing adds currency and payment considerations that are real but manageable.',
+          'UK and Nigerian rules, and WAAW’s verification and escrow, exist to protect investors, within limits.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'In your own words, write one opportunity and one risk of diaspora investing into African startups. Keep both to a sentence or two. You will revisit this as you go deeper into the tracks.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Regulation changes; always follow the current steps shown on the platform.',
         ],
       },
     ],
