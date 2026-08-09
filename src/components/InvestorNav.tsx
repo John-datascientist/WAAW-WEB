@@ -10,6 +10,7 @@ const INVESTOR_LINKS = [
   { href: '/startups', label: 'Startups' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/learn', label: 'Learn' },
+  { href: '/academy', label: 'Academy' },
   { href: '/notifications', label: 'Notifications' },
   { href: '/account', label: 'Account' },
 ];
@@ -18,6 +19,7 @@ const FOUNDER_LINKS = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/onboarding', label: 'Onboarding' },
   { href: '/learn', label: 'Learn' },
+  { href: '/academy', label: 'Academy' },
   { href: '/notifications', label: 'Notifications' },
   { href: '/account', label: 'Account' },
 ];
@@ -68,6 +70,13 @@ export function InvestorNav() {
             className={linkClass(!!pathname?.startsWith('/learn'))}
           >
             Learn
+          </Link>
+          <Link
+            href="/academy"
+            onClick={() => setMenuOpen(false)}
+            className={linkClass(!!pathname?.startsWith('/academy'))}
+          >
+            Academy
           </Link>
         </>
       )}

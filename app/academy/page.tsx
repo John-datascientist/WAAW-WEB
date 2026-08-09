@@ -1,0 +1,82 @@
+'use client';
+
+import Link from 'next/link';
+import { InvestorNav } from '../../src/components/InvestorNav';
+import { ACADEMY_COURSES, type AcademyTrack } from '../../src/data/academyCourses';
+
+const TRACK_LABEL: Record<AcademyTrack, string> = {
+  foundations: 'Start here',
+  founder: 'Founder track',
+  investor: 'Investor track',
+};
+
+const TRACK_ORDER: AcademyTrack[] = ['foundations', 'founder', 'investor'];
+
+export default function AcademyPage() {
+  return (
+    <main className="min-h-screen bg-bg">
+      <InvestorNav />
+
+      {/* The 3D scene is a self-contained page (its own <head>, styles, and
+          a Three.js CDN script) — an iframe keeps it fully isolated from
+          the Next.js app instead of inlining a second React tree's worth
+          of canvas/animation code into this page. */}
+      <div className="relative h-[70vh] w-full overflow-hidden bg-[#150a24] sm:h-[80vh]">
+        <iframe
+          src="/academy-hero.html"
+          title="WAAW Academy"
+          className="h-full w-full border-0"
+          loading="lazy"
+        />
+      </div>
+
+      <div className="mx-auto max-w-4xl px-6 py-16">
+        <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">WAAW Academy</p>
+        <h1 className="mb-3 font-serif text-3xl text-tx">Courses for founders and investors</h1>
+        <p className="mb-10 max-w-2xl font-sans text-sm font-light leading-relaxed text-mu">
+          Structured, self-paced courses — start with Foundations, then move into whichever track
+          matches you. General education, not financial, legal, or tax advice.
+        </p>
+
+        {TRACK_ORDER.map((track) => {
+          const courses = ACADEMY_COURSES.filter((c) => c.track === track);
+          if (courses.length === 0) return null;
+          return (
+            <div key={track} className="mb-12">
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-pu">{TRACK_LABEL[track]}</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {courses.map((course) =>
+                  course.comingSoon ? (
+                    <div key={course.slug} className="rounded-lg border border-dashed border-ln bg-deeper p-5 opacity-70">
+                      <div className="mb-2 flex items-center justify-between">
+                        <h2 className="font-sans text-base font-medium text-tx">{course.title}</h2>
+                        <span className="rounded-sm bg-ln px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-mu">
+                          Coming soon
+                        </span>
+                      </div>
+                      <p className="font-sans text-sm font-light leading-relaxed text-mu">{course.description}</p>
+                    </div>
+                  ) : (
+                    <Link
+                      key={course.slug}
+                      href={`/academy/${course.slug}/${course.lessons[0]?.slug ?? ''}`}
+                      className="block rounded-lg border border-ln bg-card p-5 transition-colors hover:border-pu3"
+                    >
+                      <div className="mb-2 flex items-center justify-between">
+                        <h2 className="font-sans text-base font-medium text-tx">{course.title}</h2>
+                        <span className="rounded-sm bg-puXlight px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-pu">
+                          {course.lessons.length} lessons
+                        </span>
+                      </div>
+                      <p className="font-sans text-sm font-light leading-relaxed text-mu">{course.description}</p>
+                    </Link>
+                  )
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </main>
+  );
+}

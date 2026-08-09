@@ -137,6 +137,7 @@ export function HeroBanner() {
           <nav className="flex items-center gap-6 font-mono text-xs uppercase tracking-wider text-white/60">
             <Link href="/startups" className="hover:text-white">Browse startups</Link>
             <Link href="/learn" className="hover:text-white">Learn</Link>
+            <Link href="/academy" className="hover:text-white">Academy</Link>
             <Link href="/legal/terms" className="hover:text-white">Legal</Link>
             <Link href="/signin" className="hover:text-white">Sign in</Link>
           </nav>
