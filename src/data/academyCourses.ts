@@ -2787,6 +2787,701 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
   },
 ];
 
+const VALUATION_LESSONS: AcademyLesson[] = [
+  {
+    slug: 'what-valuation-is-and-why-it-matters',
+    title: 'What Valuation Is and Why It Matters',
+    teaser: 'Valuation sits at the centre of every raise, yet it is one of the least understood parts of fundraising. This lesson explains what it is and why it shapes everything.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 1,
+    sections: [
+      {
+        heading: 'Valuation is an agreement, not a fact',
+        body: [
+          'Valuation is the agreed value of your company for the purpose of a fundraising round. It is the number that decides how much of your company an investor receives for their money. Because of that, valuation shapes your ownership, your control, and how your future rounds unfold.',
+          'An early-stage valuation is not a precise measurement of worth. It is a number that a founder and an investor agree on. Unlike a public company, whose value is set every second by a stock market, an early startup has no market price. Its valuation comes from negotiation, informed by evidence but ultimately settled by agreement.',
+        ],
+      },
+      {
+        heading: 'Why valuation matters to founders',
+        body: [
+          'For a founder, valuation decides how much of the company you give away for the money you raise. A higher valuation means you sell less ownership for the same amount, and a lower valuation means you sell more. Over several rounds, these choices add up to how much of your own company you still own by the time it matters.',
+        ],
+      },
+      {
+        heading: 'Why valuation matters to investors',
+        body: [
+          'For an investor, valuation decides how much of the company their money buys, and therefore how much they stand to gain if the company succeeds. Pay too high a valuation and even a good outcome may return little. Pay a fair one and the same outcome rewards them well.',
+        ],
+      },
+      {
+        heading: 'The tension at the heart of a raise',
+        body: [
+          'Because a higher valuation helps the founder and a lower one helps the investor, valuation is where the interests of the two sides meet and must be reconciled. A valuation that is fair to both sides sets up a healthy relationship, while one that either side feels was forced on them creates resentment that surfaces later.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Valuation is the agreed value of your company for a round, and it decides how much ownership an investor gets for their money.',
+          'An early-stage valuation is a negotiated agreement, not a precise measurement of worth.',
+          'For founders it shapes long-term ownership and control; for investors it shapes potential returns.',
+          'Valuation is where founder and investor interests meet, so the goal is a fair number both can defend.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'pre-money-and-post-money',
+    title: 'Pre-Money and Post-Money',
+    teaser: 'Two terms sit at the core of every valuation conversation. Confusing them is one of the most common and costly mistakes founders make. This lesson makes them clear.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 2,
+    sections: [
+      {
+        heading: 'Pre-money and post-money valuation',
+        body: [
+          'Pre-money valuation is what your company is agreed to be worth before the new investment comes in. It is the starting value that the negotiation settles on.',
+          'Post-money valuation is the pre-money valuation plus the money being raised. So if a company has a pre-money valuation of 900,000 and raises 100,000, its post-money valuation is 1,000,000. The post-money figure is what you use to work out ownership.',
+        ],
+      },
+      {
+        heading: 'How they decide ownership',
+        body: [
+          'The investor’s ownership is their investment divided by the post-money valuation. In the example above, the investor put in 100,000 and the post-money valuation is 1,000,000, so they own 10 percent. The pre-money valuation and the amount raised set the post-money, and the post-money sets the ownership.',
+        ],
+      },
+      {
+        heading: 'Why the confusion is costly',
+        body: [
+          'Imagine an investor offers to invest 100,000 at a valuation of 1,000,000. If that is a pre-money valuation, the post-money is 1,100,000, and the investor owns about 9 percent. If it is a post-money valuation, the investor owns 10 percent, and your pre-money was only 900,000. Always clarify whether a quoted valuation is pre-money or post-money before you agree, because assuming the wrong one can cost you real ownership.',
+        ],
+      },
+      {
+        heading: 'Get the number in writing',
+        body: [
+          'Make sure any valuation you discuss is clearly stated as pre-money or post-money, and that it is written down that way in your term sheet and documents. A clear record prevents an honest misunderstanding from becoming a dispute.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Pre-money valuation is your company’s agreed value before the new investment.',
+          'Post-money valuation is the pre-money value plus the money raised.',
+          'Ownership equals the investment divided by the post-money valuation.',
+          'Always confirm whether a quoted valuation is pre-money or post-money, and record it clearly, because the difference changes how much you give away.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'valuation-ownership-and-dilution',
+    title: 'Valuation, Ownership, and Dilution',
+    teaser: 'Valuation only matters because of what it does to ownership. This lesson connects the number to the share of the company you keep, now and over time.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 3,
+    sections: [
+      {
+        heading: 'Valuation sets what you give away',
+        body: [
+          'An investor’s ownership is their money divided by the post-money valuation. This means the valuation directly sets the slice you sell. Raise a fixed amount at a higher valuation, and you give away a smaller slice. Raise the same amount at a lower valuation, and you give away more.',
+        ],
+      },
+      {
+        heading: 'The amount and the valuation work together',
+        body: [
+          'It is a mistake to think about valuation on its own. What you give away depends on both the amount you raise and the valuation. When you plan a raise, think in terms of the percentage of the company you are willing to sell, then work out which combinations of amount and valuation fit within that.',
+        ],
+      },
+      {
+        heading: 'What dilution means, and why the pie can grow',
+        body: [
+          'Dilution is the reduction in your ownership percentage when the company issues new shares. This is normal and expected. Every founder is diluted as they raise. The reason dilution is acceptable is that a good raise grows the company: if selling 10 percent brings in money that helps it become several times more valuable, your remaining 90 percent can be worth far more than your original 100 percent was.',
+        ],
+      },
+      {
+        heading: 'Ownership is a long game',
+        body: [
+          'Because you will likely raise more than once, your ownership is shaped by a series of valuations over time, not a single one. Each round dilutes you further, and each valuation decides by how much. Your valuation and your raise amount together decide your ownership, and ownership is something you steward over years.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Valuation directly sets the slice of the company you give away for the money you raise.',
+          'The amount raised and the valuation work together, so think in terms of the percentage you are willing to sell.',
+          'Dilution, the fall in your percentage as new shares are issued, is normal and unavoidable when you raise.',
+          'A good raise grows the whole company, so a smaller slice of a much larger pie can be worth far more.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'what-determines-an-early-stage-valuation',
+    title: 'What Determines an Early-Stage Valuation',
+    teaser: 'If early valuation is a negotiation, what actually shapes the number? This lesson covers the real drivers behind an early-stage valuation.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 4,
+    sections: [
+      {
+        heading: 'The team, traction, and the size of the opportunity',
+        body: [
+          'At the earliest stage, before much is built, the team is one of the strongest drivers of valuation. A team with relevant experience or a clear reason they are the right people to win can command a higher valuation, because investors are backing people above all.',
+          'Traction, the evidence that customers want what you are building, moves valuation more than almost anything once you have it. A company with real traction can justify a higher valuation than an otherwise identical company with only an idea.',
+          'How large your market could be shapes valuation, because investors are looking for companies that can become big. A credible path to a large opportunity supports a higher valuation, while a small or uncertain market pulls it down.',
+        ],
+      },
+      {
+        heading: 'The strength of investor interest',
+        body: [
+          'One of the most powerful and least discussed drivers is how much demand you have created. When several investors want to invest, you can command a higher valuation, because interest signals value and gives you alternatives. When you have only one interested investor, your negotiating position is weak and your valuation suffers.',
+        ],
+      },
+      {
+        heading: 'The stage and the comparables',
+        body: [
+          'Valuations tend to cluster by stage and by region. Investors have a sense of what companies at your stage, in your market, typically raise at, and this frames the conversation. Knowing the typical range for your stage and region helps you set a realistic expectation.',
+        ],
+      },
+      {
+        heading: 'Risk is the thread that connects them',
+        body: [
+          'Underneath all these drivers is a single idea: risk. Everything that reduces the perceived risk of your company supports a higher valuation, because the investor is taking a safer bet. If you want to understand or improve your valuation, ask what would make an investor see your company as less risky, and work on that.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Early valuation is shaped by the team, traction, the size of the opportunity, investor demand, and the typical range for your stage and region.',
+          'Strong investor interest is one of the most powerful and underrated drivers, since it gives you alternatives.',
+          'Underlying all the drivers is perceived risk: lower risk supports a higher valuation.',
+          'To improve your valuation, work on the things that make an investor see your company as a safer bet.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'why-valuing-early-startups-is-hard',
+    title: 'Why Valuing Early Startups Is Hard',
+    teaser: 'Valuing an early company is genuinely difficult, and pretending otherwise leads founders astray. This lesson explains why, and what to do about it.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 5,
+    sections: [
+      {
+        heading: 'There is little to measure, and the future is deeply uncertain',
+        body: [
+          'A mature company can be valued from its profits, its assets, and its steady cash flows. An early startup often has none of these in meaningful amounts, which is why early valuation relies so much on judgement and negotiation rather than calculation.',
+          'The value of a startup lies almost entirely in what it might become, not in what it is today. But what it might become is deeply uncertain — most startups fail, a few succeed modestly, and a very small number succeed enormously. Any early valuation is really a rough bet on an uncertain future, dressed up as a number.',
+        ],
+      },
+      {
+        heading: 'Projections cannot be trusted',
+        body: [
+          'Founders often build financial projections showing rapid growth, and these can be useful for showing how you think. But everyone knows early projections are usually wrong, often by a wide margin. An investor will not value your company by taking your projections at face value.',
+        ],
+      },
+      {
+        heading: 'So valuation becomes negotiation',
+        body: [
+          'Because there is little hard data and the future is so uncertain, early valuation ends up being settled by negotiation, guided by the drivers from the last lesson and by what similar companies have raised at. Accepting that valuation is a reasoned negotiation rather than a precise science frees you to focus on what actually moves it: reducing risk and building demand.',
+        ],
+      },
+      {
+        heading: 'What this means for founders',
+        body: [
+          'Hold your valuation with appropriate humility and flexibility. Do not cling to a precise number as if it were a measured truth. Instead, understand the range that fits your stage and drivers, aim within it, and be ready to justify your number with the evidence you have.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Early startups have little revenue, few assets, and an uncertain future, so the usual valuation tools have little to work with.',
+          'A startup’s value lies in what it might become, and that range of outcomes is very wide.',
+          'Early projections are known to be unreliable, so investors will not value you on them alone.',
+          'Early valuation is therefore a reasoned negotiation under uncertainty, best approached with humility, a sensible range, and evidence.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'an-overview-of-valuation-methods',
+    title: 'An Overview of Valuation Methods',
+    teaser: 'There are several recognised ways to estimate a startup’s value. This lesson maps them out, so you know which apply at your stage and which do not.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 6,
+    sections: [
+      {
+        heading: 'Methods that suit later or profitable companies',
+        body: [
+          'Some valuation methods work well for mature businesses but poorly for early startups. Valuing a company from its profits or its steady cash flows needs profits and cash flows that early startups usually lack. It is worth knowing these methods exist, and knowing they are not the main tools for valuing an early company.',
+        ],
+      },
+      {
+        heading: 'Methods that suit early startups',
+        body: [
+          'Several methods were designed specifically for early, pre-revenue or low-revenue companies, working by comparison and judgement rather than precise calculation.',
+          'The comparable method values your company by looking at what similar companies, at a similar stage and in a similar market, have recently raised at. The scorecard method starts from the typical valuation of funded startups in your region and stage, then adjusts based on how your company compares. Milestone-based methods assign value to qualitative achievements such as a strong team and a working prototype. The venture capital method works backwards from a possible future exit value.',
+        ],
+      },
+      {
+        heading: 'Why use methods at all if it is a negotiation',
+        body: [
+          'Methods matter because they give both sides a reasoned basis for their position. A founder who can say their valuation is in line with comparable deals, or justified by a scorecard of their strengths, negotiates from a much stronger place than one who simply names a number.',
+        ],
+      },
+      {
+        heading: 'Use more than one',
+        body: [
+          'No single method is definitive, so experienced investors often use two or three and look at where they converge. A range supported by several methods is more credible than a single figure from one.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Valuation methods give structured ways to reason about an early company’s worth, even though none is definitive.',
+          'Profit and cash-flow based methods suit mature companies, not early startups, because early companies lack the numbers.',
+          'Early-stage methods, including comparables, the scorecard, milestone-based approaches, and the venture capital method, work by comparison and judgement.',
+          'Methods turn a valuation into a defensible argument, and using more than one produces a stronger range.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-comparable-method',
+    title: 'The Comparable Method',
+    teaser: 'The most intuitive way to value a startup is to look at what similar companies are worth. This lesson covers the comparable method and its limits.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 7,
+    sections: [
+      {
+        heading: 'How it works',
+        body: [
+          'The comparable method, sometimes called relative valuation, values your company by looking at what similar companies have raised at recently. To use it, you look for companies similar to yours in stage, sector, and market, and find what valuations they recently raised at. You then adjust up or down depending on how your company compares.',
+        ],
+      },
+      {
+        heading: 'Why investors like it',
+        body: [
+          'Investors use comparables constantly, because they want to pay a price in line with the market rather than far above it. When you propose a valuation supported by genuine comparable deals, you are speaking their language and grounding your number in reality.',
+        ],
+      },
+      {
+        heading: 'The challenge of finding comparables',
+        body: [
+          'The main difficulty is finding good comparables. Valuation data for private early-stage companies is not always public, and truly similar companies can be hard to identify. The method is only as good as the comparables you can find.',
+        ],
+      },
+      {
+        heading: 'The African market challenge',
+        body: [
+          'This difficulty is sharper in African markets, where there is often less public valuation data and fewer obvious comparables than in larger, more mature startup ecosystems. When comparables are thin, lean more on the other methods and on the fundamental drivers of value, while being honest about the limits.',
+        ],
+      },
+      {
+        heading: 'Use it as one input, not the answer',
+        body: [
+          'The comparable method is powerful but not sufficient on its own. Use it as one input among several, alongside the scorecard, milestone, and other methods.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The comparable method values your company by looking at what similar companies recently raised at.',
+          'Investors favour it because it grounds valuation in real market deals rather than theory.',
+          'Its weakness is the difficulty of finding good comparables, since private valuation data is limited and no two companies are identical.',
+          'In African markets comparables are often scarce, so lean on other methods and be honest about the limits.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-scorecard-and-milestone-methods',
+    title: 'The Scorecard and Milestone Methods',
+    teaser: 'When you cannot value a company on numbers, you value it on its qualities. This lesson covers two methods built for exactly that.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 8,
+    sections: [
+      {
+        heading: 'The scorecard method',
+        body: [
+          'The scorecard method starts from a baseline: the typical valuation of funded startups at your stage in your region. It then adjusts that baseline up or down based on how your company compares on factors such as the strength of the team, the size of the opportunity, the product, the competitive situation, and how much further funding will be needed.',
+          'The method is useful because it forces an honest, factor-by-factor comparison rather than a single gut number, and because it ties your valuation to what real companies in your region actually raise at.',
+        ],
+      },
+      {
+        heading: 'The milestone method',
+        body: [
+          'The milestone method, sometimes associated with the name Berkus, assigns value to specific achievements your company has reached: a sound idea, a working prototype, a quality team, key relationships, and early signs of customers. The logic is that each milestone reduces risk. It suits very early companies well, because it rewards what has been done rather than what is merely promised.',
+        ],
+      },
+      {
+        heading: 'Why these methods are useful, and their limits',
+        body: [
+          'Both methods replace a single guessed number with a structured reasoning process, which helps you arrive at a defensible figure and explain it to an investor. But like all early-stage methods, these are estimates, not precise truths — the baseline in the scorecard method depends on regional data that may be limited, especially in African markets.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The scorecard method adjusts a regional baseline valuation up or down based on factors like team, opportunity, product, and competition.',
+          'The milestone method assigns value to real achievements, such as a prototype, team, and early customers, because each reduces risk.',
+          'Both replace a guessed number with structured reasoning, which helps you set and explain a defensible valuation.',
+          'They rely on judgement and regional data, so use them to build a range rather than a single exact figure.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'traction-and-bottom-up-reasoning',
+    title: 'Traction and Bottom-Up Reasoning',
+    teaser: 'Once a company has real traction, valuation can rest on firmer ground. This lesson shows how evidence of demand supports a stronger number.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 9,
+    sections: [
+      {
+        heading: 'Traction reduces uncertainty',
+        body: [
+          'Early valuation is hard mainly because the future is uncertain. Traction directly attacks that uncertainty. A company that can show customers, revenue, growth, and retention has proven that its solution works and that people will pay for it, and each of these facts removes a piece of the doubt that pulls valuations down.',
+        ],
+      },
+      {
+        heading: 'Reasoning from your own numbers',
+        body: [
+          'With traction, you can reason about value from your own numbers rather than only from comparison. This bottom-up reasoning, built from your actual performance, is powerful because it rests on facts an investor can verify rather than on projections they must take on trust.',
+        ],
+      },
+      {
+        heading: 'Revenue multiples at later stages',
+        body: [
+          'As companies mature and develop steady revenue, valuation often comes to be discussed in relation to that revenue, using multiples drawn from comparable companies. This does not apply cleanly to the earliest companies, but it shows the direction of travel: the more real financial performance you have, the more your valuation can rest on it.',
+        ],
+      },
+      {
+        heading: 'Traction changes your negotiating position',
+        body: [
+          'A founder with strong, growing traction is not asking an investor to believe a story, they are showing evidence and inviting the investor to back a proven trajectory. It also tends to attract more investor interest, which is itself one of the most powerful drivers of a higher valuation.',
+        ],
+      },
+      {
+        heading: 'Be honest about what traction shows',
+        body: [
+          'Present real traction, defined clearly, and do not stretch it, because it will be examined in diligence. Traction that is genuine but modest still strengthens your position, while traction that has been dressed up collapses under scrutiny.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Traction reduces the uncertainty that pulls early valuations down, so it strengthens your number more than almost anything.',
+          'With traction you can reason from your own verifiable numbers, not only from comparison.',
+          'As companies mature, valuation increasingly relates to revenue through multiples, showing the more performance you have, the firmer your valuation.',
+          'Traction also attracts investor interest, which further supports valuation, so present it honestly and let it make your case.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'valuation-caps-and-discounts',
+    title: 'Valuation Caps and Discounts',
+    teaser: 'When you raise on a SAFE or a note, you often delay the valuation but still shape it through a cap and a discount. This lesson explains how they work.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 10,
+    sections: [
+      {
+        heading: 'Why a cap exists',
+        body: [
+          'Early rounds often use a SAFE, an advanced subscription agreement, or a convertible note, which let an investor put money in now and receive shares later, when a future priced round sets the value. When an early investor puts money in before a valuation is set, they take on extra risk. The valuation cap solves this: it sets a maximum valuation at which the early investor’s money converts into shares, regardless of how high the next round’s valuation actually is.',
+        ],
+      },
+      {
+        heading: 'How the cap and discount work',
+        body: [
+          'Suppose an investor puts money in on a SAFE with a valuation cap of 1,000,000. If the next priced round happens at a valuation of 1,000,000 or below, the investor converts at that actual valuation. But if the next round happens at 3,000,000, the capped investor still converts as if the valuation were 1,000,000, receiving more shares for their money.',
+          'A discount is a simpler mechanism that can apply alongside or instead of a cap. If the discount is 20 percent, the early investor converts at 80 percent of the price the new investors pay.',
+        ],
+      },
+      {
+        heading: 'Cap and discount together',
+        body: [
+          'A SAFE or note may include a cap, a discount, or both. When both are present, the investor usually converts on whichever gives them the better deal. A low cap in particular can mean an early investor ends up with a larger slice than the headline of the deal suggested, so model the conversion carefully rather than assuming.',
+        ],
+      },
+      {
+        heading: 'Why founders must model the effect',
+        body: [
+          'Several SAFEs with low caps, converting at your next round, can dilute you more than you expected, all at once. Founders should model how every outstanding SAFE, ASA, and note will convert before agreeing terms.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'SAFEs, ASAs, and notes delay the valuation but shape it through a cap and a discount.',
+          'A valuation cap sets the maximum valuation at which an early investor converts, rewarding them for early risk with more shares.',
+          'A discount gives the early investor a reduction on the next round’s price, with a similar effect.',
+          'Caps and discounts can dilute founders more than expected at conversion, so model every outstanding instrument before agreeing terms.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-option-pool-and-its-hidden-effect',
+    title: 'The Option Pool and Its Hidden Effect',
+    teaser: 'The option pool looks like a small detail, but it can quietly lower your real valuation. This lesson exposes one of the most common traps in a term sheet.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 11,
+    sections: [
+      {
+        heading: 'What the option pool is',
+        body: [
+          'Most companies set aside a portion of their shares to give to future employees, called the option pool, usually as share options that vest over time. It exists because attracting good people to an early company often means offering them a stake in its success.',
+        ],
+      },
+      {
+        heading: 'The hidden effect on valuation',
+        body: [
+          'Investors often ask that the option pool be created, or increased, before their investment, as part of the pre-money valuation. When the pool is created out of the pre-money value, the shares for it come from the existing shareholders — meaning the founders. The investor’s percentage is unaffected, while the founders are diluted to make room for the pool. A larger pool effectively lowers your real pre-money valuation, which is why the option pool is sometimes called a hidden part of the price.',
+        ],
+      },
+      {
+        heading: 'An example in plain terms',
+        body: [
+          'Imagine two investors both offer a pre-money valuation of 2,000,000. One asks for a small option pool created pre-money, the other asks for a large one. In the second case, more of your shares are set aside for the pool before the investor comes in, so you end up owning less, even though the headline valuation is identical.',
+        ],
+      },
+      {
+        heading: 'What to do about it',
+        body: [
+          'You cannot avoid having an option pool, and you should not try, but you can negotiate its size and timing. Argue for a pool sized to what you actually expect to need before your next round, and discuss whether the pool, or part of it, is created after the investment rather than before. Treat the pool as part of the valuation negotiation, not a separate detail to wave through.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The option pool is a reserve of shares set aside to grant to future employees, and every company needs one.',
+          'When the pool is created out of the pre-money valuation, it dilutes founders, not the investor.',
+          'A larger pool created pre-money effectively lowers your real valuation, even at the same headline number.',
+          'Negotiate the pool’s size and timing, sizing it to real need, and treat it as part of the valuation negotiation.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'overvaluation-down-rounds-and-getting-it-wrong',
+    title: 'Overvaluation, Down Rounds, and Getting It Wrong',
+    teaser: 'Founders often assume a higher valuation is always better. It is not. This lesson explains why overvaluation can hurt you and how a down round happens.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 12,
+    sections: [
+      {
+        heading: 'The appeal and the trap',
+        body: [
+          'The appeal of a high valuation is obvious: you sell less of your company for the same money, and a big number is flattering. The trap is that a valuation is a promise about the future. When you raise at a high valuation, your next round must justify an even higher one.',
+        ],
+      },
+      {
+        heading: 'What a down round is',
+        body: [
+          'A down round is when a company raises money at a lower valuation than its previous round. It happens when a company set a high valuation, then failed to grow enough to justify a higher one next time. A down round dilutes existing shareholders more than expected, can trigger anti-dilution protections, and sends a negative signal to the market.',
+        ],
+      },
+      {
+        heading: 'Why overvaluation causes down rounds',
+        body: [
+          'The higher you set your valuation, the more you have to achieve to raise again at a higher one. A founder who accepts an inflated valuation in one round can find that even good progress is not enough to clear the bar next time, forcing a down round.',
+        ],
+      },
+      {
+        heading: 'The case for a sensible valuation',
+        body: [
+          'A valuation that is ambitious but grounded, one your next milestone can plausibly justify, sets you up to raise again from strength. This is why experienced founders often resist the very highest valuation on offer, preferring one they can comfortably beat.',
+        ],
+      },
+      {
+        heading: 'The investor’s perspective',
+        body: [
+          'A good investor may steer you away from an inflated number, because they do not want to fund a down round any more than you want to raise one. When both sides aim for a fair, sustainable valuation, they are protecting the same future.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A higher valuation is not always better, because a valuation is a promise your next round must exceed.',
+          'A down round is raising at a lower valuation than before, and it dilutes founders, can trigger anti-dilution, and signals lost value.',
+          'Overvaluation causes down rounds by setting a bar your next round cannot clear, turning a short-term gain into a later loss.',
+          'Aim for an ambitious but grounded valuation you can grow into, since each round should set up the next.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'valuation-across-multiple-rounds',
+    title: 'Valuation Across Multiple Rounds',
+    teaser: 'A single valuation is only one step in a long journey. This lesson shows how valuations and dilution stack across several rounds, and what that means for your ownership.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 13,
+    sections: [
+      {
+        heading: 'Each round dilutes again',
+        body: [
+          'Every time you raise, the company issues new shares, and your percentage falls. This happens at each round, so the dilution compounds over the journey. What matters is understanding the pattern, so you are never surprised by how much of the company you have given away by a given stage.',
+        ],
+      },
+      {
+        heading: 'Rising valuations offset dilution',
+        body: [
+          'The reason founders accept repeated dilution is that valuations usually rise across successful rounds. If each round is at a higher valuation than the last, your shrinking percentage represents a slice of an ever more valuable company, so the value of your holding can rise over time even as the percentage falls.',
+        ],
+      },
+      {
+        heading: 'Modelling the sequence',
+        body: [
+          'It helps to model the sequence rather than looking at one round in isolation. A simple projection of how much you might raise at each stage, at roughly what valuation, and how much that dilutes you, shows where your ownership is likely to land by the time an exit might happen.',
+        ],
+      },
+      {
+        heading: 'Convertibles come home to roost, and pro-rata',
+        body: [
+          'Remember that any SAFEs, ASAs, or convertible notes you issued earlier convert into shares at a priced round, adding to the dilution at that moment. Investors often hold pro-rata rights, letting them invest again in later rounds to maintain their percentage — understanding who holds these rights is part of seeing the full picture.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Dilution compounds across rounds, so your percentage falls step by step as you raise.',
+          'Rising valuations offset dilution, so a smaller share of a more valuable company can still grow in worth.',
+          'Model the whole sequence of rounds, including converting SAFEs and notes, rather than one round in isolation.',
+          'Account for pro-rata rights, and steward your ownership across the journey rather than maximising a single round.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'valuation-in-african-markets-and-across-currencies',
+    title: 'Valuation in African Markets and Across Currencies',
+    teaser: 'Valuing a company built for African markets, funded by diaspora investors, brings challenges the standard advice ignores. This lesson addresses them directly.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 14,
+    sections: [
+      {
+        heading: 'Scarce comparable data',
+        body: [
+          'The comparable method depends on finding similar companies with known valuations, and this data is often thin in African markets. You cannot lean as heavily on comparables as a founder in a larger ecosystem might, so rely more on the fundamental drivers, the scorecard and milestone methods, and your own traction.',
+        ],
+      },
+      {
+        heading: 'Which currency sets the valuation',
+        body: [
+          'Many deals involving diaspora and international investors are denominated in a major currency such as US dollars, even when the company operates in naira, cedi, or shilling. Be clear from the start about the currency of the valuation and the investment, and make sure your documents state it.',
+        ],
+      },
+      {
+        heading: 'Currency movement changes the picture',
+        body: [
+          'Exchange rates move, sometimes sharply, and this affects valuation in real terms. A valuation set in a local currency can look very different in dollar terms months later if the local currency has weakened. Acknowledging currency risk openly, rather than ignoring it, strengthens your credibility with investors.',
+        ],
+      },
+      {
+        heading: 'Investor perception and risk',
+        body: [
+          'Distant investors may perceive African markets as riskier than they are, and perceived risk pulls valuations down. Part of your job is to reduce that perception gap by explaining your market clearly, showing real traction, and demonstrating deep local understanding.',
+        ],
+      },
+      {
+        heading: 'Turn context into an advantage',
+        body: [
+          'Large and growing markets, rapid digital adoption, and problems worth solving are genuine strengths. Deep local knowledge and diaspora networks are real assets. Draw on these honestly when you build your valuation case.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Comparable data is often scarce in African markets, so rely more on fundamentals, the scorecard and milestone methods, and your own traction.',
+          'Be explicit about which currency sets the valuation and the investment, and record it in your documents.',
+          'Currency movement changes valuation in real terms, so acknowledge currency risk openly with investors.',
+          'Reduce the perceived-risk gap by explaining your market and traction clearly, and let genuine strengths support your number.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'negotiating-and-agreeing-a-valuation',
+    title: 'Negotiating and Agreeing a Valuation',
+    teaser: 'All the analysis leads to one moment: agreeing a number with an investor. This final lesson shows you how to negotiate a valuation you can stand behind.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 15,
+    sections: [
+      {
+        heading: 'Arrive with a range, not a point',
+        body: [
+          'Come to the negotiation with a defensible range rather than a single rigid figure. Use the methods from this course, comparables where you have them, the scorecard and milestone approaches, and your own traction, to build a range you can justify.',
+        ],
+      },
+      {
+        heading: 'Let evidence carry the argument',
+        body: [
+          'The most persuasive thing in a valuation negotiation is evidence. Rather than insisting on a number, show why it is justified: the strength of your team, the size of your opportunity, your traction, and where comparable deals sit.',
+        ],
+      },
+      {
+        heading: 'Use demand as your strongest lever',
+        body: [
+          'The strongest thing you can bring to a negotiation is genuine demand from more than one investor. When you have real alternatives, you can hold firm on a fair valuation, because you are not dependent on any single investor.',
+        ],
+      },
+      {
+        heading: 'Remember the whole deal',
+        body: [
+          'Valuation is not the only term that matters. The option pool, the cap and discount on any convertible, and other terms all affect what the deal is really worth to you. A slightly lower valuation with a cleaner structure can leave you better off than a higher one loaded with founder-unfriendly terms.',
+        ],
+      },
+      {
+        heading: 'Aim for fair and sustainable',
+        body: [
+          'The goal is not to extract the highest possible valuation, but to reach a fair and sustainable one that you can grow into. Overreaching risks a down round later, and a valuation forced on an unwilling investor sours the partnership from the start.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Come to the negotiation with a defensible range built from the methods in this course, not a single rigid number.',
+          'Let evidence carry your argument, so the investor is engaging with the facts rather than just with you.',
+          'Use genuine investor demand as your strongest lever, and negotiate valuation as part of the whole deal.',
+          'Aim for a fair, sustainable valuation you can grow into, since it sets up your next round and your relationship with investors.',
+        ],
+      },
+    ],
+  },
+];
+
 export const ACADEMY_COURSES: AcademyCourse[] = [
   {
     slug: 'foundations',
@@ -2823,8 +3518,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: 'Valuation',
     track: 'founder',
     description: 'How early-stage companies get priced, and how to argue for yours.',
-    lessons: [],
-    comingSoon: true,
+    lessons: VALUATION_LESSONS,
   },
   {
     slug: 'term-sheets',
