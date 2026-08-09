@@ -390,6 +390,224 @@ const FOUNDATIONS_LESSONS: AcademyLesson[] = [
   },
 ];
 
+const HOW_TO_RAISE_LESSONS: AcademyLesson[] = [
+  {
+    slug: 'should-you-raise-at-all',
+    title: 'Should You Raise at All?',
+    teaser:
+      'Raising money feels like the goal. Often it is not. This article helps you decide whether equity is the right fuel for your company before you spend months chasing it.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 1,
+    sections: [
+      {
+        heading: 'The four ways to fund a company',
+        body: [
+          '**Revenue** is money from customers. It is the healthiest fuel because it comes with no strings, but it can be slow.',
+          '**Debt** is borrowed money you repay with interest. You keep all your ownership, but you must repay whether or not the business does well, which is risky for a young company with little cash.',
+          '**Grants** are money you do not repay and do not give ownership for, often from governments or foundations. They are excellent when available but competitive and slow.',
+          '**Equity** is selling a share of ownership for cash you never repay. It suits companies that need money before they are profitable and that can grow large enough to reward investors.',
+          'Most founders end up using a mix. The question is not which is best in general, but which fits your company now.',
+        ],
+      },
+      {
+        heading: 'Is your business venture-fundable?',
+        body: [
+          'Equity investors are looking for companies that can become much larger. That usually means a big market, a product that can scale without costs rising just as fast, and a credible path to a future exit. A steady, profitable business that will never be huge can be a wonderful company and still be a poor fit for equity investment, because investors need the possibility of a large return to justify the high chance of loss.',
+          'Be honest here. Chasing equity for a business that does not suit it wastes months and ends in rejection.',
+        ],
+      },
+      {
+        heading: 'The real cost of equity',
+        body: [
+          'Equity looks free because you never repay it. It is not. You give up a share of everything the company becomes, you take on investors who expect growth and updates, and you accept some loss of control. Those costs are worth paying when the money lets you build something you could not otherwise build. They are a bad trade when you did not really need the money.',
+        ],
+      },
+      {
+        heading: 'When not raising is the smarter move',
+        body: [
+          'If you can reach your next milestone on revenue, if a small grant would bridge the gap, or if you are not yet sure the business is venture-scale, waiting is often wiser. Raising later, with more proof, usually means giving away less for the same money. Sometimes the strongest fundraising decision is to delay it.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Equity is one of four funding options, alongside revenue, debt, and grants, and most founders use a mix.',
+          'Equity suits companies that need money before profitability and can grow large enough to reward investors.',
+          'Equity is never truly free; you pay in ownership, expectations, and control.',
+          'If you can reach the next milestone without raising, delaying often means giving away less later.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'Complete the funding-fit worksheet for your own venture. Score how well equity suits your business right now, and note at least one alternative you could use to reach your next milestone.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'what-investors-are-really-looking-for',
+    title: 'What Investors Are Really Looking For',
+    teaser: 'If you understand what an investor weighs, you can prepare the right things and tell the right story. This article shows you the deal through their eyes.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 2,
+    sections: [
+      {
+        heading: 'The four things most early investors weigh',
+        body: [
+          '**Team.** At the earliest stage, before much is built, investors bet on people. They ask whether you can build the product, sell it, and keep going when it gets hard. A capable, committed team is the strongest early signal there is.',
+          '**Market.** How many people or businesses have the problem you solve, and how much would they pay? A good company in a small market stays small. Investors want a market large enough that success would be significant.',
+          '**Product.** Does what you have built actually solve the problem, and do people use it? A working product that customers return to beats a beautiful idea that no one has tried.',
+          '**Traction.** This is evidence that the world wants what you are building: customers, revenue, usage, growth. Even small traction is powerful because it turns claims into facts.',
+          'You will not be strong on all four early on. That is normal. Know which are your strengths and be straight about the rest.',
+        ],
+      },
+      {
+        heading: 'Founder-market fit',
+        body: [
+          'Beyond the four signals, investors look for founder-market fit: a reason you in particular are the right person to solve this problem. Perhaps you have lived it, worked in the industry, or have access others lack. For diaspora founders and those building for African markets, deep understanding of the customer and the context is a genuine advantage. Name it clearly.',
+        ],
+      },
+      {
+        heading: 'What earns trust',
+        body: [
+          'Investors trust founders who know their numbers, who describe problems as well as strengths, and who do what they say between meetings. Trust compounds. A founder who is honest about a weakness is more believable about a strength.',
+        ],
+      },
+      {
+        heading: 'What raises red flags',
+        body: [
+          'A few things make investors wary: claiming there is no competition, refusing to discuss risks, vague or inflated numbers, and pressure to decide quickly. If you find yourself tempted to hide a weakness, remember that diligence will usually find it, and finding it later damages trust more than naming it early.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Early investors weigh team, market, product, and traction, and expect you to be strong on some, not all.',
+          'Founder-market fit, your particular reason to solve this problem, is a real advantage worth naming.',
+          'Trust is built by knowing your numbers and being honest about weaknesses.',
+          'No competition claims, hidden risks, and pressure tactics are red flags to avoid.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'Complete the raise-readiness self-assessment, scoring your company on team, market, product, and traction. Write one sentence on your founder-market fit.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'how-much-to-raise-and-when',
+    title: 'How Much to Raise, and When',
+    teaser: 'Raise too little and you stall. Raise too much and you give away more than you need. This article shows you how to size a round with discipline.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 3,
+    sections: [
+      {
+        heading: 'Raise to reach the next milestone',
+        body: [
+          'Investors fund progress. Each round should carry you from where you are now to a clear next proof point that makes the company worth more, such as launching a product, reaching a revenue level, or hitting a user number. When you can name that milestone, you can work out what reaching it costs.',
+          'Raising to reach a milestone, rather than to survive for a vague period, also makes your ask easy to explain. You can tell an investor exactly what their money buys.',
+        ],
+      },
+      {
+        heading: 'Working out the number',
+        body: [
+          'Start from your plan. Estimate what you will spend each month to reach the milestone: team, product, and the cost of reaching customers. Multiply by the number of months it will take, then add a buffer, because things take longer and cost more than expected. A common approach is to fund eighteen months or so of runway, enough to reach the milestone and begin the next raise from a position of strength rather than desperation.',
+          'Runway is the number of months your cash lasts. If reaching your milestone takes about twelve months of spending at 8,000 a month, that is roughly 96,000, and a buffer might round the raise to around 120,000. These are illustrations, not targets; your real numbers come from your real plan.',
+        ],
+      },
+      {
+        heading: 'The danger of raising too much or too little',
+        body: [
+          'Raising too little is obvious: you run out of money before reaching the milestone, and raising again from weakness is hard and expensive in ownership. Raising too much has quieter costs. You give away more equity than you needed, you set a high valuation you must then grow into, and you can lose the discipline that scarce money enforces.',
+        ],
+      },
+      {
+        heading: 'A first look at valuation',
+        body: [
+          'How much of the company you give away depends on both the amount you raise and the valuation. At a 1,000,000 post-money valuation, raising 100,000 sells 10 percent. At a 2,000,000 post-money valuation, the same 100,000 sells 5 percent. Valuation is covered properly in the intermediate level; for now, understand that the amount and the valuation together decide your dilution.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Raise the amount that reaches your next milestone plus a buffer, not the maximum available.',
+          'Size the round by estimating monthly spend to the milestone, then add runway and a margin for overruns.',
+          'Raising too little risks stalling; raising too much costs extra ownership and discipline.',
+          'Amount and valuation together decide how much of the company you give away.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'Build a runway-and-milestone plan: name your next milestone, estimate the monthly spend and months to reach it, and set a target raise amount with a buffer.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'your-fundraising-narrative',
+    title: 'Your Fundraising Narrative',
+    teaser: 'Investors back stories they remember and believe. This article helps you shape the narrative that carries your whole raise.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 4,
+    sections: [
+      {
+        heading: 'The four beats of a strong narrative',
+        body: [
+          '**Problem.** Start with a real problem that real people or businesses have. Make it specific and make the listener feel it. A vague problem produces a vague company.',
+          '**Solution.** Show how your product solves that problem, simply. Investors should grasp what you do in a sentence or two, not after a long explanation.',
+          '**Why now.** Explain what has changed that makes this the right moment: a shift in technology, behaviour, regulation, or the market. The best companies are often answers to a why now.',
+          '**Why you.** Connect back to your founder-market fit. Why is your team the right one to win this? This is where your lived understanding of the customer and the market becomes part of the story.',
+        ],
+      },
+      {
+        heading: 'Turning traction into an arc',
+        body: [
+          'If you have traction, weave it in as proof, not decoration. A narrative that moves from a clear problem, to a solution, to early evidence that it works, to a credible plan for what the money unlocks, is far stronger than a list of features. Investors are following a line from where you are to where you could be. Draw that line clearly.',
+        ],
+      },
+      {
+        heading: 'Keep it honest',
+        body: [
+          'A narrative is not a sales pitch that hides the hard parts. The strongest stories acknowledge the real risks and explain how you will face them. This builds the trust covered earlier and it prepares you for the questions investors will ask. Confidence and honesty are not opposites; together they are persuasive.',
+        ],
+      },
+      {
+        heading: 'Common mistakes',
+        body: [
+          'Watch for these. Leading with the product before the problem, so the listener does not know why they should care. Trying to sound impressive with jargon instead of being clear. Claiming a huge market without showing you understand your specific customer. And stretching the truth, which diligence tends to expose and which costs you the deal.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A raise is carried by a clear story: problem, solution, why now, why you.',
+          'Weave traction in as proof that supports the arc, not as a list of features.',
+          'Honest narratives that name the risks build more trust than flawless-sounding pitches.',
+          'Lead with the problem, stay clear of jargon, and never stretch the truth.',
+        ],
+      },
+      {
+        heading: 'Your task',
+        body: [
+          'Write a one-page narrative outline for your raise, with a short paragraph for each of the four beats. Keep it plain enough that someone outside your field understands it on first read.',
+        ],
+      },
+    ],
+  },
+];
+
 export const ACADEMY_COURSES: AcademyCourse[] = [
   {
     slug: 'foundations',
@@ -403,8 +621,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: 'How to Raise',
     track: 'founder',
     description: 'Planning a round: how much to raise, at what valuation, and from whom.',
-    lessons: [],
-    comingSoon: true,
+    lessons: HOW_TO_RAISE_LESSONS,
   },
   {
     slug: 'the-pitch-deck',
