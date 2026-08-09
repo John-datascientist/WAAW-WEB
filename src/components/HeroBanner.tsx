@@ -136,6 +136,7 @@ export function HeroBanner() {
           <span className="font-serif text-2xl font-semibold italic text-white">WAAW</span>
           <nav className="flex items-center gap-6 font-mono text-xs uppercase tracking-wider text-white/60">
             <Link href="/startups" className="hover:text-white">Browse startups</Link>
+            <Link href="/learn" className="hover:text-white">Learn</Link>
             <Link href="/legal/terms" className="hover:text-white">Legal</Link>
             <Link href="/signin" className="hover:text-white">Sign in</Link>
           </nav>
@@ -188,7 +189,7 @@ export function HeroBanner() {
               startups. Every deal is reviewed before it appears on the platform, and every
               commitment moves through protected escrow.
             </p>
-                        <div className="mb-10 flex flex-wrap items-center gap-4">
+            <div className="mb-10 flex flex-wrap items-center gap-4">
               <GoldButton href="/signup?role=investor">Sign up to invest</GoldButton>
               <GhostButton inverted href="/startups">Browse startups</GhostButton>
               <GhostButton inverted href="/signup?role=founder">Register your startup</GhostButton>

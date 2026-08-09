@@ -9,6 +9,7 @@ import { useNotifications } from '../lib/useInvestor';
 const INVESTOR_LINKS = [
   { href: '/startups', label: 'Startups' },
   { href: '/portfolio', label: 'Portfolio' },
+  { href: '/learn', label: 'Learn' },
   { href: '/notifications', label: 'Notifications' },
   { href: '/account', label: 'Account' },
 ];
@@ -16,6 +17,7 @@ const INVESTOR_LINKS = [
 const FOUNDER_LINKS = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/onboarding', label: 'Onboarding' },
+  { href: '/learn', label: 'Learn' },
   { href: '/notifications', label: 'Notifications' },
   { href: '/account', label: 'Account' },
 ];
@@ -52,13 +54,22 @@ export function InvestorNav() {
           is exactly the missing-profile-row state — showing "Startups"
           twice in the nav. */}
       {!user && (
-        <Link
-          href="/startups"
-          onClick={() => setMenuOpen(false)}
-          className={linkClass(!!pathname?.startsWith('/startups'))}
-        >
-          Startups
-        </Link>
+        <>
+          <Link
+            href="/startups"
+            onClick={() => setMenuOpen(false)}
+            className={linkClass(!!pathname?.startsWith('/startups'))}
+          >
+            Startups
+          </Link>
+          <Link
+            href="/learn"
+            onClick={() => setMenuOpen(false)}
+            className={linkClass(!!pathname?.startsWith('/learn'))}
+          >
+            Learn
+          </Link>
+        </>
       )}
       {user ? (
         <>
