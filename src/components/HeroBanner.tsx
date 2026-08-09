@@ -188,8 +188,9 @@ export function HeroBanner() {
               startups. Every deal is reviewed before it appears on the platform, and every
               commitment moves through protected escrow.
             </p>
-            <div className="mb-10 flex flex-wrap items-center gap-4">
-              <GoldButton href="/startups">Browse startups</GoldButton>
+                        <div className="mb-10 flex flex-wrap items-center gap-4">
+              <GoldButton href="/signup?role=investor">Sign up to invest</GoldButton>
+              <GhostButton inverted href="/startups">Browse startups</GhostButton>
               <GhostButton inverted href="/signup?role=founder">Register your startup</GhostButton>
             </div>
             <div className="flex flex-wrap items-center gap-6">
