@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { InvestorNav } from '../../src/components/InvestorNav';
 import { useAcademyProgress } from '../../src/lib/useAcademyProgress';
+import { useAcademyTrackChoice, type AcademyRoleChoice } from '../../src/lib/useAcademyTrackChoice';
 import {
   ACADEMY_COURSES,
   courseCompletedCount,
@@ -18,8 +19,6 @@ const TRACK_LABEL: Record<AcademyTrack, string> = {
   founder: 'Founder track',
   investor: 'Investor track',
 };
-
-const TRACK_ORDER: AcademyTrack[] = ['foundations', 'founder', 'investor'];
 
 function CourseCard({ course, completed }: { course: AcademyCourse; completed: Set<string> }) {
   if (course.comingSoon) {
@@ -92,8 +91,47 @@ function CourseCard({ course, completed }: { course: AcademyCourse; completed: S
   );
 }
 
+const ROLE_OPTIONS: { key: AcademyRoleChoice; label: string; description: string }[] = [
+  { key: 'founder', label: 'I’m a founder', description: 'Raising capital for my startup.' },
+  { key: 'investor', label: 'I’m an investor', description: 'Looking to back early-stage startups.' },
+];
+
+function RoleQuestion({ choice, onChoose }: { choice: AcademyRoleChoice | null; onChoose: (c: AcademyRoleChoice) => void }) {
+  return (
+    <div className="mb-12 rounded-lg border border-ln bg-card p-6">
+      <p className="mb-1 font-mono text-xs uppercase tracking-wider text-pu">Which brings you here?</p>
+      <p className="mb-4 font-sans text-xs font-light text-mu">
+        Pick one to see that track’s courses below — Foundations is open to everyone either way, and you can
+        switch anytime.
+      </p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {ROLE_OPTIONS.map((opt) => {
+          const active = choice === opt.key;
+          return (
+            <button
+              key={opt.key}
+              type="button"
+              onClick={() => onChoose(opt.key)}
+              className={`rounded-md border p-4 text-left transition-colors ${
+                active ? 'border-pu bg-puXlight' : 'border-ln hover:border-pu3'
+              }`}
+            >
+              <span className="mb-1 block font-sans text-base font-medium text-tx">{opt.label}</span>
+              <span className="font-sans text-xs font-light text-mu">{opt.description}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function AcademyPage() {
   const { signedIn, completed } = useAcademyProgress();
+  const { choice, setChoice } = useAcademyTrackChoice();
+
+  const foundationsCourses = ACADEMY_COURSES.filter((c) => c.track === 'foundations');
+  const trackCourses = choice ? ACADEMY_COURSES.filter((c) => c.track === choice) : [];
 
   return (
     <main className="min-h-screen bg-bg">
@@ -121,26 +159,33 @@ export default function AcademyPage() {
           education, not financial, legal, or tax advice.
         </p>
         {!signedIn && (
-          <p className="mb-10 font-sans text-xs text-mu">
+          <p className="mb-8 font-sans text-xs text-mu">
             <Link href="/signin" className="text-pu hover:text-pu3">Sign in</Link> to track your reading
             progress and unlock later courses.
           </p>
         )}
 
-        {TRACK_ORDER.map((track) => {
-          const courses = ACADEMY_COURSES.filter((c) => c.track === track);
-          if (courses.length === 0) return null;
-          return (
-            <div key={track} className="mb-12">
-              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-pu">{TRACK_LABEL[track]}</p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {courses.map((course) => (
-                  <CourseCard key={course.slug} course={course} completed={completed} />
-                ))}
-              </div>
+        <RoleQuestion choice={choice} onChoose={setChoice} />
+
+        <div className="mb-12">
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-pu">{TRACK_LABEL.foundations}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {foundationsCourses.map((course) => (
+              <CourseCard key={course.slug} course={course} completed={completed} />
+            ))}
+          </div>
+        </div>
+
+        {choice && (
+          <div className="mb-12">
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-pu">{TRACK_LABEL[choice]}</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {trackCourses.map((course) => (
+                <CourseCard key={course.slug} course={course} completed={completed} />
+              ))}
             </div>
-          );
-        })}
+          </div>
+        )}
       </div>
     </main>
   );

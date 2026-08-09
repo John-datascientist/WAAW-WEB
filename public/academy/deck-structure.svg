@@ -1,0 +1,138 @@
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#C9A24B"/>
+    </marker>
+    <style>
+      .card { fill:#FFFFFF; stroke:#2A1640; stroke-opacity:0.12; }
+      .bar { fill:#C9A24B; }
+      .num { fill:#2A1640; }
+      .numtext { fill:#F7F2E9; font-weight:700; font-size:20px; }
+      .title { fill:#2A1640; font-family:'Cormorant Garamond', Georgia, serif; font-weight:600; font-size:23px; }
+      .sub { fill:#5B4D6B; font-size:14px; }
+      .flow { stroke:#C9A24B; stroke-width:2.5; fill:none; }
+      .flowd { stroke:#C9A24B; stroke-width:2.5; fill:none; stroke-dasharray:6 6; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="640" fill="#F7F2E9"/>
+  <text x="40" y="58" font-size="14" letter-spacing="4" fill="#C9A24B" font-weight="600">WAAW ACADEMY  ·  THE PITCH DECK</text>
+  <text x="40" y="98" font-family="Cormorant Garamond, Georgia, serif" font-size="40" fill="#2A1640" font-weight="600">The Ten-Slide Structure</text>
+
+  <!-- Row 1 -->
+  <g>
+    <!-- Card 1 -->
+    <g>
+      <rect class="card" x="40" y="150" width="200" height="140" rx="16"/>
+      <rect class="bar" x="40" y="150" width="200" height="6" rx="3"/>
+      <circle class="num" cx="70" cy="188" r="18"/>
+      <text class="numtext" x="70" y="195" text-anchor="middle">1</text>
+      <text class="title" x="100" y="194">Opening</text>
+      <text class="sub" x="60" y="240">What you do,</text>
+      <text class="sub" x="60" y="260">in one line</text>
+    </g>
+    <g>
+      <rect class="card" x="270" y="150" width="200" height="140" rx="16"/>
+      <rect class="bar" x="270" y="150" width="200" height="6" rx="3"/>
+      <circle class="num" cx="300" cy="188" r="18"/>
+      <text class="numtext" x="300" y="195" text-anchor="middle">2</text>
+      <text class="title" x="330" y="194">Problem</text>
+      <text class="sub" x="290" y="240">The pain,</text>
+      <text class="sub" x="290" y="260">made real</text>
+    </g>
+    <g>
+      <rect class="card" x="500" y="150" width="200" height="140" rx="16"/>
+      <rect class="bar" x="500" y="150" width="200" height="6" rx="3"/>
+      <circle class="num" cx="530" cy="188" r="18"/>
+      <text class="numtext" x="530" y="195" text-anchor="middle">3</text>
+      <text class="title" x="560" y="194">Solution</text>
+      <text class="sub" x="520" y="240">How you</text>
+      <text class="sub" x="520" y="260">solve it</text>
+    </g>
+    <g>
+      <rect class="card" x="730" y="150" width="200" height="140" rx="16"/>
+      <rect class="bar" x="730" y="150" width="200" height="6" rx="3"/>
+      <circle class="num" cx="760" cy="188" r="18"/>
+      <text class="numtext" x="760" y="195" text-anchor="middle">4</text>
+      <text class="title" x="790" y="194">Why Now</text>
+      <text class="sub" x="750" y="240">What has</text>
+      <text class="sub" x="750" y="260">changed</text>
+    </g>
+    <g>
+      <rect class="card" x="960" y="150" width="200" height="140" rx="16"/>
+      <rect class="bar" x="960" y="150" width="200" height="6" rx="3"/>
+      <circle class="num" cx="990" cy="188" r="18"/>
+      <text class="numtext" x="990" y="195" text-anchor="middle">5</text>
+      <text class="title" x="1020" y="194">Market</text>
+      <text class="sub" x="980" y="240">How big it</text>
+      <text class="sub" x="980" y="260">can get</text>
+    </g>
+  </g>
+
+  <!-- Row 1 arrows -->
+  <line class="flow" x1="240" y1="220" x2="266" y2="220" marker-end="url(#arrow)"/>
+  <line class="flow" x1="470" y1="220" x2="496" y2="220" marker-end="url(#arrow)"/>
+  <line class="flow" x1="700" y1="220" x2="726" y2="220" marker-end="url(#arrow)"/>
+  <line class="flow" x1="930" y1="220" x2="956" y2="220" marker-end="url(#arrow)"/>
+
+  <!-- Wrap connector from card5 down to card6 -->
+  <path class="flowd" d="M1060 290 C1060 350, 140 350, 140 406" marker-end="url(#arrow)"/>
+
+  <!-- Row 2 -->
+  <g>
+    <g>
+      <rect class="card" x="40" y="410" width="200" height="140" rx="16"/>
+      <rect class="bar" x="40" y="410" width="200" height="6" rx="3"/>
+      <circle class="num" cx="70" cy="448" r="18"/>
+      <text class="numtext" x="70" y="455" text-anchor="middle">6</text>
+      <text class="title" x="100" y="454">Product</text>
+      <text class="sub" x="60" y="500">What you</text>
+      <text class="sub" x="60" y="520">built</text>
+    </g>
+    <g>
+      <rect class="card" x="270" y="410" width="200" height="140" rx="16"/>
+      <rect class="bar" x="270" y="410" width="200" height="6" rx="3"/>
+      <circle class="num" cx="300" cy="448" r="18"/>
+      <text class="numtext" x="300" y="455" text-anchor="middle">7</text>
+      <text class="title" x="330" y="454">Traction</text>
+      <text class="sub" x="290" y="500">Proof it</text>
+      <text class="sub" x="290" y="520">works</text>
+    </g>
+    <g>
+      <rect class="card" x="500" y="410" width="200" height="140" rx="16"/>
+      <rect class="bar" x="500" y="410" width="200" height="6" rx="3"/>
+      <circle class="num" cx="530" cy="448" r="18"/>
+      <text class="numtext" x="530" y="455" text-anchor="middle">8</text>
+      <text class="title" x="560" y="448">Business</text>
+      <text class="title" x="560" y="474">Model</text>
+      <text class="sub" x="520" y="512">How you</text>
+      <text class="sub" x="520" y="532">make money</text>
+    </g>
+    <g>
+      <rect class="card" x="730" y="410" width="200" height="140" rx="16"/>
+      <rect class="bar" x="730" y="410" width="200" height="6" rx="3"/>
+      <circle class="num" cx="760" cy="448" r="18"/>
+      <text class="numtext" x="760" y="455" text-anchor="middle">9</text>
+      <text class="title" x="790" y="454">Team</text>
+      <text class="sub" x="750" y="500">Why you</text>
+      <text class="sub" x="750" y="520">win</text>
+    </g>
+    <g>
+      <rect class="card" x="960" y="410" width="200" height="140" rx="16"/>
+      <rect class="bar" x="960" y="410" width="200" height="6" rx="3"/>
+      <circle class="num" cx="990" cy="448" r="18"/>
+      <text class="numtext" x="990" y="455" text-anchor="middle">10</text>
+      <text class="title" x="1024" y="454">The Ask</text>
+      <text class="sub" x="980" y="500">What you raise,</text>
+      <text class="sub" x="980" y="520">and for what</text>
+    </g>
+  </g>
+
+  <!-- Row 2 arrows -->
+  <line class="flow" x1="240" y1="480" x2="266" y2="480" marker-end="url(#arrow)"/>
+  <line class="flow" x1="470" y1="480" x2="496" y2="480" marker-end="url(#arrow)"/>
+  <line class="flow" x1="700" y1="480" x2="726" y2="480" marker-end="url(#arrow)"/>
+  <line class="flow" x1="930" y1="480" x2="956" y2="480" marker-end="url(#arrow)"/>
+
+  <text x="40" y="600" class="sub" font-style="italic">Competition can sit near the team slide, and detail belongs in the data room, not the deck.</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .node { fill:#C9A24B; stroke:#2A1640; stroke-width:3; }
+      .step { fill:#2A1640; font-family:'Cormorant Garamond', Georgia, serif; font-weight:600; font-size:24px; }
+      .desc { fill:#5B4D6B; font-size:14px; }
+      .tag  { fill:#C9A24B; font-size:12px; letter-spacing:2px; font-weight:600; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="580" fill="#F7F2E9"/>
+  <text x="60" y="56" font-size="14" letter-spacing="4" fill="#C9A24B" font-weight="600">WAAW ACADEMY  ·  THE PITCH DECK</text>
+  <text x="60" y="96" font-family="Cormorant Garamond, Georgia, serif" font-size="40" fill="#2A1640" font-weight="600">The Narrative Arc</text>
+
+  <!-- area under curve -->
+  <path d="M120 430 C220 430, 240 360, 340 350 C440 340, 460 300, 560 300 C660 300, 680 220, 760 210 C840 200, 860 150, 920 140 L920 470 L120 470 Z" fill="url(#fill)"/>
+  <!-- the arc -->
+  <path d="M120 430 C220 430, 240 360, 340 350 C440 340, 460 300, 560 300 C660 300, 680 220, 760 210 C840 200, 860 150, 920 140"
+        fill="none" stroke="#4A2C6D" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- baseline -->
+  <line x1="120" y1="470" x2="920" y2="470" stroke="#2A1640" stroke-opacity="0.15" stroke-width="2"/>
+
+  <!-- Node 1 Problem -->
+  <circle class="node" cx="120" cy="430" r="11"/>
+  <text class="tag" x="120" y="392" text-anchor="middle">TENSION</text>
+  <text class="step" x="120" y="510" text-anchor="middle">Problem</text>
+  <text class="desc" x="120" y="534" text-anchor="middle">Create the tension</text>
+
+  <!-- Node 2 Solution -->
+  <circle class="node" cx="340" cy="350" r="11"/>
+  <text class="tag" x="340" y="322" text-anchor="middle">RELEASE</text>
+  <text class="step" x="340" y="392" text-anchor="middle">Solution</text>
+  <text class="desc" x="340" y="416" text-anchor="middle">Release it</text>
+
+  <!-- Node 3 Why Now -->
+  <circle class="node" cx="560" cy="300" r="11"/>
+  <text class="tag" x="560" y="272" text-anchor="middle">URGENCY</text>
+  <text class="step" x="560" y="342" text-anchor="middle">Why Now</text>
+  <text class="desc" x="560" y="366" text-anchor="middle">Add urgency</text>
+
+  <!-- Node 4 Proof -->
+  <circle class="node" cx="760" cy="210" r="11"/>
+  <text class="tag" x="760" y="182" text-anchor="middle">BELIEF</text>
+  <text class="step" x="760" y="252" text-anchor="middle">Proof</text>
+  <text class="desc" x="760" y="276" text-anchor="middle">Traction makes it believable</text>
+
+  <!-- Node 5 The Ask -->
+  <circle class="node" cx="920" cy="140" r="11"/>
+  <text class="tag" x="900" y="112" text-anchor="end">ACTION</text>
+  <text class="step" x="900" y="80" text-anchor="end">The Ask</text>
+  <text class="desc" x="900" y="104" text-anchor="end">Turn belief into action</text>
+
+  <text x="60" y="558" class="desc" font-style="italic">Market, product, business model, and team weave through the arc as supporting evidence.</text>
+</svg>

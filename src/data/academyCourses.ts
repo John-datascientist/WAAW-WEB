@@ -14,6 +14,8 @@ export interface AcademyLesson {
   readMins: number;
   order: number;
   sections: AcademySection[];
+  /** Diagram shown under the teaser, e.g. a supplied SVG under public/academy/. */
+  image?: { src: string; alt: string };
 }
 
 export interface AcademyCourse {
@@ -28,6 +30,8 @@ export interface AcademyCourse {
   comingSoon?: boolean;
   /** Open to everyone, never gated behind another course's completion. */
   free?: boolean;
+  /** Self-contained hero page (served from public/) shown above lesson 1 only. */
+  heroUrl?: string;
 }
 
 // Content supplied directly by the user for the Foundations course — all 6
@@ -2106,6 +2110,683 @@ const DOCUMENTS_LESSONS: AcademyLesson[] = [
   },
 ];
 
+const PITCH_DECK_LESSONS: AcademyLesson[] = [
+  {
+    slug: 'what-a-pitch-deck-is-for',
+    title: 'What a Pitch Deck Is For',
+    teaser: 'Before you build a single slide, you need to know what a deck is actually meant to do. Most founders misunderstand its job, and that is why most decks fail.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 1,
+    image: { src: '/academy/deck-structure.svg', alt: 'Diagram of how a pitch deck is structured, from opening slide through to the ask' },
+    sections: [
+      {
+        heading: 'The deck exists to earn the next meeting',
+        body: [
+          'A pitch deck is a short set of slides that presents your company to investors. What founders get wrong is the purpose. A deck is not there to explain everything about your business, and it is not there to close the investment by itself. Its job is narrower and more useful than that.',
+          'The single most important idea in this course is this: your deck’s job is to earn the next conversation, not to win the money on its own. An investor who reads your deck and wants to learn more is a deck that has done its job perfectly. Almost no one commits capital from a deck alone. They commit after meetings, questions, and diligence. The deck opens that door.',
+          'Once you accept this, you stop trying to cram everything in. You include only what an investor needs to become interested enough to take the next step. A lean deck that creates interest beats a heavy one that answers every question and bores the reader before they finish.',
+        ],
+      },
+      {
+        heading: 'Two versions of the same deck',
+        body: [
+          'In practice you will use your deck in two ways. The send version is the deck an investor reads on their own, with no one to explain it, so it must make sense by itself. The present version is the deck you talk through in a meeting, where your words carry much of the message and the slides support you. The send version usually needs a little more text so it stands alone, while the present version can be sparer.',
+        ],
+      },
+      {
+        heading: 'What makes a deck work, and what makes it fail',
+        body: [
+          'A deck works when an investor comes away understanding, quickly, what you do, why it matters, and why you could win. It works when it raises the right questions rather than answering all of them, and when it leaves the reader wanting the meeting. Clarity and momentum matter far more than polish or completeness.',
+          'Decks fail for predictable reasons, most of which come back to misunderstanding the job: trying to explain everything and overwhelming the reader, leading with detail before the reader knows why to care, hiding the important points among the minor ones, and being so dense that no one reads to the end.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A pitch deck’s job is to earn the next conversation, not to close the investment by itself.',
+          'Accepting this lets you build a lean deck that creates interest rather than a heavy one that answers everything.',
+          'You will use two versions: a send version that stands alone and a present version you talk through.',
+          'Decks work when they bring clarity and momentum, and fail when they overwhelm, bury the point, or run too dense.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-narrative-arc',
+    title: 'The Narrative Arc Behind the Deck',
+    teaser: 'A deck is not a pile of slides. It is a story with a shape. This lesson gives you the arc that every strong deck follows, so your slides pull in one direction.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 2,
+    image: { src: '/academy/narrative-arc.svg', alt: 'Diagram of the narrative arc from problem through proof to the ask' },
+    sections: [
+      {
+        heading: 'The shape of the story',
+        body: [
+          'The best decks feel like they are going somewhere. Each slide leads naturally to the next, and by the end the investor has been carried from a problem to an opportunity they want to be part of. That feeling comes from a narrative arc, a deliberate order that turns separate slides into one argument.',
+          'A pitch deck tells a simple story in a reliable order: a problem that matters, a solution to that problem, why now is the moment for that solution to win, proof with evidence that it is working, and an ask — the capital you need and what it will achieve. Woven through are the market, the team, and the model.',
+        ],
+      },
+      {
+        heading: 'Tension and release',
+        body: [
+          'Good storytelling runs on tension and release, and a deck is no different. The problem slide should create a real sense that something is wrong or missing, so the investor feels the gap. The solution then releases that tension by showing how you close it. If you show the solution before the investor feels the problem, there is no tension to release, and the solution lands flat.',
+        ],
+      },
+      {
+        heading: 'Every slide serves the arc',
+        body: [
+          'Once you hold the arc in mind, each slide has a clear job: to move the story one step forward. A slide that does not advance the argument is a slide to cut. For every slide, ask what step of the story it carries. If you cannot answer, the slide is decoration.',
+        ],
+      },
+      {
+        heading: 'The arc adapts, the shape stays',
+        body: [
+          'The exact slides can vary — some companies need a strong product slide, others lean on traction. But the underlying shape, from problem through proof to ask, stays remarkably constant across strong decks. Learn the shape first, then adapt the emphasis to your company.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A deck is a story with a shape, not a collection of separate slides.',
+          'The reliable arc runs from problem, to solution, to why now, to proof, to the ask, with market, team, and model woven through.',
+          'Storytelling runs on tension and release, so make the investor feel the problem before you show the solution.',
+          'Every slide should move the story one step forward; if a slide does not, cut it.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-opening-slide',
+    title: 'The Opening Slide',
+    teaser: 'The first slide sets the tone and answers one question in the reader’s mind: what is this? This lesson shows you how to open with clarity rather than mystery.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 3,
+    sections: [
+      {
+        heading: 'Say what you do in one line',
+        body: [
+          'The opening slide is the first thing an investor sees, and first impressions form fast. Many founders waste it on a logo and a vague tagline that could belong to any company. A strong opening slide does something simple and powerful: it tells the reader, in one clear line, exactly what your company does.',
+          'The heart of the opening slide is a single sentence that a stranger could understand. Not a clever slogan, but a plain description of what your company does and for whom. A useful test is whether someone outside your industry could read your one line and explain your company back to you.',
+        ],
+      },
+      {
+        heading: 'What belongs on the opening slide',
+        body: [
+          'Keep it clean. Your company name, your one-line description of what you do, and enough visual identity to look credible are usually enough. Some founders add a single strong image or a short phrase that captures the opportunity, which is fine as long as it does not crowd out the core message.',
+        ],
+      },
+      {
+        heading: 'What to avoid',
+        body: [
+          'Avoid the vague, aspirational tagline that says nothing concrete. Avoid burying what you do beneath imagery or design. And avoid trying to say too much — the opening slide is not the place to explain the whole business.',
+        ],
+      },
+      {
+        heading: 'Setting the tone',
+        body: [
+          'Beyond the words, the opening slide sets the emotional tone of your deck. A clean, confident, well-made first slide signals a founder who takes their company seriously. For a company presenting to diaspora investors who may not know you, that first impression of care and clarity matters.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The opening slide should tell the reader in one plain line exactly what your company does and for whom.',
+          'Favour a clear description over a clever slogan, and test it on someone outside your industry.',
+          'Keep the slide clean: name, one-line description, and enough identity to look credible.',
+          'The first slide sets the tone, so a confident, uncluttered opening earns the reader’s attention.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-problem-slide',
+    title: 'The Problem Slide',
+    teaser: 'The problem slide is where your story begins and where interest is won or lost. This lesson shows you how to make an investor feel the problem before you offer the cure.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 4,
+    sections: [
+      {
+        heading: 'Make the problem specific and real',
+        body: [
+          'Every strong deck opens its argument with a problem. This is the slide that creates the tension the rest of the deck releases. Vague problems produce vague companies. A slide that shows a specific person or business, in a specific situation, losing time or money in a way the reader can picture, does the work.',
+          'For a company building in African markets, this is an advantage you should use. You often understand a problem from the inside, in a way a distant investor does not. Bring that lived detail to the slide.',
+        ],
+      },
+      {
+        heading: 'Make the reader feel the gap',
+        body: [
+          'The goal of this slide is not just to state a problem but to make the reader feel that something is missing or broken. Good problem slides create a small sense of discomfort. That feeling is the tension your solution will release.',
+        ],
+      },
+      {
+        heading: 'Show the size and the stakes',
+        body: [
+          'A problem the investor feels is powerful, and a problem they can see affects many people is powerful and investable. Where you can, give a sense of how widespread the problem is and what it costs. Keep it honest, because inflated problem claims invite doubt rather than belief.',
+        ],
+      },
+      {
+        heading: 'Resist jumping to the solution',
+        body: [
+          'The most common mistake on the problem slide is rushing past it to talk about what you built. Slow down. The problem slide is where you earn the right to present your solution.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The problem slide creates the tension that your solution will release, so it is the foundation of the pitch.',
+          'Make the problem specific and human, using the lived understanding you have of your market.',
+          'Aim to make the reader feel that something is broken, not just read that a problem exists.',
+          'Show the scale and stakes honestly, and resist rushing to the solution before the problem is felt.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-solution-slide',
+    title: 'The Solution Slide',
+    teaser: 'The solution slide releases the tension the problem created. This lesson shows you how to present what you do simply, so the investor grasps it at once.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 5,
+    sections: [
+      {
+        heading: 'Lead with clarity, not cleverness',
+        body: [
+          'After the problem comes the moment the reader has been waiting for: your solution. State, in plain terms, what your product does and how it solves the problem you just described. Resist the urge to show every feature or explain the technology in depth. Clarity beats completeness on this slide every time.',
+        ],
+      },
+      {
+        heading: 'Connect the solution directly to the problem',
+        body: [
+          'The solution slide should feel like the natural answer to the previous slide. If the problem was a specific person losing time or money in a specific way, the solution should show that same person’s life made better. When it drifts off to features unrelated to the stated problem, the argument weakens.',
+        ],
+      },
+      {
+        heading: 'Show, do not just tell',
+        body: [
+          'Where you can, show the solution rather than only describing it. A simple image of the product in use, or a short, clear example of the before and after, communicates faster than a paragraph of text.',
+        ],
+      },
+      {
+        heading: 'Keep the focus narrow, and do not oversell',
+        body: [
+          'A common mistake is trying to make the solution sound impressive by listing everything it can do. A solution that solves one clear problem well is more convincing than one that claims to solve many. Avoid grand claims that the solution is perfect or unbeatable — an honest, clearly explained solution is more persuasive.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The solution slide should be understood immediately, so lead with clarity rather than cleverness or detail.',
+          'Connect the solution directly to the problem you raised, so the story clicks into place.',
+          'Show the solution where you can, so the reader can picture it working, without a full product tour.',
+          'Keep the focus narrow on solving one problem well, and present it honestly rather than overselling.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-why-now-slide',
+    title: 'The Why Now Slide',
+    teaser: 'Investors do not just ask whether an idea is good. They ask why it will win now. This lesson shows you how to answer the most underrated question in your deck.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 6,
+    sections: [
+      {
+        heading: 'Why timing matters so much',
+        body: [
+          'Many good ideas fail simply because they arrived too early or too late. The why now slide answers the question of timing: what has changed that makes this the right moment for your solution to succeed. Without one, even a strong idea can feel like it could have been built any time, which quietly weakens the case.',
+        ],
+      },
+      {
+        heading: 'What creates a why now',
+        body: [
+          'A why now usually comes from a shift in the world: a change in technology, a change in behaviour, a change in regulation that opens a door, or a change in the market. Your job is to identify the shift that makes your solution possible or necessary now, and to show that it is real and recent.',
+        ],
+      },
+      {
+        heading: 'The African market angle',
+        body: [
+          'For companies building in African markets, the why now is often genuinely strong, and you should lean into it. Rapid growth in mobile and internet use, the spread of mobile money, young and growing populations, and rising digital adoption have opened windows that did not exist a few years ago.',
+        ],
+      },
+      {
+        heading: 'Make it specific and evidenced, and do not force it',
+        body: [
+          'A weak why now is a vague gesture at things getting better. A strong one points to a specific, verifiable change and connects it directly to your company. If your why now is genuinely weak, it is better to keep the slide short and honest than to invent a dramatic shift that does not hold up.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The why now slide explains what has changed to make this the right moment for your solution.',
+          'Strong timing turns a good idea into an urgent one, while a missing why now quietly weakens the case.',
+          'A why now usually comes from a shift in technology, behaviour, regulation, or the market.',
+          'African market shifts often make for a strong why now, so make the change specific, evidenced, and honest.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-market-slide',
+    title: 'The Market Slide',
+    teaser: 'Investors need to believe the opportunity is big enough to matter. This lesson shows you how to size your market honestly and convincingly, without the empty billion-dollar claim.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 7,
+    sections: [
+      {
+        heading: 'Why market size matters',
+        body: [
+          'The market slide answers a question every investor asks: if this works, how big can it get? Because most of their investments will fail, the ones that succeed must be able to grow large enough to make the whole effort worthwhile. A brilliant company in a tiny market cannot do that.',
+        ],
+      },
+      {
+        heading: 'The problem with top-down numbers',
+        body: [
+          'The classic weak market slide takes an enormous industry figure and claims a small slice of it, as if capturing one percent of a giant market were a plan. Investors have seen this a thousand times and it persuades no one, because it shows no real understanding of how you would actually win customers.',
+        ],
+      },
+      {
+        heading: 'Build the market from the bottom up',
+        body: [
+          'A far stronger approach is to build your market from the bottom up, starting from your actual customer. Work out who your specific customer is, how many of them there are, and what each would pay, then build up to a total from there. This produces a number you can defend under questioning.',
+        ],
+      },
+      {
+        heading: 'Layers of the market, and the African picture',
+        body: [
+          'It helps to think in layers: the whole market that could in theory use something like your product, the portion you can realistically reach, and the share you could plausibly win in the near term. For companies serving African markets, the market story can be genuinely large — use this, but ground it in your specific customer rather than gesturing at a continent.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Investors need to see that the opportunity is big enough that success would be significant.',
+          'Avoid the weak top-down claim of a small slice of a giant industry figure.',
+          'Build your market from the bottom up, starting from your real customer, for a number you can defend.',
+          'Show the layers from the whole market to what you can win first, and keep African market sizing grounded and honest.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-product-slide',
+    title: 'The Product Slide',
+    teaser: 'The product slide shows what you have actually built. This lesson helps you make it real and tangible without turning your deck into a manual.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 8,
+    sections: [
+      {
+        heading: 'Show the product, do not describe it',
+        body: [
+          'By this point in the deck, the investor understands the problem, your solution, and why now is the moment. The product slide makes the solution concrete by showing what you have actually built. A clear image or two of your product in use communicates faster and more convincingly than paragraphs of description.',
+        ],
+      },
+      {
+        heading: 'Focus on what matters to the customer',
+        body: [
+          'Founders love their product and often want to show every feature. Resist this. The product slide should highlight the few things that matter most to the customer and that best show how the solution solves the problem. Depth of features belongs in the demo or the data room, not on this slide.',
+        ],
+      },
+      {
+        heading: 'Make it easy to grasp, and tie it back to the problem',
+        body: [
+          'Whoever is reading your deck may not know your field, so make the product easy to understand at a glance. Like the solution slide, the product slide is strongest when it clearly connects to the problem you raised.',
+        ],
+      },
+      {
+        heading: 'What if the product is early',
+        body: [
+          'Not every company has a polished product to show, and that is fine at an early stage. If your product is still basic or in progress, show what exists honestly, and be clear about what is built versus what is planned. An early but real product, shown honestly, is more convincing than a slick mockup of something that does not yet exist.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The product slide makes your solution tangible by showing what you have actually built.',
+          'Show the product visually rather than describing it, so the reader can see it working.',
+          'Focus on the few things that matter most to the customer, not every feature.',
+          'Keep it easy to grasp, tie it back to the problem, and show early products honestly rather than faking polish.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-traction-slide',
+    title: 'The Traction Slide',
+    teaser: 'Traction is the evidence that your solution works. This lesson shows you how to present it so it proves your story rather than just decorating it.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 9,
+    sections: [
+      {
+        heading: 'What counts as traction',
+        body: [
+          'Traction is the evidence that the world wants what you are building. It is often the most powerful slide in a deck, because it turns claims into facts. It might be customers, revenue, users, growth in usage, retention, partnerships, or a waiting list. What matters is that it is real evidence that people value what you offer.',
+        ],
+      },
+      {
+        heading: 'Show momentum, not just a number',
+        body: [
+          'A single number is fine, but momentum is more convincing. If your customers, revenue, or usage have grown over time, show that growth, because a rising line tells a story of progress that a static figure does not.',
+        ],
+      },
+      {
+        heading: 'Be honest and specific',
+        body: [
+          'Traction is where honesty matters most, because these numbers can be checked in diligence. Present real figures, defined clearly. An investor who later finds that your traction was dressed up will lose trust in everything else.',
+        ],
+      },
+      {
+        heading: 'What if you have little traction',
+        body: [
+          'Early companies may have little to show, and that is expected. If your traction is thin, show what you have honestly and lean on other evidence of demand, such as strong interest from potential customers or results from early tests. Do not invent traction to fill the slide.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Traction is the evidence that your solution works, and it turns your claims into facts.',
+          'Choose the measures that honestly show progress, such as customers, revenue, usage, retention, or growth.',
+          'Show momentum where you have it, because a rising trend helps investors picture your future.',
+          'Be specific and honest, since traction is checked in diligence, and connect it back to your story as proof.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-business-model-slide',
+    title: 'The Business Model Slide',
+    teaser: 'The business model slide answers how you make money. This lesson shows you how to explain it clearly and show that the economics can work.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 10,
+    sections: [
+      {
+        heading: 'Explain how you make money simply',
+        body: [
+          'At some point an investor needs to understand how your company makes money. State plainly how your company earns revenue — whether you charge customers directly, take a fee on transactions, sell a subscription, or make money some other way. If your model has several parts, lead with the main one.',
+        ],
+      },
+      {
+        heading: 'Show that the economics can work',
+        body: [
+          'Beyond how you charge, investors want a sense that the economics make sense — that over time you can earn more from a customer than it costs to win and serve them. Even early, a clear grasp of your economics builds confidence.',
+        ],
+      },
+      {
+        heading: 'Match the model to the market',
+        body: [
+          'Your business model has to fit the market you serve, and this deserves real thought for African markets. What customers can and will pay, and what payment methods are common, all shape which models work.',
+        ],
+      },
+      {
+        heading: 'Keep it honest and grounded, and connect it to the ask',
+        body: [
+          'An investor will probe the economics, so a model you can defend is worth more than one that merely looks attractive. If the investor understands how you make money and believes the economics can work, they can see how their capital helps you grow a real business — which makes the ask that follows far more convincing.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The business model slide explains, simply and concretely, how your company makes money.',
+          'Show that you understand your economics, such as what a customer is worth and what it costs to win one.',
+          'Match the model to your market, especially how African customers can and prefer to pay.',
+          'Keep the model honest and grounded, and remember it sets up a more convincing ask later.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-competition-slide',
+    title: 'The Competition Slide',
+    teaser: 'How you handle competition tells an investor how well you understand your market. This lesson shows you how to present competitors with confidence rather than denial.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 11,
+    sections: [
+      {
+        heading: 'Never claim you have no competition',
+        body: [
+          'Sooner or later an investor wonders who else is solving this problem. The single worst thing you can do on this slide is claim you have no competition. Almost no company truly has none — even if no one offers exactly your product, customers are solving the problem some other way today.',
+        ],
+      },
+      {
+        heading: 'Show that you understand the landscape',
+        body: [
+          'A strong competition slide shows that you know who and what you are up against, including direct competitors, indirect ones, and the simple alternative of customers doing nothing or using a workaround.',
+        ],
+      },
+      {
+        heading: 'Explain why you win',
+        body: [
+          'The purpose of the competition slide is not just to list rivals but to show your advantage. What do you do that others do not, and why does it matter to the customer? Be specific and honest.',
+        ],
+      },
+      {
+        heading: 'The local advantage, and honesty about strong competitors',
+        body: [
+          'For companies building in African markets, a real and defensible advantage is often deep local understanding and presence. If there are strong, well-funded competitors, do not pretend they are weak — acknowledge them and explain how you coexist or win a specific part of the market.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Never claim you have no competition, because customers always solve the problem somehow today.',
+          'Show you understand the full landscape, including direct, indirect, and do-nothing alternatives.',
+          'Explain specifically and honestly why you win for your customer, rather than claiming to be better in every way.',
+          'Lean on genuine local advantage in African markets, and be honest about strong competitors.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-team-slide',
+    title: 'The Team Slide',
+    teaser: 'At the early stage, investors bet on people. This lesson shows you how to present your team so an investor believes you are the ones to win.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 12,
+    sections: [
+      {
+        heading: 'Show why you, specifically',
+        body: [
+          'The earlier the stage, the more an investor is backing the team rather than the finished business. The heart of the team slide is founder-market fit: the reason you in particular are the right person or people to build this.',
+        ],
+      },
+      {
+        heading: 'Keep it relevant',
+        body: [
+          'A team slide is not a full biography of everyone. Show the key people and, for each, the one or two things that matter most for this company. Relevant experience is worth more than a long list of past roles.',
+        ],
+      },
+      {
+        heading: 'Show completeness, or be honest about gaps',
+        body: [
+          'Investors look for a team that covers the main things the company needs. If there are gaps, it is better to be honest and show that you understand what is missing and how you plan to fill it, than to pretend the team is complete.',
+        ],
+      },
+      {
+        heading: 'The diaspora and local advantage',
+        body: [
+          'For companies connecting the diaspora and African markets, your team can hold a distinctive strength: people who understand both worlds. If your team combines local market knowledge with skills or networks from elsewhere, that blend is valuable and worth highlighting.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'At the early stage, investors back the team, so the team slide is often more important than founders realise.',
+          'Lead with founder-market fit: the specific reason you are the right people to solve this problem.',
+          'Keep each person’s details relevant to the company, and be honest about gaps and how you will fill them.',
+          'Highlight the diaspora and local advantage your team may hold, and present strengths confidently but honestly.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-ask-and-use-of-funds-slide',
+    title: 'The Ask and Use of Funds Slide',
+    teaser: 'The ask is the point of the whole deck, yet founders often bury it. This lesson shows you how to state clearly what you want and what it will achieve.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 13,
+    sections: [
+      {
+        heading: 'State the ask clearly',
+        body: [
+          'Every slide so far has been leading here. Say plainly how much you are raising — do not make the investor guess. A clear figure signals that you know what you need and have thought it through.',
+        ],
+      },
+      {
+        heading: 'Connect the money to milestones',
+        body: [
+          'The most important part of this slide is showing what the money will achieve. Investors do not fund survival, they fund progress. Connect the amount you are raising to the milestone it will reach.',
+        ],
+      },
+      {
+        heading: 'Show the use of funds, and size the ask to the plan',
+        body: [
+          'Alongside the milestone, show roughly how the money will be used, across the main areas such as building the product, growing the team, and reaching customers. The right amount is the one that reaches your next milestone with a sensible buffer, not the largest sum you could ask for.',
+        ],
+      },
+      {
+        heading: 'Do not bury it',
+        body: [
+          'Put the ask where it belongs, as a clear and confident slide, usually near the end where it completes the story. You are raising money, and there is no shame in asking for it plainly.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'State clearly how much you are raising, without making the investor guess.',
+          'Connect the money to the milestone it will reach, because investors fund progress, not survival.',
+          'Show a simple use of funds so the investor sees the capital has a deliberate plan.',
+          'Size the ask to the plan, and present it as a clear, confident slide rather than burying it.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'design-clarity-and-craft',
+    title: 'Design, Clarity, and Craft',
+    teaser: 'A deck’s content matters most, but its craft carries that content. This lesson covers the design and clarity that make a deck easy and pleasant to read.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 14,
+    sections: [
+      {
+        heading: 'One point per slide',
+        body: [
+          'You now know what each slide should say. Good design does not mean fancy graphics — it means clarity. The most useful design rule is simple: each slide should make one clear point. If a slide tries to say three things, the reader absorbs none of them well.',
+        ],
+      },
+      {
+        heading: 'Less text, more clarity',
+        body: [
+          'Slides are not documents. A slide crammed with paragraphs will not be read, especially in a meeting where the investor is also listening to you. A short, clear headline supported by a simple visual beats a wall of text every time.',
+        ],
+      },
+      {
+        heading: 'Show numbers and ideas visually',
+        body: [
+          'Where you can, turn information into something visual. A simple chart shows growth better than a sentence about it. Visuals are not decoration, they are a faster way to communicate.',
+        ],
+      },
+      {
+        heading: 'Consistency, calm, and readability in seconds',
+        body: [
+          'A deck should feel like one considered piece, not a patchwork. A good test for any slide is whether its main point is clear within a few seconds — if not, simplify it until it is.',
+        ],
+      },
+      {
+        heading: 'Craft serves content, not the other way around',
+        body: [
+          'A beautiful deck with a weak argument still fails, and a plain deck with a strong, clear argument can succeed. Get the story and the slides right first, then craft them so that story comes through cleanly.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Give each slide one clear point, and split or cut slides that try to say too much.',
+          'Use few words and let slides breathe, since slides crammed with text do not get read.',
+          'Turn numbers and ideas into simple visuals, which communicate faster than paragraphs.',
+          'Keep the deck consistent and readable in seconds, and let design serve the content rather than replace it.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'tailoring-delivering-and-iterating',
+    title: 'Tailoring, Delivering, and Iterating',
+    teaser: 'A deck is not finished when it is built. This final lesson covers tailoring it to your audience, delivering it well, and improving it through feedback.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 15,
+    sections: [
+      {
+        heading: 'Tailor to your audience',
+        body: [
+          'The same core deck can be tuned for different investors. Angels and syndicates often care most about the team and the story. A crowdfunding audience on a platform like WAAW may include less experienced investors alongside seasoned ones, so plain language and clear risk awareness matter even more. Adjust your emphasis, but never your honesty.',
+        ],
+      },
+      {
+        heading: 'The send version and the present version',
+        body: [
+          'Recall the two versions from the first lesson. The send version is read alone, so it needs enough words to make sense without you there. The present version supports you while you talk, so it can be sparer.',
+        ],
+      },
+      {
+        heading: 'Delivering the deck live',
+        body: [
+          'In a meeting, the deck supports you, it does not replace you. Open with your narrative, then let the conversation breathe rather than reading every slide aloud. Answer questions directly and honestly.',
+        ],
+      },
+      {
+        heading: 'Gather feedback and iterate',
+        body: [
+          'Your first deck will not be your best. Show it to a few trusted people and early investors, and watch closely. Notice where they get confused, and which questions come up again and again — those signals tell you exactly what to fix.',
+        ],
+      },
+      {
+        heading: 'Bringing the course together',
+        body: [
+          'A pitch deck is not a hurdle to clear once. It is a living tool that presents your company, opens doors, and gets better as you learn. Build it with care, use it with honesty, and keep sharpening it, and it will do its job: earning you the conversations that lead to a raise.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Tailor your emphasis to each audience, from angels to a diaspora crowdfunding audience, without changing your honesty.',
+          'Keep both a send version that stands alone and a present version that supports you live.',
+          'Deliver the deck as support, not a script: lead with the story, make key points early, and handle questions openly.',
+          'Gather feedback and iterate, so your deck grows stronger across the raise.',
+        ],
+      },
+    ],
+  },
+];
+
 export const ACADEMY_COURSES: AcademyCourse[] = [
   {
     slug: 'foundations',
@@ -2127,8 +2808,8 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: 'The Pitch Deck',
     track: 'founder',
     description: 'Building the deck investors actually want to see.',
-    lessons: [],
-    comingSoon: true,
+    lessons: PITCH_DECK_LESSONS,
+    heroUrl: '/pitch-deck-hero.html',
   },
   {
     slug: 'the-documents',

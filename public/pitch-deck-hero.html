@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Pitch Deck — WAAW Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; overflow:hidden; background:#150a24; }
+  #scene { position:fixed; inset:0;
+    background: radial-gradient(120% 100% at 50% 10%, #3a1f66 0%, #241640 42%, #150a24 100%); }
+  canvas { display:block; }
+  #vignette { position:fixed; inset:0; pointer-events:none;
+    box-shadow: inset 0 0 220px 70px rgba(10,4,20,0.85); }
+  #overlay { position:fixed; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-end; padding-bottom:8vh;
+    pointer-events:none; text-align:center; }
+  .kicker { font-family:'Inter',sans-serif; letter-spacing:.42em; text-transform:uppercase;
+    font-size:.72rem; color:#C9A24B; opacity:0; transform:translateY(8px);
+    animation:rise 1s ease .3s forwards; }
+  .wordmark { font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; color:#F7F2E9;
+    font-size:clamp(2.6rem,7.5vw,5rem); line-height:1; margin:.3rem 0 .2rem;
+    text-shadow:0 2px 40px rgba(201,168,76,.25); opacity:0; transform:translateY(14px);
+    animation:rise 1.15s ease .5s forwards; }
+  .rule { width:0; height:1px; margin:.7rem auto 1rem;
+    background:linear-gradient(90deg,transparent,#C9A24B,transparent);
+    animation:grow 1.4s ease 1s forwards; }
+  .caption { font-family:'Inter',sans-serif; font-size:clamp(.85rem,2.4vw,1.05rem);
+    color:#E4D9C4; min-height:1.4em; letter-spacing:.04em; }
+  .caption b { color:#C9A24B; font-weight:600; transition:opacity .45s ease; }
+  @keyframes rise { to { opacity:1; transform:translateY(0); } }
+  @keyframes grow { to { width:min(320px,60vw); } }
+</style>
+</head>
+<body>
+  <div id="scene"></div>
+  <div id="vignette"></div>
+  <div id="overlay">
+    <div class="kicker">WAAW Academy</div>
+    <h1 class="wordmark">The Pitch Deck</h1>
+    <div class="rule"></div>
+    <div class="caption">Now on <b id="slide">the opening slide</b></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    const GOLD=0xC9A24B, GOLD_LT=0xE4CC86, PURPLE=0x4A2C6D;
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x1d0f36, 0.03);
+    const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.1, 100);
+    camera.position.set(0, 0.4, 11);
+    const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.setSize(innerWidth, innerHeight);
+    document.getElementById('scene').appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0x8a6fc0, 0.9));
+    const p = new THREE.PointLight(GOLD, 1.3, 60); p.position.set(0,2,8); scene.add(p);
+
+    // glow behind
+    const gc=document.createElement('canvas'); gc.width=gc.height=256;
+    const gx=gc.getContext('2d');
+    const gg=gx.createRadialGradient(128,128,10,128,128,128);
+    gg.addColorStop(0,'rgba(201,168,76,0.5)'); gg.addColorStop(0.45,'rgba(201,168,76,0.14)'); gg.addColorStop(1,'rgba(201,168,76,0)');
+    gx.fillStyle=gg; gx.fillRect(0,0,256,256);
+    const glow=new THREE.Sprite(new THREE.SpriteMaterial({ map:new THREE.CanvasTexture(gc), blending:THREE.AdditiveBlending, transparent:true, depthWrite:false }));
+    glow.scale.set(14,14,1); glow.position.set(0,0,-2); scene.add(glow);
+
+    const slides = ['Opening','Problem','Solution','Why Now','Market','Product','Traction','Team','The Ask'];
+
+    function slideTexture(title, n) {
+      const c=document.createElement('canvas'); c.width=640; c.height=360;
+      const x=c.getContext('2d');
+      x.fillStyle='#F7F2E9'; round(x,10,10,620,340,22); x.fill();
+      x.fillStyle='#2A1640'; round(x,10,10,620,66,22); x.fillRect(10,44,620,32);
+      x.fillStyle='rgba(247,242,244,0.9)'; x.font='500 20px Inter, sans-serif';
+      x.fillText('WAAW ACADEMY', 34, 50);
+      x.fillStyle='#C9A24B'; x.fillRect(34,150,70,5);
+      x.fillStyle='#241633'; x.font='600 58px "Cormorant Garamond", Georgia, serif';
+      x.fillText(title, 34, 220);
+      x.fillStyle='#8a7f74'; x.font='400 20px Inter, sans-serif';
+      x.fillText('Slide '+n+'  ·  The Pitch Deck', 34, 300);
+      const t=new THREE.CanvasTexture(c); t.anisotropy=4; return t;
+    }
+    function round(x,px,py,w,h,r){ x.beginPath(); x.moveTo(px+r,py);
+      x.arcTo(px+w,py,px+w,py+h,r); x.arcTo(px+w,py+h,px,py+h,r);
+      x.arcTo(px,py+h,px,py,r); x.arcTo(px,py,px+w,py,r); x.closePath(); }
+
+    const ring = new THREE.Group();
+    const R=5, N=slides.length, cards=[];
+    slides.forEach((s,i)=>{
+      const m=new THREE.Mesh(
+        new THREE.PlaneGeometry(3.4,1.9),
+        new THREE.MeshBasicMaterial({ map:slideTexture(s,i+1), transparent:true, side:THREE.DoubleSide }));
+      const a=(i/N)*Math.PI*2;
+      m.position.set(Math.sin(a)*R, 0, Math.cos(a)*R);
+      m.rotation.y=a;
+      m.userData={a};
+      ring.add(m); cards.push(m);
+    });
+    scene.add(ring);
+
+    // particles
+    const PC=300, pos=new Float32Array(PC*3);
+    for(let i=0;i<PC;i++){ const r=7+Math.random()*10, th=Math.random()*6.28, ph=Math.acos(2*Math.random()-1);
+      pos[i*3]=r*Math.sin(ph)*Math.cos(th); pos[i*3+1]=(Math.random()-0.5)*11; pos[i*3+2]=r*Math.sin(ph)*Math.sin(th); }
+    const pg=new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pos,3));
+    scene.add(new THREE.Points(pg, new THREE.PointsMaterial({ color:GOLD_LT, size:0.05, transparent:true, opacity:0.6, blending:THREE.AdditiveBlending, depthWrite:false })));
+
+    // caption cycle synced to rotation
+    const slideEl=document.getElementById('slide');
+    const names=['the opening slide','the problem','the solution','why now','the market','the product','traction','the team','the ask'];
+    let ni=0;
+    setInterval(()=>{ slideEl.style.opacity=0;
+      setTimeout(()=>{ ni=(ni+1)%names.length; slideEl.textContent=names[ni]; slideEl.style.opacity=1; },450);
+    }, 2400);
+
+    let t=0;
+    function animate(){
+      requestAnimationFrame(animate);
+      t+=0.005;
+      ring.rotation.y = -t*0.5;
+      cards.forEach((m,i)=>{ m.position.y = Math.sin(t*1.1 + i*0.6)*0.14; });
+      glow.position.y = Math.sin(t*0.6)*0.3;
+      camera.position.x = Math.sin(t*0.2)*1.3;
+      camera.position.y = 0.4 + Math.sin(t*0.28)*0.35;
+      camera.lookAt(0,0,0);
+      renderer.render(scene,camera);
+    }
+    animate();
+
+    addEventListener('resize', ()=>{
+      camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+</body>
+</html>

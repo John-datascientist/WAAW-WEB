@@ -37,9 +37,17 @@ export default function AcademyLessonPage({ params }: { params: { course: string
   const prev = idx > 0 ? sorted[idx - 1] : null;
   const next = idx < sorted.length - 1 ? sorted[idx + 1] : null;
 
+  const showCourseHero = course.heroUrl && lesson.order === 1;
+
   return (
     <main className="min-h-screen bg-bg">
       <InvestorNav />
+
+      {showCourseHero && (
+        <div className="relative h-[45vh] w-full overflow-hidden bg-[#150a24] sm:h-[55vh]">
+          <iframe src={course.heroUrl} title={`${course.title} — WAAW Academy`} className="h-full w-full border-0" loading="lazy" />
+        </div>
+      )}
 
       <div className="mx-auto max-w-2xl px-6 py-16">
         <BackButton fallbackHref="/academy" label="Academy" />
@@ -55,7 +63,16 @@ export default function AcademyLessonPage({ params }: { params: { course: string
           </span>
         </div>
         <h1 className="mb-3 font-serif text-3xl text-tx">{lesson.title}</h1>
-        <p className="mb-10 font-sans text-sm font-light italic leading-relaxed text-mu">{lesson.teaser}</p>
+        <p className="mb-6 font-sans text-sm font-light italic leading-relaxed text-mu">{lesson.teaser}</p>
+
+        {lesson.image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={lesson.image.src}
+            alt={lesson.image.alt}
+            className="mb-10 w-full rounded-lg border border-ln bg-card"
+          />
+        )}
 
         <div className="space-y-8">
           {lesson.sections.map((s) => (
