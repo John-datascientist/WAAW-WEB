@@ -22,6 +22,7 @@ export interface Profile {
   referral_code: string | null;
   referred_by: string | null;
   notification_prefs: NotificationPrefs | null;
+  is_kyc_reviewer: boolean;
   created_at: string;
 }
 
