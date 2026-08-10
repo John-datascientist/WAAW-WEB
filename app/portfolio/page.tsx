@@ -6,7 +6,7 @@ import { InvestorNav } from '../../src/components/InvestorNav';
 import { BackButton, Chip, Divider } from '../../src/components/ui';
 import { useAuth } from '../../src/context/AuthContext';
 import { useAuthGate } from '../../src/lib/useAuthGate';
-import { CommitmentRow, useCommitments, useStartups, useWatchlist } from '../../src/lib/useInvestor';
+import { CommitmentRow, useCommitments, useMyPledges, useStartups, useWatchlist } from '../../src/lib/useInvestor';
 
 const fmt = (n: number) => '$' + n.toLocaleString();
 
@@ -34,6 +34,7 @@ function csvEscape(v: string | number) {
 export default function PortfolioPage() {
   const { profile } = useAuth();
   const { commitments, total, requestRefund } = useCommitments();
+  const { pledges } = useMyPledges();
   const { startups } = useStartups();
   const { watchlist, toggle } = useWatchlist();
   const [statusFilter, setStatusFilter] = useState<string>('All');
@@ -98,6 +99,34 @@ export default function PortfolioPage() {
                   <p className="font-mono text-[9px] uppercase tracking-wider text-mu">{s.sector} · {s.stage}</p>
                 </Link>
                 <button type="button" onClick={() => toggle(s.id)} className="font-sans text-xs text-da">Remove</button>
+              </div>
+            ))}
+            <Divider />
+          </>
+        )}
+
+        {pledges.length > 0 && (
+          <>
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">Pool pledges</p>
+            {pledges.map((p) => (
+              <div key={p.id} className="mb-2 flex items-center justify-between rounded-md border border-ln bg-card p-4">
+                <div>
+                  <p className="font-serif text-base italic text-tx">{p.waaw_startups?.name ?? 'Startup'}</p>
+                  <p className="font-mono text-[9px] uppercase tracking-wider text-mu">
+                    {p.confirmed ? 'Committed' : 'Not yet committed'}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-serif text-base text-tx">{fmt(p.pledge_amount)}</span>
+                  {!p.confirmed && p.waaw_startups && (
+                    <Link
+                      href={`/commit/${p.startup_id}?amount=${p.pledge_amount}&pledge=1`}
+                      className="font-mono text-[9px] uppercase tracking-wider text-pu hover:underline"
+                    >
+                      Confirm →
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
             <Divider />

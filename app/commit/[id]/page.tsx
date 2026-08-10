@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { InvestorNav } from '../../../src/components/InvestorNav';
 import { BackButton, ErrorBanner, GoldButton } from '../../../src/components/ui';
 import { useAuth } from '../../../src/context/AuthContext';
-import { useCommitments, useInvestorCategorisation, useStartup } from '../../../src/lib/useInvestor';
+import { useCommitments, useInvestorCategorisation, usePool, useStartup } from '../../../src/lib/useInvestor';
 
 const MIN_AMOUNT = 100;
 const PRESETS = [500, 1000, 2500, 5000];
@@ -18,13 +19,17 @@ const RISKS = [
   { icon: '🌍', title: 'Cross-border risk.', body: 'Investments in Black-founded startups operating in Africa carry additional regulatory, currency, and political risks.' },
 ];
 
-export default function CommitPage({ params }: { params: { id: string } }) {
+function CommitForm({ params }: { params: { id: string } }) {
   const { user, profile, loading: authLoading } = useAuth();
   const { startup, loading } = useStartup(params.id);
   const { createCommitment } = useCommitments();
+  const { confirmPledge } = usePool(params.id);
   const { isValid: categorisationValid, loading: categorisationLoading } = useInvestorCategorisation();
+  const searchParams = useSearchParams();
+  const prefillAmount = searchParams.get('amount');
+  const fromPledge = searchParams.get('pledge') === '1';
   const [riskAccepted, setRiskAccepted] = useState(false);
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(prefillAmount ?? '');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ reference: string; amount: number } | null>(null);
@@ -52,6 +57,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
     const { error, reference } = await createCommitment(startup.id, numAmount, 'USD');
     setSubmitting(false);
     if (error) { setError(error); return; }
+    if (fromPledge) await confirmPledge();
     setResult({ reference: reference!, amount: numAmount });
   };
 
@@ -121,7 +127,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         <InvestorNav />
         <BackButton fallbackHref="/startups" />
         <main className="mx-auto max-w-md px-6 py-16 text-center">
-          <p className="font-sans text-sm text-mu">This account is a founder account — commit capital from an investor account instead.</p>
+          <p className="font-sans text-sm text-mu">This account is a founder account. Commit capital from an investor account instead.</p>
         </main>
       </div>
     );
@@ -157,7 +163,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         <BackButton fallbackHref="/startups" />
         <main className="mx-auto max-w-md px-6 py-16 text-center">
           <p className="mb-4 font-sans text-sm text-mu">
-            Confirm your investor category before committing capital — this is a required legal
+            Confirm your investor category before committing capital. This is a required legal
             self-certification, not a background check.
           </p>
           <GoldButton href={`/investor/categorisation?returnTo=/commit/${startup.id}`}>Confirm investor category</GoldButton>
@@ -176,6 +182,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
           <h1 className="mb-3 font-serif text-2xl text-tx">Commitment placed</h1>
           <p className="mx-auto mb-6 max-w-xs font-sans text-sm font-light leading-relaxed text-mu">
             Your ${result.amount.toLocaleString()} commitment to {startup.name} is now held in protected escrow, reference <strong>{result.reference}</strong>.
+            {fromPledge && ' Your pool pledge is now marked as committed.'}
           </p>
           <GoldButton href="/portfolio">View portfolio</GoldButton>
         </main>
@@ -199,7 +206,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
               </div>
             </div>
           ))}
-          <GoldButton onClick={acceptRisk}>I understand — continue</GoldButton>
+          <GoldButton onClick={acceptRisk}>I understand · Continue</GoldButton>
         </main>
       </div>
     );
@@ -212,7 +219,9 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         <Link href={`/startups/${startup.id}`} className="mb-6 inline-block font-mono text-xs uppercase tracking-wider text-mu hover:text-pu">← {startup.name}</Link>
         <h1 className="mb-2 font-serif text-3xl text-tx">Commit to invest</h1>
         <p className="mb-8 font-sans text-sm font-light leading-relaxed text-mu">
-          Choose how much to commit to {startup.name}. Funds move into protected escrow immediately.
+          {fromPledge
+            ? `Confirming your pool pledge to ${startup.name}. Funds move into protected escrow immediately.`
+            : `Choose how much to commit to ${startup.name}. Funds move into protected escrow immediately.`}
         </p>
 
         <ErrorBanner message={error} />
@@ -246,7 +255,7 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         )}
 
         <p className="mb-6 mt-4 font-mono text-[9px] uppercase tracking-wider text-mu">
-          A 5% platform fee is deducted from funds released to the founder — you are never charged a fee.
+          A 5% platform fee is deducted from funds released to the founder. You are never charged a fee.
         </p>
 
         <GoldButton onClick={handleSubmit} disabled={!canSubmit || submitting}>
@@ -254,5 +263,13 @@ export default function CommitPage({ params }: { params: { id: string } }) {
         </GoldButton>
       </main>
     </div>
+  );
+}
+
+export default function CommitPage({ params }: { params: { id: string } }) {
+  return (
+    <Suspense fallback={null}>
+      <CommitForm params={params} />
+    </Suspense>
   );
 }

@@ -6,9 +6,11 @@ import { InvestorNav } from '../../../src/components/InvestorNav';
 import { Divider, GoldButton, VerifiedBadge } from '../../../src/components/ui';
 import { CURRENCY_RATES } from '../../../src/data';
 import { useAuth } from '../../../src/context/AuthContext';
-import { useStartup, useWatchlist } from '../../../src/lib/useInvestor';
+import { usePool, useStartup, useWatchlist } from '../../../src/lib/useInvestor';
 
 const fmt = (n: number) => (n >= 1000000 ? '$' + (n / 1000000).toFixed(1) + 'M' : '$' + (n / 1000).toFixed(0) + 'K');
+const fmtUsd = (n: number) => '$' + n.toLocaleString();
+const MIN_PLEDGE = 100;
 
 const listedAgo = (iso?: string) => {
   if (!iso) return null;
@@ -24,10 +26,14 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
   const { profile } = useAuth();
   const { startup, loading } = useStartup(params.id);
   const { watchlist, toggle } = useWatchlist();
+  const { members: poolMembers, totalPledged, myPledge, joinPool, leavePool } = usePool(params.id);
   const [shareCopied, setShareCopied] = useState(false);
   const [calcAmount, setCalcAmount] = useState('');
   const [currency, setCurrency] = useState<string | null>(null);
   const [showDiluted, setShowDiluted] = useState(false);
+  const [pledgeAmount, setPledgeAmount] = useState('');
+  const [pledgeError, setPledgeError] = useState<string | null>(null);
+  const [pledging, setPledging] = useState(false);
 
   if (loading) {
     return (
@@ -82,6 +88,24 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
     : profile.role === 'founder'
       ? null
       : `/commit/${startup.id}`;
+
+  const pledgeNum = parseInt(pledgeAmount.replace(/\D/g, ''), 10) || 0;
+
+  const handleJoinPool = async () => {
+    if (pledgeNum < MIN_PLEDGE) return;
+    setPledging(true);
+    setPledgeError(null);
+    const { error } = await joinPool(pledgeNum);
+    setPledging(false);
+    if (error) { setPledgeError(error); return; }
+    setPledgeAmount('');
+  };
+
+  const handleLeavePool = async () => {
+    setPledging(true);
+    await leavePool();
+    setPledging(false);
+  };
 
   return (
     <div>
@@ -194,13 +218,91 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
             {showDiluted && dilutedStake !== null && (
               <p className="mt-2 font-sans text-xs font-light text-mu">
                 ≈ {dilutedStake < 0.01 ? '<0.01' : dilutedStake.toFixed(2)}% after a typical future round
-                (illustrative {(FUTURE_ROUND_DILUTION * 100).toFixed(0)}% dilution — the real number depends on
+                (illustrative {(FUTURE_ROUND_DILUTION * 100).toFixed(0)}% dilution: the real number depends on
                 that round&apos;s actual size and terms).
               </p>
             )}
-            <p className="mt-1 font-mono text-[9px] text-mu">Estimate only — final terms are set in your term sheet.</p>
+            <p className="mt-1 font-mono text-[9px] text-mu">Estimate only. Final terms are set in your term sheet.</p>
           </div>
         )}
+
+        <Divider />
+
+        <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-mu">Investment pool</p>
+        <div className="mb-6 rounded-md border border-ln bg-card p-4">
+          {poolMembers.length > 0 ? (
+            <div className="mb-3 flex items-baseline justify-between">
+              <span className="font-serif text-xl text-pu">{fmtUsd(totalPledged)}</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider text-mu">
+                {poolMembers.length} {poolMembers.length === 1 ? 'investor' : 'investors'} pooling
+              </span>
+            </div>
+          ) : (
+            <p className="mb-3 font-sans text-xs font-light text-mu">
+              No one has pooled a commitment to this deal yet. Pledge an amount to start a pool with other investors.
+            </p>
+          )}
+
+          {!profile ? (
+            <Link href="/signup?role=investor" className="font-mono text-[10px] uppercase tracking-wider text-pu">
+              Sign in to join the pool →
+            </Link>
+          ) : profile.role === 'founder' ? null : myPledge ? (
+            <div>
+              <p className="mb-3 font-sans text-xs text-tx">
+                Your pledge: <strong>{fmtUsd(myPledge.pledge_amount)}</strong>{' '}
+                {myPledge.confirmed ? (
+                  <span className="text-su">· Committed</span>
+                ) : (
+                  <span className="text-mu">· Not yet committed</span>
+                )}
+              </p>
+              {!myPledge.confirmed && (
+                <div className="flex gap-2">
+                  <GoldButton href={`/commit/${startup.id}?amount=${myPledge.pledge_amount}&pledge=1`}>
+                    Confirm · Commit {fmtUsd(myPledge.pledge_amount)}
+                  </GoldButton>
+                  <button
+                    type="button"
+                    onClick={handleLeavePool}
+                    disabled={pledging}
+                    className="rounded-md border border-ln px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-mu hover:border-pu3"
+                  >
+                    Leave pool
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div>
+              <div className="mb-2 flex items-center gap-1 rounded-md border border-ln bg-bg px-3 py-2">
+                <span className="font-serif text-lg text-mu">$</span>
+                <input
+                  value={pledgeAmount}
+                  onChange={(e) => setPledgeAmount(e.target.value.replace(/\D/g, ''))}
+                  placeholder="Amount to pledge"
+                  className="w-full bg-transparent font-serif text-lg text-tx outline-none"
+                />
+              </div>
+              {pledgeAmount && pledgeNum < MIN_PLEDGE && (
+                <p className="mb-2 font-sans text-xs text-da">Minimum pledge is {fmtUsd(MIN_PLEDGE)}.</p>
+              )}
+              {pledgeError && <p className="mb-2 font-sans text-xs text-da">{pledgeError}</p>}
+              <button
+                type="button"
+                onClick={handleJoinPool}
+                disabled={pledgeNum < MIN_PLEDGE || pledging}
+                className="w-full rounded-md border border-pu py-2 font-mono text-[10px] uppercase tracking-wider text-pu hover:bg-puXlight disabled:opacity-40"
+              >
+                {pledging ? 'Joining…' : 'Join the pool'}
+              </button>
+            </div>
+          )}
+        </div>
+        <p className="mb-6 font-mono text-[9px] text-mu">
+          A pool pledge signals intent, it isn&apos;t escrowed money. You still commit and pass KYC individually
+          to turn your pledge into a real investment.
+        </p>
 
         <Divider />
 
@@ -249,7 +351,7 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
           ))}
         </div>
         <p className="mb-6 font-mono text-[9px] text-mu">
-          This reflects what WAAW has checked so far, not a guarantee — see the{' '}
+          This reflects what WAAW has checked so far, not a guarantee. See the{' '}
           <Link href={`/startups/${startup.id}/data-room`} className="text-pu hover:underline">data room</Link> for supporting documents.
         </p>
 
@@ -318,7 +420,7 @@ export default function StartupDetailPage({ params }: { params: { id: string } }
           href={`/startups/${startup.id}/data-room`}
           className="mb-3 block w-full rounded-md border border-ln py-3 text-center font-mono text-xs uppercase tracking-wider text-mu hover:border-pu hover:text-pu"
         >
-          View data room — pitch deck, business plan & more →
+          View data room · pitch deck, business plan & more →
         </Link>
 
         <button type="button" onClick={handleShare} className="w-full rounded-md border border-pu py-3 text-center font-mono text-xs uppercase tracking-wider text-pu hover:bg-puXlight">

@@ -219,6 +219,101 @@ export function useCommitments() {
   return { commitments, loading, total, createCommitment, requestRefund, refetch: fetch };
 }
 
+// ─── INVESTMENT POOLS (syndicate pledges) ──────────────────────────────────
+// A pool row is a pledge, not escrowed money: an investor signals they want
+// to co-invest a given amount alongside others on one deal. Turning a
+// pledge into a real commitment still goes through the normal KYC-gated
+// /commit flow — confirmPledge() just marks the pledge as followed through
+// once that commitment succeeds.
+export interface SyndicateMemberRow {
+  id: string;
+  startup_id: string;
+  investor_id: string;
+  pledge_amount: number;
+  confirmed: boolean;
+  created_at: string;
+  waaw_startups?: { name: string; sector: string };
+}
+
+export function usePool(startupId: string) {
+  const { user } = useAuth();
+  const [members, setMembers] = useState<SyndicateMemberRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetch = useCallback(async () => {
+    if (!startupId) { setLoading(false); return; }
+    const { data } = await supabase
+      .from('waaw_syndicate_members')
+      .select('*')
+      .eq('startup_id', startupId)
+      .order('created_at', { ascending: true });
+    setMembers((data as SyndicateMemberRow[]) ?? []);
+    setLoading(false);
+  }, [startupId]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
+
+  const totalPledged = members.reduce((a, m) => a + m.pledge_amount, 0);
+  const myPledge = user ? members.find((m) => m.investor_id === user.id) ?? null : null;
+
+  async function joinPool(pledgeAmount: number) {
+    if (!user) return { error: 'Not authenticated' };
+    const { error } = await supabase.from('waaw_syndicate_members').upsert(
+      { startup_id: startupId, investor_id: user.id, pledge_amount: pledgeAmount, confirmed: false },
+      { onConflict: 'startup_id,investor_id' }
+    );
+    if (!error) await fetch();
+    return { error: error?.message ?? null };
+  }
+
+  async function leavePool() {
+    if (!user) return { error: 'Not authenticated' };
+    const { error } = await supabase
+      .from('waaw_syndicate_members')
+      .delete()
+      .eq('startup_id', startupId)
+      .eq('investor_id', user.id);
+    if (!error) await fetch();
+    return { error: error?.message ?? null };
+  }
+
+  async function confirmPledge() {
+    if (!user) return { error: 'Not authenticated' };
+    const { error } = await supabase
+      .from('waaw_syndicate_members')
+      .update({ confirmed: true })
+      .eq('startup_id', startupId)
+      .eq('investor_id', user.id);
+    if (!error) await fetch();
+    return { error: error?.message ?? null };
+  }
+
+  return { members, totalPledged, myPledge, loading, joinPool, leavePool, confirmPledge };
+}
+
+export function useMyPledges() {
+  const { user } = useAuth();
+  const [pledges, setPledges] = useState<SyndicateMemberRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user) { setLoading(false); return; }
+    supabase
+      .from('waaw_syndicate_members')
+      .select('*, waaw_startups(name, sector)')
+      .eq('investor_id', user.id)
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        setPledges((data as SyndicateMemberRow[]) ?? []);
+        setLoading(false);
+      });
+  }, [user]);
+
+  return { pledges, loading };
+}
+
 // ─── NOTIFICATIONS ──────────────────────────────────────────────────────────
 export function useNotifications() {
   const { user } = useAuth();
