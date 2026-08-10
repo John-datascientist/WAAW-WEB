@@ -3482,6 +3482,729 @@ const VALUATION_LESSONS: AcademyLesson[] = [
   },
 ];
 
+const TERM_SHEETS_LESSONS: AcademyLesson[] = [
+  {
+    slug: 'what-a-term-sheet-is',
+    title: 'What a Term Sheet Is',
+    teaser: 'The term sheet is where a deal takes shape. This lesson explains what it is, what it does, and why it carries more weight than almost any document that follows.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 1,
+    sections: [
+      {
+        heading: 'A summary, not the full contract',
+        body: [
+          'The term sheet is the document that turns interest into a deal. It is a short summary of the key terms that a founder and an investor have agreed, written before the long binding contracts are drafted. It states how much is being raised, on what instrument, at what valuation, and the main rights that come with the investment. Think of it as the agreed outline that the lawyers turn into the finished contracts.',
+        ],
+      },
+      {
+        heading: 'Why it matters so much',
+        body: [
+          'Since the binding documents are drafted to match the term sheet, the terms you accept here tend to stick. Reopening a term after the term sheet is agreed is difficult and damages goodwill. This is why the real negotiation of a deal usually happens at the term sheet stage, not later.',
+        ],
+      },
+      {
+        heading: 'Economic terms and control terms',
+        body: [
+          'The terms in a term sheet fall broadly into two groups. Economic terms decide who gets what money: the valuation, the liquidation preference, the option pool, and similar. Control terms decide who makes decisions: the board, the matters that need investor consent, voting rights, and founder commitments. Founders often focus on the economic terms and overlook the control terms, but control can matter as much as ownership.',
+        ],
+      },
+      {
+        heading: 'It is mostly non-binding',
+        body: [
+          'A term sheet is mostly non-binding, meaning agreeing it does not force either side to complete the deal. There are usually a few binding clauses, though, which the next lesson covers, so you should never assume the whole document is optional.',
+        ],
+      },
+      {
+        heading: 'Your job with a term sheet',
+        body: [
+          'You do not draft the term sheet, and you should always have a solicitor review it. But your job is to understand it well enough to know what you are agreeing to, to recognise the terms that matter, and to negotiate the ones that affect you most.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A term sheet is a short summary of the key terms, written before the binding contracts that are drafted to match it.',
+          'Terms accepted here tend to stick, so the real negotiation usually happens at the term sheet stage.',
+          'Terms fall into economic terms, which decide who gets what money, and control terms, which decide who makes decisions.',
+          'The term sheet is mostly non-binding with a few binding clauses, and your job is to understand it well enough to negotiate.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a solicitor review a term sheet before you sign.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'binding-and-non-binding-clauses',
+    title: 'Binding and Non-Binding Clauses',
+    teaser: 'A term sheet is mostly non-binding, but not entirely. This lesson shows you which clauses commit you and why they matter more than founders expect.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 2,
+    sections: [
+      {
+        heading: 'What non-binding means, and the binding exceptions',
+        body: [
+          'Most of a term sheet is non-binding, which means that agreeing it does not legally force either side to complete the deal on those terms. Within that mostly non-binding document, a few clauses are usually binding — most importantly exclusivity, confidentiality, and costs. These bind you from the moment you sign, even though the rest does not.',
+        ],
+      },
+      {
+        heading: 'Exclusivity, the clause that can trap you',
+        body: [
+          'The exclusivity clause, often called a no-shop, prevents you from negotiating with other investors for a set period while the deal is finalised. If the deal then falls through, you emerge having lost weeks or months, with your momentum with other investors gone cold. Keep the exclusivity period as short as is reasonable.',
+        ],
+      },
+      {
+        heading: 'Confidentiality and costs',
+        body: [
+          'The confidentiality clause keeps the terms of the deal, and often the fact of it, private — read it to understand what you can and cannot say, and to whom. The costs clause deals with who pays the legal fees, sometimes asking the company to cover the investor’s legal costs. This matters because investor legal fees can be significant, so if you are being asked to cover them, understand the amount and try to cap it.',
+        ],
+      },
+      {
+        heading: 'Read the binding parts closely',
+        body: [
+          'Because most of the term sheet is non-binding, founders sometimes skim the whole thing, and then are caught by an exclusivity period that is too long or a costs clause that is too open. Identify the binding clauses and negotiate them just as seriously as the headline terms.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Most of a term sheet is non-binding, so signing it does not force either side to complete the deal.',
+          'A few clauses usually bind you from signing, most importantly exclusivity, confidentiality, and costs.',
+          'Keep any exclusivity period short, so a failed deal does not leave you stranded with cold momentum.',
+          'Read the costs clause closely and cap investor legal fees where you can, and do not skim the binding parts.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a solicitor review a term sheet before you sign.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'how-to-read-a-term-sheet',
+    title: 'How to Read a Term Sheet',
+    teaser: 'A term sheet can look dense and intimidating. This lesson gives you a way to read one calmly, so you know what to look for and where the important terms sit.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 3,
+    sections: [
+      {
+        heading: 'Group the terms as you read',
+        body: [
+          'The single most useful habit is to sort the terms into groups as you read, rather than treating them as one long list: economic terms, control terms, and a third small group of procedural terms such as exclusivity and costs. Reading with these groups in mind turns a confusing document into three manageable sets of questions.',
+        ],
+      },
+      {
+        heading: 'The economic terms to find',
+        body: [
+          'Locate the economic terms first, because they decide your ownership and your outcome: the valuation and the amount raised, the option pool and how it is created, the liquidation preference, and any anti-dilution protection.',
+        ],
+      },
+      {
+        heading: 'The control terms to find',
+        body: [
+          'Next, find the control terms, which decide how the company is run: the make-up of the board, the list of decisions that need investor consent, voting rights, information rights, and founder commitments such as vesting. A founder can keep a large ownership share and still lose real control through the board and consent terms.',
+        ],
+      },
+      {
+        heading: 'Ask what each term does to you, and do not read it alone',
+        body: [
+          'For every term you find, ask a simple question: what does this do to me? A term you do not recognise is one to look up or ask about, not to skim past. Reading a term sheet yourself is essential, but you should not rely on your reading alone — a solicitor experienced in these deals will spot an unusual term and explain the practical effect of each one.',
+        ],
+      },
+      {
+        heading: 'Read it more than once',
+        body: [
+          'The first read is for the shape and the obvious terms, the second for the detail and the interactions between terms — as when the option pool changes your real valuation. Give the document the time it deserves, because it shapes your company for years.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Sort the terms as you read into economic terms, control terms, and procedural terms.',
+          'Find the economic terms first, since valuation, option pool, liquidation preference, and anti-dilution decide your outcome.',
+          'Read the control terms just as carefully, because you can keep ownership and still lose control.',
+          'Ask what each term does to you, read it more than once, and rely on a solicitor alongside your own reading.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'valuation-and-the-amount',
+    title: 'Valuation and the Amount',
+    teaser: 'The headline terms of any term sheet are how much is being raised and at what valuation. This lesson covers these economic anchors and how they set your ownership.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 4,
+    sections: [
+      {
+        heading: 'The amount raised',
+        body: [
+          'The term sheet states how much money is being raised in this round. Check whether the amount is a fixed figure or a range, and whether it depends on other investors joining. Connect the amount back to your plan: it should be the sum that carries you to your next milestone with a sensible buffer, not simply the largest number on offer.',
+        ],
+      },
+      {
+        heading: 'The valuation',
+        body: [
+          'The term sheet states the valuation, and your first task is to confirm whether it is pre-money or post-money, because the difference changes how much you give away. Make sure the term sheet is explicit about which figure it uses, and that the ownership it implies matches your expectation and your cap table.',
+        ],
+      },
+      {
+        heading: 'Where the instrument sits',
+        body: [
+          'The term sheet also states how the money comes in: as a priced round with a valuation set now, or on a SAFE, advanced subscription agreement, or convertible note that delays the valuation. If it is a convertible instrument, the valuation may appear as a cap and a discount rather than a fixed number.',
+        ],
+      },
+      {
+        heading: 'The option pool lurks nearby',
+        body: [
+          'Close to the valuation, watch for the option pool, because how it is created interacts with your real valuation. If the term sheet requires a pool created out of the pre-money valuation, it dilutes you, not the investor, and effectively lowers your valuation.',
+        ],
+      },
+      {
+        heading: 'Confirm the ownership maths',
+        body: [
+          'Work out, from the term sheet, exactly what percentage each party will own after the round, including any pool and any converting instruments. Model it on your cap table so you see the real ownership the term sheet produces.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The amount and the valuation are the economic anchors of a term sheet, and together they set ownership.',
+          'Confirm the amount, any minimum, and that it matches your milestone-based plan.',
+          'Confirm whether the valuation is pre-money or post-money, and read any cap and discount if the money comes in on a convertible.',
+          'Read the option pool alongside the valuation, and model the real ownership the term sheet produces on your cap table.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-option-pool-in-a-term-sheet',
+    title: 'The Option Pool',
+    teaser: 'The option pool term looks minor but can quietly cost you real ownership. This lesson shows you how it works in a term sheet and how to handle it.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 5,
+    sections: [
+      {
+        heading: 'Why the pool exists',
+        body: [
+          'Almost every term sheet includes an option pool: a reserve of shares set aside to grant to future employees. Investors want to see a pool because it signals you can hire and reward a team, and they do not want to be diluted themselves when you grant options later. The pool is legitimate and expected — the question is its size and, crucially, its timing.',
+        ],
+      },
+      {
+        heading: 'The pre-money trap',
+        body: [
+          'Watch whether the term sheet requires the pool to be created out of the pre-money valuation. When it is, the shares for the pool come from the existing shareholders — you and any co-founders — before the investor comes in. Because the pool is carved out of the pre-money value, a larger pool effectively lowers your real valuation, even when the headline number is unchanged. This is sometimes called the option pool shuffle.',
+        ],
+      },
+      {
+        heading: 'Size the pool to real need, and negotiate the timing',
+        body: [
+          'A term sheet may propose a pool larger than you actually need, because a bigger pool created pre-money benefits the investor. Size the pool to what you genuinely expect to grant before your next round. You can also negotiate the timing: a pool created after the investment is shared by all shareholders, including the new investor, rather than falling on founders alone.',
+        ],
+      },
+      {
+        heading: 'Treat it as part of the price',
+        body: [
+          'Two term sheets with the same headline valuation can leave you owning quite different amounts depending on their pool terms. When you compare offers, always read the pool and the valuation together, and work out the real ownership each produces.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The option pool is a reserve of shares for future employees, and every company needs one.',
+          'When the pool is created out of the pre-money valuation, it dilutes founders and effectively lowers your real valuation.',
+          'Size the pool to a realistic hiring plan, and push back on inflated pool requests.',
+          'Negotiate the timing where you can, and always read the pool and valuation together to know the real ownership.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'liquidation-preference',
+    title: 'Liquidation Preference',
+    teaser: 'Liquidation preference decides who gets paid first if the company is sold. It is one of the most important economic terms, and one of the most misunderstood.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 6,
+    sections: [
+      {
+        heading: 'What a liquidation preference is',
+        body: [
+          'A liquidation preference gives certain investors the right to be paid before others when the company is sold. Investors usually receive preferred shares, which carry this preference, while founders and staff hold ordinary shares, which do not. When the company is sold, preferred shareholders are paid first, up to the amount their preference entitles them to.',
+        ],
+      },
+      {
+        heading: 'The founder-reasonable norm',
+        body: [
+          'The common, founder-reasonable form is a one-times non-participating preference: the investor gets back the greater of their original investment or the amount their percentage would give them in the sale, but not both. Aim for this form.',
+        ],
+      },
+      {
+        heading: 'Participating preferences take two bites',
+        body: [
+          'Watch for a participating preference, which is more aggressive: the investor gets their money back first, and then also shares in the remaining proceeds alongside everyone else — sometimes called double dipping. A participating preference is worth resisting firmly, or at least capping.',
+        ],
+      },
+      {
+        heading: 'Multiple preferences, and stacking across rounds',
+        body: [
+          'A preference can also be a multiple, such as two-times or three-times, meaning the investor gets back several times their investment before anyone else is paid. Multiple preferences above one-times are aggressive at the early stage. As you raise more rounds, each set of investors may have their own preference, and these can stack.',
+        ],
+      },
+      {
+        heading: 'Why it matters most at the exit',
+        body: [
+          'The liquidation preference often has no effect until the company is sold, which is why founders underestimate it. But the sale is the moment that matters most, when years of work turn into a payout.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A liquidation preference lets certain investors be paid first if the company is sold.',
+          'Aim for a one-times non-participating preference, where the investor gets the greater of their money back or their percentage, not both.',
+          'Resist participating preferences, which let investors take their money back and then share in the rest.',
+          'Push back on multiple preferences above one-times, and remember preferences stack across rounds and matter most at the exit.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'anti-dilution-protection',
+    title: 'Anti-Dilution Protection',
+    teaser: 'Anti-dilution protects investors if the company later raises at a lower price. This lesson explains the gentle form to accept and the harsh form to resist.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 7,
+    sections: [
+      {
+        heading: 'The problem it addresses',
+        body: [
+          'When an investor buys shares at a certain price, they are exposed to the risk that the company later raises at a lower price, in a down round, which reduces the value of what they bought. Anti-dilution protects them against this. The protection only triggers in a down round, so if your valuation keeps rising, it never comes into play.',
+        ],
+      },
+      {
+        heading: 'Weighted average, the reasonable form',
+        body: [
+          'The common and reasonable form is broad-based weighted average. If a down round happens, it adjusts the earlier investor’s position modestly, taking into account both the lower price and the size of the new round. This is the form to aim for.',
+        ],
+      },
+      {
+        heading: 'Full ratchet, the harsh form',
+        body: [
+          'The aggressive form is a full ratchet: it reprices the earlier investor’s shares as though they had paid the new, lower price, regardless of how small the new round is. This can hand the earlier investor a large number of extra shares at the founders’ expense. It is worth resisting firmly.',
+        ],
+      },
+      {
+        heading: 'Anti-dilution and overvaluation',
+        body: [
+          'The main way anti-dilution hurts you is through a down round, and the main cause of a down round is overvaluation in an earlier round. So the best protection against anti-dilution biting is to avoid setting a valuation you cannot grow into.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Anti-dilution protects investors if the company later raises at a lower valuation, and only triggers in a down round.',
+          'Broad-based weighted average is the reasonable form, adjusting the investor’s position modestly.',
+          'A full ratchet is the harsh form, repricing earlier shares to the new low price and heavily diluting founders.',
+          'Aim for weighted average and resist full ratchet, and avoid overvaluation, since a grounded valuation reduces the chance anti-dilution ever bites.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'preferred-shares-and-the-rights-they-carry',
+    title: 'Preferred Shares and the Rights They Carry',
+    teaser: 'Investors usually receive a special class of shares with extra rights. This lesson explains what preferred shares are and the rights that come attached.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 8,
+    sections: [
+      {
+        heading: 'Ordinary and preferred shares',
+        body: [
+          'Founders and employees typically hold ordinary shares, the basic form of ownership. Investors typically receive preferred shares, which sit above ordinary shares in certain respects and carry additional protections. The term sheet defines this new class of shares, and the articles of association then formally set them out.',
+        ],
+      },
+      {
+        heading: 'The rights preferred shares carry',
+        body: [
+          'Several of the terms covered elsewhere in this course are, in effect, rights that attach to preferred shares — the liquidation preference, anti-dilution protection, and certain voting and consent rights. Seeing them this way helps the term sheet hang together rather than reading as a random list.',
+        ],
+      },
+      {
+        heading: 'Dividends',
+        body: [
+          'Some term sheets mention dividends on preferred shares. Early-stage companies rarely pay dividends, so this term often has little practical effect early on. Still, watch for cumulative dividends, where unpaid dividends accumulate over time and must be paid before ordinary shareholders receive anything in a sale.',
+        ],
+      },
+      {
+        heading: 'Conversion rights',
+        body: [
+          'Preferred shares usually carry the right to convert into ordinary shares, often automatically in certain events, such as a large future round or a public listing. This affects how the liquidation preference and other rights play out.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Investors usually receive preferred shares, a special class with extra rights, while founders hold ordinary shares.',
+          'Many term sheet protections, including the liquidation preference and anti-dilution, are rights that attach to preferred shares.',
+          'Watch dividend terms, especially cumulative dividends, which can add to what preferred shareholders take ahead of you.',
+          'Preferred shares carry conversion rights that interact with the preference, so understand the whole class rather than each term alone.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'board-composition',
+    title: 'Board Composition',
+    teaser: 'The board makes a company’s biggest decisions, so who sits on it matters as much as who owns it. This lesson covers the board terms in a term sheet.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 9,
+    sections: [
+      {
+        heading: 'What the board does',
+        body: [
+          'The board of directors oversees the company and makes or approves its most significant decisions. This means that whoever controls the board controls the direction of the company at the highest level, regardless of the exact ownership split.',
+        ],
+      },
+      {
+        heading: 'Board seats in a term sheet',
+        body: [
+          'A term sheet usually sets out how the board will be composed after the investment: how many seats there are, and who appoints each one. Early on, founders typically hold the board. As investors come in, they often want a seat, and one investor seat at an early round is common and usually reasonable.',
+        ],
+      },
+      {
+        heading: 'Guard board control early',
+        body: [
+          'Giving away a single investor seat while founders retain the majority is normal. Agreeing to a board where investors and outsiders can outvote the founders is a much bigger step, and one to avoid at an early round unless there is a strong reason.',
+        ],
+      },
+      {
+        heading: 'Independent directors',
+        body: [
+          'Some term sheets introduce an independent director, someone who is neither a founder nor an investor. Because they can hold a swing vote, who they are and how they are chosen matters a great deal.',
+        ],
+      },
+      {
+        heading: 'Board control and consent rights work together',
+        body: [
+          'The board is not the only mechanism of control. As the next lesson covers, investors also negotiate a list of decisions that need their consent regardless of the board. Read the board term and the consent term together.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'The board makes the company’s biggest decisions, so its make-up can matter as much as ownership.',
+          'One investor board seat at an early round is common, but founders should retain a board majority.',
+          'Losing board control means losing the ability to steer the company, even if you still own most of it.',
+          'Watch how any independent director is chosen, and read the board term together with the consent rights that also shape control.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'reserved-matters-and-consent-rights',
+    title: 'Reserved Matters and Consent Rights',
+    teaser: 'Beyond the board, investors negotiate a list of decisions that need their approval. This lesson covers reserved matters and how to keep the list reasonable.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 10,
+    sections: [
+      {
+        heading: 'What reserved matters are',
+        body: [
+          'Reserved matters are specific decisions that require investor consent regardless of what the board or the founders want. Common reserved matters include raising more money, selling the company, taking on significant debt, changing the business substantially, issuing new shares, and spending above a set amount.',
+        ],
+      },
+      {
+        heading: 'Why some are reasonable, and the danger of an overbroad list',
+        body: [
+          'A degree of reserved matters is normal and fair — an investor reasonably wants protection against decisions that could destroy the value of their stake. The problem arises when the list grows so long and so detailed that ordinary running of the company requires constant investor approval.',
+        ],
+      },
+      {
+        heading: 'Watch the thresholds, and who holds the consent',
+        body: [
+          'Many reserved matters come with a threshold, such as spending above a certain amount needing consent — the threshold matters as much as the item. Also check whose consent is needed: sometimes a majority of the preferred shareholders, sometimes a specific investor, sometimes the investor director.',
+        ],
+      },
+      {
+        heading: 'Keep it focused and reasonable',
+        body: [
+          'The healthy outcome is a reserved matters list that is focused on genuinely major decisions, with sensible thresholds and a clear consent process. Negotiate the list down where it overreaches.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Reserved matters are decisions that need investor consent regardless of the board, protecting investors on major issues.',
+          'A focused list of genuinely major decisions is reasonable and normal in most deals.',
+          'An overbroad list, or very low thresholds, can leave you unable to run the company without constant consent.',
+          'Negotiate the list down where it overreaches, check the thresholds and who holds the consent, and read it alongside the board term.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'information-rights-and-founder-commitments',
+    title: 'Information Rights and Founder Commitments',
+    teaser: 'Term sheets set out what you must report to investors and what you commit to as a founder. This lesson covers both, and how to keep them manageable.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 11,
+    sections: [
+      {
+        heading: 'Information rights',
+        body: [
+          'Information rights set out what the company must report to its investors and how often — typically financial accounts, regular updates, and access to certain numbers, on an agreed schedule such as monthly or quarterly.',
+        ],
+      },
+      {
+        heading: 'Keep reporting manageable',
+        body: [
+          'Very frequent or very detailed reporting can become a real burden for a small team. Agree to reporting you can genuinely sustain, then meet it reliably, rather than promising detailed monthly reports you cannot keep up.',
+        ],
+      },
+      {
+        heading: 'Founder commitments',
+        body: [
+          'Term sheets often include commitments from the founders: a promise to work full time on the company and a restriction on competing with it. These are usually reasonable, but read them so you understand exactly what you are promising and for how long.',
+        ],
+      },
+      {
+        heading: 'Read the restrictions carefully',
+        body: [
+          'Some founder commitments, particularly non-compete and similar restrictions, can be drawn more broadly than necessary. These provisions should be reasonable in scope and duration, and a solicitor can help you judge whether they are.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Information rights set out what you must report to investors and how often, and reasonable reporting strengthens the relationship.',
+          'Commit to a reporting cadence you can sustain and always meet, rather than promising more than you can deliver.',
+          'Founder commitments, such as working full time and not competing, are usually reasonable but should be read carefully.',
+          'Watch that non-compete and similar restrictions are reasonable in scope and duration, and read these terms alongside founder vesting.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'founder-vesting-and-leaver-provisions',
+    title: 'Founder Vesting and Leaver Provisions',
+    teaser: 'Investors often require founders to earn their own shares over time. This lesson explains vesting and what happens if a founder leaves.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 12,
+    sections: [
+      {
+        heading: 'What founder vesting means',
+        body: [
+          'Founder vesting means that the founders’ shares are earned over a period of time, rather than being fully owned outright from day one. If a founder leaves before the period is complete, they may lose some of their shares — sometimes called reverse vesting.',
+        ],
+      },
+      {
+        heading: 'Why investors want it',
+        body: [
+          'Vesting protects the company and the other founders as much as the investors. Imagine a founder who leaves after a few months but keeps a large share of the company — the remaining founders then do years of work while that departed founder holds a big stake for little contribution. Vesting prevents this.',
+        ],
+      },
+      {
+        heading: 'The cliff and the schedule',
+        body: [
+          'Vesting arrangements often include a cliff, an initial period during which no shares vest at all, after which a first chunk vests and the rest vests gradually. If you have already been working on the company for some time before the raise, you can argue for credit for that time.',
+        ],
+      },
+      {
+        heading: 'Good leavers and bad leavers',
+        body: [
+          'Leaver provisions decide what happens to a founder’s shares if they leave, often distinguishing between a good leaver, treated more generously, and a bad leaver, who may lose more. Read these definitions carefully, because they decide your position if you ever have to leave.',
+        ],
+      },
+      {
+        heading: 'Negotiate the details',
+        body: [
+          'Vesting is standard, so you are unlikely to avoid it, and you should not want to, since it protects you against a co-founder leaving early too. Aim for a schedule that is fair, that recognises work already done, and that treats a good leaver reasonably.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Founder vesting means founders earn their shares over time and may lose unvested shares if they leave early.',
+          'It protects the company and the other founders as much as the investors, so it is a fair mechanism rather than a punishment.',
+          'Negotiate the schedule, the cliff, and credit for work already done before the raise.',
+          'Read the good leaver and bad leaver definitions carefully, since they decide your position if you ever have to leave.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'pre-emption-tag-along-and-drag-along',
+    title: 'Pre-Emption, Tag-Along, and Drag-Along',
+    teaser: 'Several term sheet provisions govern what happens when shares change hands. This lesson covers the main transfer terms and why they are usually fair.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 13,
+    sections: [
+      {
+        heading: 'Pre-emption on transfers',
+        body: [
+          'Pre-emption on transfers, sometimes called a right of first refusal, means that a shareholder wanting to sell their shares must first offer them to the existing shareholders before selling to an outsider. This keeps ownership within the known group.',
+        ],
+      },
+      {
+        heading: 'Pre-emption on new shares',
+        body: [
+          'A related right is pre-emption on the issue of new shares, which gives existing shareholders the chance to buy their share of any new shares the company issues, so they can maintain their percentage if they wish. This is closely tied to pro-rata rights.',
+        ],
+      },
+      {
+        heading: 'Tag-along and drag-along rights',
+        body: [
+          'A tag-along right protects minority shareholders when larger holders sell, letting them join the sale on the same terms. A drag-along right lets a defined majority force the remaining shareholders to join a sale, so a small minority cannot block a good exit. Watch the threshold that triggers the drag.',
+        ],
+      },
+      {
+        heading: 'Read them, but do not over-worry',
+        body: [
+          'These transfer terms are mostly standard and fair. Read them and check the thresholds, but your negotiating energy is better spent on valuation, the option pool, liquidation preference, the board, and reserved matters.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Pre-emption on transfers means shares must first be offered to existing shareholders, keeping ownership within the known group.',
+          'Pre-emption on new shares lets existing holders maintain their percentage, closely tied to pro-rata rights.',
+          'Tag-along protects minority holders by letting them join a sale on the same terms; drag-along lets a majority prevent a holdout from blocking a sale.',
+          'These transfer terms are mostly standard and fair, so check the thresholds but focus your effort on the economic and control terms.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'pro-rata-and-follow-on-rights',
+    title: 'Pro-Rata and Follow-On Rights',
+    teaser: 'Investors often want the right to keep investing in future rounds. This lesson explains pro-rata rights and what they mean for your future raises.',
+    level: 'Beginner',
+    readMins: 6,
+    order: 14,
+    sections: [
+      {
+        heading: 'What a pro-rata right is',
+        body: [
+          'When a company raises a new round, existing investors are diluted along with everyone else. A pro-rata right lets an existing investor buy enough of the new round to keep their percentage from falling.',
+        ],
+      },
+      {
+        heading: 'Why investors want it',
+        body: [
+          'Investors value pro-rata rights because their best investments are the ones they most want to keep backing. If a company is doing well, an early investor wants the option to put more money in and hold their share of a rising success.',
+        ],
+      },
+      {
+        heading: 'How it affects your future rounds',
+        body: [
+          'When existing investors exercise their pro-rata, they take up part of the new round, which leaves less room for new investors. This is usually fine, and often positive, because existing investors following on is a strong signal to new ones.',
+        ],
+      },
+      {
+        heading: 'Major investor rights',
+        body: [
+          'Sometimes pro-rata and other rights are given only to major investors, meaning those holding above a certain amount, rather than to every small holder, which keeps the rights proportionate and the administration manageable.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'A pro-rata right lets an investor invest again in future rounds to maintain their percentage.',
+          'Investors value pro-rata because it lets them keep backing their winners and concentrate capital over time.',
+          'When existing investors exercise pro-rata, they take up part of a new round, leaving less room for new investors.',
+          'Pro-rata is usually reasonable, but understand who holds it and any major investor threshold, so you can plan future rounds realistically.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'negotiating-and-moving-to-completion',
+    title: 'Negotiating and Moving to Completion',
+    teaser: 'Understanding the terms is only useful if you can negotiate them and then close. This final lesson brings the course together and takes you from a term sheet to a completed deal.',
+    level: 'Beginner',
+    readMins: 7,
+    order: 15,
+    sections: [
+      {
+        heading: 'Decide your priorities first',
+        body: [
+          'You cannot fight every term, so decide in advance what matters most to you. For most founders, the priorities are keeping reasonable control and avoiding punitive economics — guarding board control, keeping reserved matters focused, holding a one-times non-participating liquidation preference, resisting a full ratchet, and watching the option pool.',
+        ],
+      },
+      {
+        heading: 'Know what is standard',
+        body: [
+          'Much of your negotiating power comes from knowing what is normal. When you know that a one-times non-participating preference is standard, or that a full ratchet is aggressive, you can push back on unreasonable terms with confidence and accept fair ones without wasting goodwill.',
+        ],
+      },
+      {
+        heading: 'Negotiate the whole deal together',
+        body: [
+          'The terms interact, so negotiate them as a package rather than one by one. A slightly lower valuation with a clean structure can leave you better off than a higher valuation loaded with a heavy preference and a large pre-money option pool.',
+        ],
+      },
+      {
+        heading: 'Use your leverage and take advice',
+        body: [
+          'Your strongest leverage is genuine investor interest from more than one source. Always take advice from a solicitor experienced in these deals, who will spot an unusual term and explain its real effect.',
+        ],
+      },
+      {
+        heading: 'From term sheet to completion',
+        body: [
+          'Once the term sheet is agreed, the deal moves to completion. Lawyers draft the binding documents to match the term sheet: the subscription agreement or instrument, the shareholders’ agreement, and the new articles, along with the supporting resolutions and disclosures. On WAAW, the funds then move through protected escrow and are released at completion, when the conditions are met and the shares are issued.',
+        ],
+      },
+      {
+        heading: 'Key takeaways',
+        list: true,
+        body: [
+          'Decide your priorities, usually control and fair economics, so you can concede standard terms and fight the ones that matter.',
+          'Knowing what is standard versus aggressive is much of your negotiating power.',
+          'Negotiate the whole deal together, since the terms interact and a clean structure can beat a higher headline valuation.',
+          'Use genuine investor demand as leverage, take a solicitor’s advice, and move to completion by checking the binding documents against the term sheet.',
+        ],
+      },
+      {
+        heading: 'A note on this article',
+        body: [
+          'WAAW Academy is educational and general. It is not investment, legal, or tax advice. Always have a solicitor review your term sheet and closing documents.',
+        ],
+      },
+    ],
+  },
+];
+
 export const ACADEMY_COURSES: AcademyCourse[] = [
   {
     slug: 'foundations',
@@ -3525,8 +4248,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     title: 'Term Sheets',
     track: 'founder',
     description: 'Reading the terms behind the headline number.',
-    lessons: [],
-    comingSoon: true,
+    lessons: TERM_SHEETS_LESSONS,
   },
   {
     slug: 'how-to-invest',
