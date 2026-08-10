@@ -31,7 +31,6 @@ export function InvestorNav() {
   const { unread } = useNotifications();
   const [menuOpen, setMenuOpen] = useState(false);
   const links = profile?.role === 'founder' ? FOUNDER_LINKS : INVESTOR_LINKS;
-  const homeHref = profile?.role === 'founder' ? '/dashboard' : '/startups';
 
   const handleSignOut = async () => {
     setMenuOpen(false);
@@ -113,7 +112,7 @@ export function InvestorNav() {
   return (
     <header className="border-b border-ln bg-card">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href={homeHref} className="font-serif text-xl font-semibold italic text-pu">WAAW</Link>
+        <Link href="/" className="font-serif text-xl font-semibold italic text-pu">WAAW</Link>
 
         <nav className="hidden items-center gap-6 font-mono text-xs uppercase tracking-wider sm:flex">
           {navItems()}
