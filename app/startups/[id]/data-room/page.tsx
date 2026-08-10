@@ -81,10 +81,10 @@ export default function DataRoomPage({ params }: { params: { id: string } }) {
       <InvestorNav />
       <BackButton fallbackHref={`/startups/${startup.id}`} />
       <main className="mx-auto max-w-2xl px-6 py-10">
-        <h1 className="mb-1 font-serif text-3xl text-tx">Data room — {startup.name}</h1>
+        <h1 className="mb-1 font-serif text-3xl text-tx">Data room · {startup.name}</h1>
         <p className="mb-8 font-sans text-sm font-light text-mu">
           Documents and figures the founder submitted during onboarding. Each item below is labelled by its
-          source — WAAW independently reviews the founder and the deal before listing, but individual financials
+          source. WAAW independently reviews the founder and the deal before listing, but individual financials
           and documents are founder-reported unless noted otherwise.
         </p>
 
@@ -98,7 +98,7 @@ export default function DataRoomPage({ params }: { params: { id: string } }) {
             </p>
             <ErrorBanner message={acceptError} />
             <GoldButton onClick={handleAccept} disabled={accepting}>
-              {accepting ? 'Confirming…' : 'I agree — view data room'}
+              {accepting ? 'Confirming…' : 'I agree · View data room'}
             </GoldButton>
           </div>
         ) : (

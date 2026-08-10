@@ -140,7 +140,7 @@ export function useFounderStartup() {
       .single();
     if (error || !data) {
       console.error('WAAW create startup draft error:', error);
-      return { row: null, error: error?.message ?? 'Could not start onboarding — open the browser console for details.' };
+      return { row: null, error: error?.message ?? 'Could not start onboarding. Open the browser console for details.' };
     }
     const row = data as StartupRow;
     setStartup(row);

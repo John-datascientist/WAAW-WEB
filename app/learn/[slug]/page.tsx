@@ -27,7 +27,7 @@ export default function LearnArticlePage({ params }: { params: { slug: string } 
       <InvestorNav />
 
       <div className="mx-auto max-w-2xl px-6 py-16">
-        <BackButton fallbackHref="/learn" label="Learn" />
+        <BackButton fallbackHref="/learn" label="How WAAW Works" />
 
         <div className="mb-3 flex items-center gap-2">
           <span className="rounded-sm bg-puXlight px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-pu">

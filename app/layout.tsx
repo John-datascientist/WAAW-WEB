@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600'], 
 const archivo = Archivo({ subsets: ['latin'], weight: ['700', '800'], variable: '--font-archivo' });
 
 export const metadata: Metadata = {
-  title: 'WAAW — Invest in Black-founded startups',
+  title: 'WAAW: Invest in Black-founded startups',
   description: 'Browse verified Black-founded startups, commit capital through protected escrow, and register your own startup to raise.',
 };
 

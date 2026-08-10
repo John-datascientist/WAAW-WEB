@@ -14,13 +14,13 @@ export default function LandingPage() {
             <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">For investors</p>
             <p className="font-sans text-sm font-light leading-relaxed text-mu">
               Browse verified deals, commit capital through protected escrow, and track your
-              portfolio — right here on the website, or in the WAAW mobile app.
+              portfolio: right here on the website, or in the WAAW mobile app.
             </p>
           </div>
           <div>
             <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">For founders</p>
             <p className="font-sans text-sm font-light leading-relaxed text-mu">
-              Register and complete onboarding here on the website — business details, co-founder
+              Register and complete onboarding here on the website: business details, co-founder
               verification, documents, and your founder interview.
             </p>
           </div>

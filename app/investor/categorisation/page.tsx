@@ -21,31 +21,31 @@ const CATEGORIES: { id: InvestorCategory; label: string; declaration: string }[]
     id: 'restricted_investor',
     label: 'Restricted investor',
     declaration:
-      '[DRAFT — PLACEHOLDER] I confirm I have not invested more than 10% of my net investible assets in high-risk investments over the last 12 months, and do not intend to going forward.',
+      '[DRAFT PLACEHOLDER] I confirm I have not invested more than 10% of my net investible assets in high-risk investments over the last 12 months, and do not intend to going forward.',
   },
   {
     id: 'high_net_worth',
     label: 'High net worth investor',
     declaration:
-      '[DRAFT — PLACEHOLDER] I confirm I meet the income or net asset thresholds for a high net worth investor in my jurisdiction.',
+      '[DRAFT PLACEHOLDER] I confirm I meet the income or net asset thresholds for a high net worth investor in my jurisdiction.',
   },
   {
     id: 'self_certified_sophisticated',
     label: 'Self-certified sophisticated investor',
     declaration:
-      '[DRAFT — PLACEHOLDER] I confirm I meet at least one of the standard criteria for a self-certified sophisticated investor (e.g. business angel network membership, recent unlisted company investment, relevant professional experience, or director of a company with turnover above the applicable threshold).',
+      '[DRAFT PLACEHOLDER] I confirm I meet at least one of the standard criteria for a self-certified sophisticated investor (e.g. business angel network membership, recent unlisted company investment, relevant professional experience, or director of a company with turnover above the applicable threshold).',
   },
   {
     id: 'certified_sophisticated',
     label: 'Certified sophisticated investor',
     declaration:
-      '[DRAFT — PLACEHOLDER] I have received confirmation from an authorised firm within the last 36 months that I am sufficiently knowledgeable to understand the risks of these investments.',
+      '[DRAFT PLACEHOLDER] I have received confirmation from an authorised firm within the last 36 months that I am sufficiently knowledgeable to understand the risks of these investments.',
   },
   {
     id: 'professional',
     label: 'Professional investor / institution',
     declaration:
-      '[DRAFT — PLACEHOLDER] I am investing as, or on behalf of, a professional client or institution as defined by the applicable regulator in my jurisdiction.',
+      '[DRAFT PLACEHOLDER] I am investing as, or on behalf of, a professional client or institution as defined by the applicable regulator in my jurisdiction.',
   },
 ];
 

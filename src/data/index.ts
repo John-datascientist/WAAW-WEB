@@ -101,7 +101,7 @@ export const LEGAL_DOCS: Record<string, LegalDoc> = {
       },
       {
         heading: 'Marketing cookies',
-        body: 'Used to personalise content and offers. Off by default — enable them in notification settings if you\'d like personalised updates.',
+        body: 'Used to personalise content and offers. Off by default. Enable them in notification settings if you\'d like personalised updates.',
       },
     ],
   },
@@ -129,7 +129,7 @@ export const LEGAL_DOCS: Record<string, LegalDoc> = {
     sections: [
       {
         heading: 'How escrow works',
-        body: 'When an investor commits capital, funds move immediately into a protected, segregated escrow account — never directly to the founder or WAAW.',
+        body: 'When an investor commits capital, funds move immediately into a protected, segregated escrow account, never directly to the founder or WAAW.',
       },
       {
         heading: 'Release conditions',

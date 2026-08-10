@@ -19,7 +19,7 @@ function VerifyForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) { setError('Missing email — go back and sign up again.'); return; }
+    if (!email) { setError('Missing email. Go back and sign up again.'); return; }
     setSubmitting(true);
     const { error } = await verifySignup(email, code.trim());
     setSubmitting(false);

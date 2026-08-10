@@ -87,7 +87,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
     return (
       <div className="mx-auto max-w-md px-6 py-16 text-center">
         <p className="mb-4 font-sans text-sm text-mu">
-          This is an investor account — startup registration is for founders only.
+          This is an investor account. Startup registration is for founders only.
         </p>
         <Link href="/startups" className="font-mono text-xs uppercase tracking-wider text-pu">Browse startups →</Link>
       </div>

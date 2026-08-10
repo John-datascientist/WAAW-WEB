@@ -33,7 +33,7 @@ export default function InterviewPage() {
           ? 'A member of the WAAW team will meet with you to review your application. Track your raise from your dashboard, or download the WAAW mobile app.'
           : ready
             ? "You've completed every verification step. The final step is a short interview with a member of the WAAW team before your startup goes live."
-            : 'Complete every step above — co-founders, address, company, and documents — to unlock your founder interview.'}
+            : 'Complete every step above (co-founders, address, company, and documents) to unlock your founder interview.'}
       </p>
 
       {requested && startup?.interview_scheduled_for && (
@@ -51,7 +51,7 @@ export default function InterviewPage() {
         <div className="mx-auto mt-4 max-w-sm rounded-md border border-ln bg-card p-5 text-left">
           <p className="mb-2 font-mono text-[9px] uppercase tracking-wider text-pu">📱 Track your raise from your phone</p>
           <p className="mb-3 font-sans text-sm font-light leading-relaxed text-mu">
-            Download the WAAW app and sign in with the same email and password you used here — no
+            Download the WAAW app and sign in with the same email and password you used here. No
             need to register again. You&apos;ll see your live verification status, raise
             progress, and investor activity as soon as WAAW reviews your application.
           </p>

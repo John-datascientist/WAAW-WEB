@@ -131,7 +131,7 @@ function SignUpForm() {
       <p className="mb-6 font-sans text-sm font-light leading-relaxed text-mu">
         {role === 'investor'
           ? 'Browse verified deals, commit capital through protected escrow, and track your portfolio.'
-          : 'Create your founder account, then complete onboarding — business details, co-founder verification, documents, and your founder interview.'}
+          : 'Create your founder account, then complete onboarding: business details, co-founder verification, documents, and your founder interview.'}
       </p>
 
       {!roleLocked && <RoleTabs role={role} onChange={setRole} />}

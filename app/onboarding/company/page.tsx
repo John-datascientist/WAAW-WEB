@@ -188,7 +188,7 @@ export default function CompanyPage() {
           onChange={(e) => setCofoundersOnDocs(e.target.checked)}
           className="mt-0.5"
         />
-        I confirm this registration document lists every co-founder added in the previous step —
+        I confirm this registration document lists every co-founder added in the previous step.
         WAAW will reject applications where the document and the co-founder list don&apos;t match.
       </label>
 

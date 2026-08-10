@@ -1787,7 +1787,7 @@ const DOCUMENTS_LESSONS: AcademyLesson[] = [
       {
         heading: 'What warranties are',
         body: [
-          'In many priced rounds, founders and the company give warranties to investors, and alongside them sits a disclosure letter. A warranty is a formal statement that something is true, given as part of the contract — for example, that the company is properly incorporated, that it owns its key assets and intellectual property, that its accounts are accurate, and that it has complied with the laws that apply to it.',
+          'In many priced rounds, founders and the company give warranties to investors, and alongside them sits a disclosure letter. A warranty is a formal statement that something is true, given as part of the contract, for example, that the company is properly incorporated, that it owns its key assets and intellectual property, that its accounts are accurate, and that it has complied with the laws that apply to it.',
           'The reason warranties matter is that if one turns out to be untrue, the investor may have a claim against whoever gave it. Founders should read every warranty carefully and make sure they can genuinely stand behind each one, rather than signing a long list without checking.',
         ],
       },
@@ -2007,7 +2007,7 @@ const DOCUMENTS_LESSONS: AcademyLesson[] = [
       {
         heading: 'The company registry',
         body: [
-          'Issuing shares and changing your company are not only private acts between you and your investors. They also update the public record held by the company registry. Every company is recorded at a public registry — in the United Kingdom this is Companies House, and in Nigeria it is the Corporate Affairs Commission. When a raise changes any of these, the registry must be updated so the public record stays accurate.',
+          'Issuing shares and changing your company are not only private acts between you and your investors. They also update the public record held by the company registry. Every company is recorded at a public registry: in the United Kingdom this is Companies House, and in Nigeria it is the Corporate Affairs Commission. When a raise changes any of these, the registry must be updated so the public record stays accurate.',
         ],
       },
       {
@@ -2063,7 +2063,7 @@ const DOCUMENTS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Side letters',
         body: [
-          'Most of a raise runs on the core documents covered so far, but a few others appear often enough to understand. A side letter is a short agreement that gives a particular investor rights that are additional to, or different from, the main documents — extra information rights, a right to invest again in future rounds, or a promise that they will get terms at least as good as any other investor. Keep a clear record of every side letter and make sure they are consistent with the shareholders’ agreement.',
+          'Most of a raise runs on the core documents covered so far, but a few others appear often enough to understand. A side letter is a short agreement that gives a particular investor rights that are additional to, or different from, the main documents: extra information rights, a right to invest again in future rounds, or a promise that they will get terms at least as good as any other investor. Keep a clear record of every side letter and make sure they are consistent with the shareholders’ agreement.',
         ],
       },
       {
@@ -2166,7 +2166,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
         heading: 'The shape of the story',
         body: [
           'The best decks feel like they are going somewhere. Each slide leads naturally to the next, and by the end the investor has been carried from a problem to an opportunity they want to be part of. That feeling comes from a narrative arc, a deliberate order that turns separate slides into one argument.',
-          'A pitch deck tells a simple story in a reliable order: a problem that matters, a solution to that problem, why now is the moment for that solution to win, proof with evidence that it is working, and an ask — the capital you need and what it will achieve. Woven through are the market, the team, and the model.',
+          'A pitch deck tells a simple story in a reliable order: a problem that matters, a solution to that problem, why now is the moment for that solution to win, proof with evidence that it is working, and an ask: the capital you need and what it will achieve. Woven through are the market, the team, and the model.',
         ],
       },
       {
@@ -2184,7 +2184,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'The arc adapts, the shape stays',
         body: [
-          'The exact slides can vary — some companies need a strong product slide, others lean on traction. But the underlying shape, from problem through proof to ask, stays remarkably constant across strong decks. Learn the shape first, then adapt the emphasis to your company.',
+          'The exact slides can vary. Some companies need a strong product slide, others lean on traction. But the underlying shape, from problem through proof to ask, stays remarkably constant across strong decks. Learn the shape first, then adapt the emphasis to your company.',
         ],
       },
       {
@@ -2223,7 +2223,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'What to avoid',
         body: [
-          'Avoid the vague, aspirational tagline that says nothing concrete. Avoid burying what you do beneath imagery or design. And avoid trying to say too much — the opening slide is not the place to explain the whole business.',
+          'Avoid the vague, aspirational tagline that says nothing concrete. Avoid burying what you do beneath imagery or design. And avoid trying to say too much. The opening slide is not the place to explain the whole business.',
         ],
       },
       {
@@ -2318,7 +2318,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Keep the focus narrow, and do not oversell',
         body: [
-          'A common mistake is trying to make the solution sound impressive by listing everything it can do. A solution that solves one clear problem well is more convincing than one that claims to solve many. Avoid grand claims that the solution is perfect or unbeatable — an honest, clearly explained solution is more persuasive.',
+          'A common mistake is trying to make the solution sound impressive by listing everything it can do. A solution that solves one clear problem well is more convincing than one that claims to solve many. Avoid grand claims that the solution is perfect or unbeatable. An honest, clearly explained solution is more persuasive.',
         ],
       },
       {
@@ -2406,7 +2406,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Layers of the market, and the African picture',
         body: [
-          'It helps to think in layers: the whole market that could in theory use something like your product, the portion you can realistically reach, and the share you could plausibly win in the near term. For companies serving African markets, the market story can be genuinely large — use this, but ground it in your specific customer rather than gesturing at a continent.',
+          'It helps to think in layers: the whole market that could in theory use something like your product, the portion you can realistically reach, and the share you could plausibly win in the near term. For companies serving African markets, the market story can be genuinely large. Use this, but ground it in your specific customer rather than gesturing at a continent.',
         ],
       },
       {
@@ -2520,13 +2520,13 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Explain how you make money simply',
         body: [
-          'At some point an investor needs to understand how your company makes money. State plainly how your company earns revenue — whether you charge customers directly, take a fee on transactions, sell a subscription, or make money some other way. If your model has several parts, lead with the main one.',
+          'At some point an investor needs to understand how your company makes money. State plainly how your company earns revenue: whether you charge customers directly, take a fee on transactions, sell a subscription, or make money some other way. If your model has several parts, lead with the main one.',
         ],
       },
       {
         heading: 'Show that the economics can work',
         body: [
-          'Beyond how you charge, investors want a sense that the economics make sense — that over time you can earn more from a customer than it costs to win and serve them. Even early, a clear grasp of your economics builds confidence.',
+          'Beyond how you charge, investors want a sense that the economics make sense: that over time you can earn more from a customer than it costs to win and serve them. Even early, a clear grasp of your economics builds confidence.',
         ],
       },
       {
@@ -2538,7 +2538,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Keep it honest and grounded, and connect it to the ask',
         body: [
-          'An investor will probe the economics, so a model you can defend is worth more than one that merely looks attractive. If the investor understands how you make money and believes the economics can work, they can see how their capital helps you grow a real business — which makes the ask that follows far more convincing.',
+          'An investor will probe the economics, so a model you can defend is worth more than one that merely looks attractive. If the investor understands how you make money and believes the economics can work, they can see how their capital helps you grow a real business, which makes the ask that follows far more convincing.',
         ],
       },
       {
@@ -2564,7 +2564,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Never claim you have no competition',
         body: [
-          'Sooner or later an investor wonders who else is solving this problem. The single worst thing you can do on this slide is claim you have no competition. Almost no company truly has none — even if no one offers exactly your product, customers are solving the problem some other way today.',
+          'Sooner or later an investor wonders who else is solving this problem. The single worst thing you can do on this slide is claim you have no competition. Almost no company truly has none. Even if no one offers exactly your product, customers are solving the problem some other way today.',
         ],
       },
       {
@@ -2582,7 +2582,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'The local advantage, and honesty about strong competitors',
         body: [
-          'For companies building in African markets, a real and defensible advantage is often deep local understanding and presence. If there are strong, well-funded competitors, do not pretend they are weak — acknowledge them and explain how you coexist or win a specific part of the market.',
+          'For companies building in African markets, a real and defensible advantage is often deep local understanding and presence. If there are strong, well-funded competitors, do not pretend they are weak. Acknowledge them and explain how you coexist or win a specific part of the market.',
         ],
       },
       {
@@ -2652,7 +2652,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'State the ask clearly',
         body: [
-          'Every slide so far has been leading here. Say plainly how much you are raising — do not make the investor guess. A clear figure signals that you know what you need and have thought it through.',
+          'Every slide so far has been leading here. Say plainly how much you are raising. Do not make the investor guess. A clear figure signals that you know what you need and have thought it through.',
         ],
       },
       {
@@ -2696,7 +2696,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'One point per slide',
         body: [
-          'You now know what each slide should say. Good design does not mean fancy graphics — it means clarity. The most useful design rule is simple: each slide should make one clear point. If a slide tries to say three things, the reader absorbs none of them well.',
+          'You now know what each slide should say. Good design does not mean fancy graphics. It means clarity. The most useful design rule is simple: each slide should make one clear point. If a slide tries to say three things, the reader absorbs none of them well.',
         ],
       },
       {
@@ -2714,7 +2714,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Consistency, calm, and readability in seconds',
         body: [
-          'A deck should feel like one considered piece, not a patchwork. A good test for any slide is whether its main point is clear within a few seconds — if not, simplify it until it is.',
+          'A deck should feel like one considered piece, not a patchwork. A good test for any slide is whether its main point is clear within a few seconds; if not, simplify it until it is.',
         ],
       },
       {
@@ -2764,7 +2764,7 @@ const PITCH_DECK_LESSONS: AcademyLesson[] = [
       {
         heading: 'Gather feedback and iterate',
         body: [
-          'Your first deck will not be your best. Show it to a few trusted people and early investors, and watch closely. Notice where they get confused, and which questions come up again and again — those signals tell you exactly what to fix.',
+          'Your first deck will not be your best. Show it to a few trusted people and early investors, and watch closely. Notice where they get confused, and which questions come up again and again. Those signals tell you exactly what to fix.',
         ],
       },
       {
@@ -2980,7 +2980,7 @@ const VALUATION_LESSONS: AcademyLesson[] = [
         heading: 'There is little to measure, and the future is deeply uncertain',
         body: [
           'A mature company can be valued from its profits, its assets, and its steady cash flows. An early startup often has none of these in meaningful amounts, which is why early valuation relies so much on judgement and negotiation rather than calculation.',
-          'The value of a startup lies almost entirely in what it might become, not in what it is today. But what it might become is deeply uncertain — most startups fail, a few succeed modestly, and a very small number succeed enormously. Any early valuation is really a rough bet on an uncertain future, dressed up as a number.',
+          'The value of a startup lies almost entirely in what it might become, not in what it is today. But what it might become is deeply uncertain: most startups fail, a few succeed modestly, and a very small number succeed enormously. Any early valuation is really a rough bet on an uncertain future, dressed up as a number.',
         ],
       },
       {
@@ -3132,7 +3132,7 @@ const VALUATION_LESSONS: AcademyLesson[] = [
       {
         heading: 'Why these methods are useful, and their limits',
         body: [
-          'Both methods replace a single guessed number with a structured reasoning process, which helps you arrive at a defensible figure and explain it to an investor. But like all early-stage methods, these are estimates, not precise truths — the baseline in the scorecard method depends on regional data that may be limited, especially in African markets.',
+          'Both methods replace a single guessed number with a structured reasoning process, which helps you arrive at a defensible figure and explain it to an investor. But like all early-stage methods, these are estimates, not precise truths. The baseline in the scorecard method depends on regional data that may be limited, especially in African markets.',
         ],
       },
       {
@@ -3259,7 +3259,7 @@ const VALUATION_LESSONS: AcademyLesson[] = [
       {
         heading: 'The hidden effect on valuation',
         body: [
-          'Investors often ask that the option pool be created, or increased, before their investment, as part of the pre-money valuation. When the pool is created out of the pre-money value, the shares for it come from the existing shareholders — meaning the founders. The investor’s percentage is unaffected, while the founders are diluted to make room for the pool. A larger pool effectively lowers your real pre-money valuation, which is why the option pool is sometimes called a hidden part of the price.',
+          'Investors often ask that the option pool be created, or increased, before their investment, as part of the pre-money valuation. When the pool is created out of the pre-money value, the shares for it come from the existing shareholders, meaning the founders. The investor’s percentage is unaffected, while the founders are diluted to make room for the pool. A larger pool effectively lowers your real pre-money valuation, which is why the option pool is sometimes called a hidden part of the price.',
         ],
       },
       {
@@ -3365,7 +3365,7 @@ const VALUATION_LESSONS: AcademyLesson[] = [
       {
         heading: 'Convertibles come home to roost, and pro-rata',
         body: [
-          'Remember that any SAFEs, ASAs, or convertible notes you issued earlier convert into shares at a priced round, adding to the dilution at that moment. Investors often hold pro-rata rights, letting them invest again in later rounds to maintain their percentage — understanding who holds these rights is part of seeing the full picture.',
+          'Remember that any SAFEs, ASAs, or convertible notes you issued earlier convert into shares at a priced round, adding to the dilution at that moment. Investors often hold pro-rata rights, letting them invest again in later rounds to maintain their percentage. Understanding who holds these rights is part of seeing the full picture.',
         ],
       },
       {
@@ -3550,7 +3550,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'What non-binding means, and the binding exceptions',
         body: [
-          'Most of a term sheet is non-binding, which means that agreeing it does not legally force either side to complete the deal on those terms. Within that mostly non-binding document, a few clauses are usually binding — most importantly exclusivity, confidentiality, and costs. These bind you from the moment you sign, even though the rest does not.',
+          'Most of a term sheet is non-binding, which means that agreeing it does not legally force either side to complete the deal on those terms. Within that mostly non-binding document, a few clauses are usually binding: most importantly exclusivity, confidentiality, and costs. These bind you from the moment you sign, even though the rest does not.',
         ],
       },
       {
@@ -3562,7 +3562,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Confidentiality and costs',
         body: [
-          'The confidentiality clause keeps the terms of the deal, and often the fact of it, private — read it to understand what you can and cannot say, and to whom. The costs clause deals with who pays the legal fees, sometimes asking the company to cover the investor’s legal costs. This matters because investor legal fees can be significant, so if you are being asked to cover them, understand the amount and try to cap it.',
+          'The confidentiality clause keeps the terms of the deal, and often the fact of it, private. Read it to understand what you can and cannot say, and to whom. The costs clause deals with who pays the legal fees, sometimes asking the company to cover the investor’s legal costs. This matters because investor legal fees can be significant, so if you are being asked to cover them, understand the amount and try to cap it.',
         ],
       },
       {
@@ -3618,13 +3618,13 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Ask what each term does to you, and do not read it alone',
         body: [
-          'For every term you find, ask a simple question: what does this do to me? A term you do not recognise is one to look up or ask about, not to skim past. Reading a term sheet yourself is essential, but you should not rely on your reading alone — a solicitor experienced in these deals will spot an unusual term and explain the practical effect of each one.',
+          'For every term you find, ask a simple question: what does this do to me? A term you do not recognise is one to look up or ask about, not to skim past. Reading a term sheet yourself is essential, but you should not rely on your reading alone. A solicitor experienced in these deals will spot an unusual term and explain the practical effect of each one.',
         ],
       },
       {
         heading: 'Read it more than once',
         body: [
-          'The first read is for the shape and the obvious terms, the second for the detail and the interactions between terms — as when the option pool changes your real valuation. Give the document the time it deserves, because it shapes your company for years.',
+          'The first read is for the shape and the obvious terms, the second for the detail and the interactions between terms, as when the option pool changes your real valuation. Give the document the time it deserves, because it shapes your company for years.',
         ],
       },
       {
@@ -3700,13 +3700,13 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Why the pool exists',
         body: [
-          'Almost every term sheet includes an option pool: a reserve of shares set aside to grant to future employees. Investors want to see a pool because it signals you can hire and reward a team, and they do not want to be diluted themselves when you grant options later. The pool is legitimate and expected — the question is its size and, crucially, its timing.',
+          'Almost every term sheet includes an option pool: a reserve of shares set aside to grant to future employees. Investors want to see a pool because it signals you can hire and reward a team, and they do not want to be diluted themselves when you grant options later. The pool is legitimate and expected. The question is its size and, crucially, its timing.',
         ],
       },
       {
         heading: 'The pre-money trap',
         body: [
-          'Watch whether the term sheet requires the pool to be created out of the pre-money valuation. When it is, the shares for the pool come from the existing shareholders — you and any co-founders — before the investor comes in. Because the pool is carved out of the pre-money value, a larger pool effectively lowers your real valuation, even when the headline number is unchanged. This is sometimes called the option pool shuffle.',
+          'Watch whether the term sheet requires the pool to be created out of the pre-money valuation. When it is, the shares for the pool come from the existing shareholders (you and any co-founders) before the investor comes in. Because the pool is carved out of the pre-money value, a larger pool effectively lowers your real valuation, even when the headline number is unchanged. This is sometimes called the option pool shuffle.',
         ],
       },
       {
@@ -3756,7 +3756,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Participating preferences take two bites',
         body: [
-          'Watch for a participating preference, which is more aggressive: the investor gets their money back first, and then also shares in the remaining proceeds alongside everyone else — sometimes called double dipping. A participating preference is worth resisting firmly, or at least capping.',
+          'Watch for a participating preference, which is more aggressive: the investor gets their money back first, and then also shares in the remaining proceeds alongside everyone else, sometimes called double dipping. A participating preference is worth resisting firmly, or at least capping.',
         ],
       },
       {
@@ -3844,7 +3844,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'The rights preferred shares carry',
         body: [
-          'Several of the terms covered elsewhere in this course are, in effect, rights that attach to preferred shares — the liquidation preference, anti-dilution protection, and certain voting and consent rights. Seeing them this way helps the term sheet hang together rather than reading as a random list.',
+          'Several of the terms covered elsewhere in this course are, in effect, rights that attach to preferred shares: the liquidation preference, anti-dilution protection, and certain voting and consent rights. Seeing them this way helps the term sheet hang together rather than reading as a random list.',
         ],
       },
       {
@@ -3938,13 +3938,13 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Why some are reasonable, and the danger of an overbroad list',
         body: [
-          'A degree of reserved matters is normal and fair — an investor reasonably wants protection against decisions that could destroy the value of their stake. The problem arises when the list grows so long and so detailed that ordinary running of the company requires constant investor approval.',
+          'A degree of reserved matters is normal and fair. An investor reasonably wants protection against decisions that could destroy the value of their stake. The problem arises when the list grows so long and so detailed that ordinary running of the company requires constant investor approval.',
         ],
       },
       {
         heading: 'Watch the thresholds, and who holds the consent',
         body: [
-          'Many reserved matters come with a threshold, such as spending above a certain amount needing consent — the threshold matters as much as the item. Also check whose consent is needed: sometimes a majority of the preferred shareholders, sometimes a specific investor, sometimes the investor director.',
+          'Many reserved matters come with a threshold, such as spending above a certain amount needing consent. The threshold matters as much as the item. Also check whose consent is needed: sometimes a majority of the preferred shareholders, sometimes a specific investor, sometimes the investor director.',
         ],
       },
       {
@@ -3976,7 +3976,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Information rights',
         body: [
-          'Information rights set out what the company must report to its investors and how often — typically financial accounts, regular updates, and access to certain numbers, on an agreed schedule such as monthly or quarterly.',
+          'Information rights set out what the company must report to its investors and how often: typically financial accounts, regular updates, and access to certain numbers, on an agreed schedule such as monthly or quarterly.',
         ],
       },
       {
@@ -4020,13 +4020,13 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'What founder vesting means',
         body: [
-          'Founder vesting means that the founders’ shares are earned over a period of time, rather than being fully owned outright from day one. If a founder leaves before the period is complete, they may lose some of their shares — sometimes called reverse vesting.',
+          'Founder vesting means that the founders’ shares are earned over a period of time, rather than being fully owned outright from day one. If a founder leaves before the period is complete, they may lose some of their shares, sometimes called reverse vesting.',
         ],
       },
       {
         heading: 'Why investors want it',
         body: [
-          'Vesting protects the company and the other founders as much as the investors. Imagine a founder who leaves after a few months but keeps a large share of the company — the remaining founders then do years of work while that departed founder holds a big stake for little contribution. Vesting prevents this.',
+          'Vesting protects the company and the other founders as much as the investors. Imagine a founder who leaves after a few months but keeps a large share of the company. The remaining founders then do years of work while that departed founder holds a big stake for little contribution. Vesting prevents this.',
         ],
       },
       {
@@ -4158,7 +4158,7 @@ const TERM_SHEETS_LESSONS: AcademyLesson[] = [
       {
         heading: 'Decide your priorities first',
         body: [
-          'You cannot fight every term, so decide in advance what matters most to you. For most founders, the priorities are keeping reasonable control and avoiding punitive economics — guarding board control, keeping reserved matters focused, holding a one-times non-participating liquidation preference, resisting a full ratchet, and watching the option pool.',
+          'You cannot fight every term, so decide in advance what matters most to you. For most founders, the priorities are keeping reasonable control and avoiding punitive economics: guarding board control, keeping reserved matters focused, holding a one-times non-participating liquidation preference, resisting a full ratchet, and watching the option pool.',
         ],
       },
       {
@@ -4210,7 +4210,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = [
     slug: 'foundations',
     title: 'Foundations',
     track: 'foundations',
-    description: 'Start here — what a startup is, what equity means, how funding rounds work, and the vocabulary that ties it together.',
+    description: 'Start here: what a startup is, what equity means, how funding rounds work, and the vocabulary that ties it together.',
     lessons: FOUNDATIONS_LESSONS,
     free: true,
   },

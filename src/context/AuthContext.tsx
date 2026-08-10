@@ -47,7 +47,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 // that at least points at where to look.
 function readableAuthError(message: string | undefined): string {
   if (!message || message === '{}' || message === '[object Object]') {
-    return 'Sign up failed — open the browser console (F12) for details, and check that your Supabase project is active (not paused).';
+    return 'Sign up failed. Open the browser console (F12) for details, and check that your Supabase project is active (not paused).';
   }
   return message;
 }

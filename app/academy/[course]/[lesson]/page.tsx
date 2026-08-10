@@ -45,7 +45,7 @@ export default function AcademyLessonPage({ params }: { params: { course: string
 
       {showCourseHero && (
         <div className="relative h-[45vh] w-full overflow-hidden bg-[#150a24] sm:h-[55vh]">
-          <iframe src={course.heroUrl} title={`${course.title} — WAAW Academy`} className="h-full w-full border-0" loading="lazy" />
+          <iframe src={course.heroUrl} title={`${course.title} | WAAW Academy`} className="h-full w-full border-0" loading="lazy" />
         </div>
       )}
 

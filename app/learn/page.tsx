@@ -27,10 +27,10 @@ export default function LearnHubPage() {
       <InvestorNav />
 
       <div className="mx-auto max-w-3xl px-6 py-16">
-        <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">Learn</p>
-        <h1 className="mb-3 font-serif text-3xl text-tx">How WAAW works</h1>
+        <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">How WAAW Works</p>
+        <h1 className="mb-3 font-serif text-3xl text-tx">How WAAW Works</h1>
         <p className="mb-8 max-w-xl font-sans text-sm font-light leading-relaxed text-mu">
-          Short guides for investors and founders — how escrow and verification work, how to read
+          Short guides for investors and founders: how escrow and verification work, how to read
           a data room, how to prepare a raise, and more. General information, not financial, legal,
           or tax advice.
         </p>

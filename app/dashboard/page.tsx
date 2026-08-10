@@ -45,7 +45,7 @@ export default function DashboardPage() {
         <InvestorNav />
         <BackButton fallbackHref="/" />
         <main className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <p className="font-sans text-sm text-mu">This is the founder dashboard — investors use Portfolio instead.</p>
+          <p className="font-sans text-sm text-mu">This is the founder dashboard. Investors use Portfolio instead.</p>
         </main>
       </div>
     );
@@ -91,7 +91,7 @@ export default function DashboardPage() {
   const handleCopyOnePager = async () => {
     const team = cofounders.map((c) => `${c.name} (${c.role})`).join(', ');
     const text = [
-      `${startup.name} — ${startup.sector} · ${startup.stage}`,
+      `${startup.name} · ${startup.sector} · ${startup.stage}`,
       startup.pitch,
       `Raising ${fmt(startup.raising_amount)}${startup.raised_amount ? ` · ${fmt(startup.raised_amount)} raised so far` : ''}`,
       team ? `Team: ${team}` : '',
@@ -161,7 +161,7 @@ export default function DashboardPage() {
         <Divider />
 
         <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">
-          Founder interview{startup.interview_requested ? ' — ' + (startup.interview_scheduled_for ? `scheduled for ${startup.interview_scheduled_for}` : 'requested') : ''}
+          Founder interview{startup.interview_requested ? ' · ' + (startup.interview_scheduled_for ? `scheduled for ${startup.interview_scheduled_for}` : 'requested') : ''}
         </p>
         {!startup.interview_requested && (
           <Link href="/onboarding/interview" className="mb-6 inline-block font-mono text-[10px] uppercase tracking-wider text-pu">
@@ -173,7 +173,7 @@ export default function DashboardPage() {
 
         <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">Recent activity</p>
         {activeCommitments.length === 0 ? (
-          <p className="font-sans text-sm font-light text-mu">No commitments yet — investors will appear here once they commit capital.</p>
+          <p className="font-sans text-sm font-light text-mu">No commitments yet. Investors will appear here once they commit capital.</p>
         ) : (
           activeCommitments.slice(0, 10).map((c) => (
             <div key={c.id} className="flex items-center justify-between border-b border-ln py-3 last:border-0">

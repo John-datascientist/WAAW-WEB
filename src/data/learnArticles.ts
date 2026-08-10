@@ -24,7 +24,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'Your money doesn’t go straight to the founder',
-        body: 'When you commit capital to a deal on WAAW, it moves into a protected escrow account — not directly to the startup. It stays there until the founder countersigns the term sheet for that raise.',
+        body: 'When you commit capital to a deal on WAAW, it moves into a protected escrow account, not directly to the startup. It stays there until the founder countersigns the term sheet for that raise.',
       },
       {
         heading: 'What releases the funds',
@@ -32,7 +32,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'What happens if a raise falls through',
-        body: 'If a raise doesn’t close — the founder withdraws, or the round doesn’t reach its terms — committed funds still sitting in escrow are returned. Your Portfolio page tracks refunded amounts separately from active and released commitments.',
+        body: 'If a raise doesn’t close (the founder withdraws, or the round doesn’t reach its terms), committed funds still sitting in escrow are returned. Your Portfolio page tracks refunded amounts separately from active and released commitments.',
       },
       {
         heading: 'Not investment advice',
@@ -44,7 +44,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     slug: 'verified-by-waaw',
     title: 'What "Verified by WAAW" actually means',
     audience: 'both',
-    summary: 'The badge explained — what WAAW checks before a deal goes live, and what it doesn’t.',
+    summary: 'The badge explained: what WAAW checks before a deal goes live, and what it doesn’t.',
     readMins: 2,
     sections: [
       {
@@ -57,7 +57,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'Why this distinction matters',
-        body: 'Knowing which numbers WAAW has checked and which are self-reported lets you weigh a deal more accurately — treat founder-reported figures as a starting point for your own diligence, not a guarantee.',
+        body: 'Knowing which numbers WAAW has checked and which are self-reported lets you weigh a deal more accurately. Treat founder-reported figures as a starting point for your own diligence, not a guarantee.',
       },
     ],
   },
@@ -70,15 +70,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'The basic idea',
-        body: 'When a startup raises a future round, it issues new shares to new investors. Your existing shares stay the same in number, but now represent a smaller percentage of a larger total — that’s dilution.',
+        body: 'When a startup raises a future round, it issues new shares to new investors. Your existing shares stay the same in number, but now represent a smaller percentage of a larger total. That’s dilution.',
       },
       {
         heading: 'Why it’s normal, not a red flag',
-        body: 'Most successful startups raise multiple rounds. Dilution is the expected cost of a company growing and raising the capital it needs to get there — the goal is for your smaller slice to be worth more in absolute terms as the company’s valuation grows.',
+        body: 'Most successful startups raise multiple rounds. Dilution is the expected cost of a company growing and raising the capital it needs to get there. The goal is for your smaller slice to be worth more in absolute terms as the company’s valuation grows.',
       },
       {
         heading: 'Estimating it yourself',
-        body: 'On any deal page, the stake calculator has a "show illustrative diluted stake" option — it applies a simple flat assumption for one future round so you can see roughly how a stake might shrink, not a prediction of what will actually happen.',
+        body: 'On any deal page, the stake calculator has a "show illustrative diluted stake" option. It applies a simple flat assumption for one future round so you can see roughly how a stake might shrink, not a prediction of what will actually happen.',
       },
     ],
   },
@@ -91,19 +91,19 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'Why this step exists',
-        body: 'Investing in unlisted, early-stage companies carries a higher risk of loss than most public investments. Before you can commit to a deal, WAAW asks you to confirm which investor category best describes you — this is a self-certification, not something WAAW verifies on your behalf.',
+        body: 'Investing in unlisted, early-stage companies carries a higher risk of loss than most public investments. Before you can commit to a deal, WAAW asks you to confirm which investor category best describes you. This is a self-certification, not something WAAW verifies on your behalf.',
       },
       {
         heading: 'The categories',
-        body: 'Restricted investor, high net worth, self-certified sophisticated, certified sophisticated, and professional — each has a different description of financial circumstances or experience. You pick the one that honestly applies to you when you certify.',
+        body: 'Restricted investor, high net worth, self-certified sophisticated, certified sophisticated, and professional. Each has a different description of financial circumstances or experience. You pick the one that honestly applies to you when you certify.',
       },
       {
         heading: 'It expires',
-        body: 'Your certification is valid for 12 months from when you confirm it, then WAAW asks you to re-certify — your circumstances (or the rules) may have changed.',
+        body: 'Your certification is valid for 12 months from when you confirm it, then WAAW asks you to re-certify. Your circumstances (or the rules) may have changed.',
       },
       {
         heading: 'Not financial or legal advice',
-        body: 'This page explains what the categorisation step does mechanically. It isn’t guidance on which category applies to you — read each description carefully and, if you’re unsure, speak to an independent financial adviser before certifying.',
+        body: 'This page explains what the categorisation step does mechanically. It isn’t guidance on which category applies to you. Read each description carefully and, if you’re unsure, speak to an independent financial adviser before certifying.',
       },
     ],
   },
@@ -116,7 +116,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'Why the NDA gate',
-        body: 'A deal’s data room holds documents the founder doesn’t want public — incorporation certificates, pitch decks, business plans. Accepting the NDA before viewing keeps that information between you and the founder.',
+        body: 'A deal’s data room holds documents the founder doesn’t want public: incorporation certificates, pitch decks, business plans. Accepting the NDA before viewing keeps that information between you and the founder.',
       },
       {
         heading: 'What’s usually inside',
@@ -124,7 +124,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'The "What WAAW checked" scorecard',
-        body: 'Each deal page also shows a due-diligence scorecard — registration on file, business address verified, team identity checks, financials shared, founder interview completed. It’s a quick way to see how far a deal’s review has gone, not a pass/fail score.',
+        body: 'Each deal page also shows a due-diligence scorecard: registration on file, business address verified, team identity checks, financials shared, founder interview completed. It’s a quick way to see how far a deal’s review has gone, not a pass/fail score.',
       },
     ],
   },
@@ -141,11 +141,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'Lead with traction if you have it',
-        body: 'Active users, monthly revenue, and prior funding raised are exactly the fields WAAW asks for during onboarding — they’re some of the first numbers investors look at, so keep them current.',
+        body: 'Active users, monthly revenue, and prior funding raised are exactly the fields WAAW asks for during onboarding. They’re some of the first numbers investors look at, so keep them current.',
       },
       {
         heading: 'The business plan can go deeper',
-        body: 'Where the deck is the highlight reel, your business plan document is where you explain the model, competitive landscape, and financial projections in more detail — this is what investors read after a deck gets their attention.',
+        body: 'Where the deck is the highlight reel, your business plan document is where you explain the model, competitive landscape, and financial projections in more detail. This is what investors read after a deck gets their attention.',
       },
       {
         heading: 'A pitch video helps',
@@ -162,15 +162,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'Part of getting verified',
-        body: 'Before your startup is listed publicly, WAAW schedules a short interview with you as part of reviewing your identity, company registration, and pitch — the same review the "Verified by WAAW" badge reflects.',
+        body: 'Before your startup is listed publicly, WAAW schedules a short interview with you as part of reviewing your identity, company registration, and pitch. The same review the "Verified by WAAW" badge reflects.',
       },
       {
         heading: 'What to have ready',
-        body: 'Be ready to walk through your business in your own words — what problem you’re solving, why now, and how the round you’re raising moves you forward. Have your registration documents and cap table on hand in case questions come up.',
+        body: 'Be ready to walk through your business in your own words: what problem you’re solving, why now, and how the round you’re raising moves you forward. Have your registration documents and cap table on hand in case questions come up.',
       },
       {
         heading: 'After the interview',
-        body: 'Your onboarding status page shows the scheduled date and updates once the review is complete — that’s when your listing goes live to investors.',
+        body: 'Your onboarding status page shows the scheduled date and updates once the review is complete. That’s when your listing goes live to investors.',
       },
     ],
   },
@@ -183,7 +183,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         heading: 'What changes',
-        body: 'A boost gives your listing extra visibility — boosted startups are eligible for the "Featured Founders" spotlight on the WAAW homepage, in addition to wherever they’d normally rank in the startup browse list.',
+        body: 'A boost gives your listing extra visibility: boosted startups are eligible for the "Featured Founders" spotlight on the WAAW homepage, in addition to wherever they’d normally rank in the startup browse list.',
       },
       {
         heading: 'How long it lasts',
@@ -191,7 +191,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'What it doesn’t change',
-        body: 'A boost affects visibility only — it has no effect on your verification status, and it doesn’t change any of the figures or documents in your data room.',
+        body: 'A boost affects visibility only. It has no effect on your verification status, and it doesn’t change any of the figures or documents in your data room.',
       },
     ],
   },
@@ -199,12 +199,12 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     slug: 'kyc-identity-verification',
     title: 'KYC and identity verification, explained',
     audience: 'both',
-    summary: 'Why WAAW asks for ID from investors, founders, and co-founders — and what it involves.',
+    summary: 'Why WAAW asks for ID from investors, founders, and co-founders, and what it involves.',
     readMins: 3,
     sections: [
       {
         heading: 'Why it’s required',
-        body: 'KYC (Know Your Customer) checks are standard for platforms that move investment capital — they help confirm that the people on both sides of a deal are who they say they are.',
+        body: 'KYC (Know Your Customer) checks are standard for platforms that move investment capital. They help confirm that the people on both sides of a deal are who they say they are.',
       },
       {
         heading: 'For investors',
@@ -212,7 +212,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         heading: 'For founders and co-founders',
-        body: 'Founders verify their identity as part of onboarding. Co-founders complete their own identity check separately — each verified co-founder shows an "ID verified" badge next to their name on the deal page.',
+        body: 'Founders verify their identity as part of onboarding. Co-founders complete their own identity check separately. Each verified co-founder shows an "ID verified" badge next to their name on the deal page.',
       },
     ],
   },

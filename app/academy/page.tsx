@@ -101,7 +101,7 @@ function RoleQuestion({ choice, onChoose }: { choice: AcademyRoleChoice | null; 
     <div className="mb-12 rounded-lg border border-ln bg-card p-6">
       <p className="mb-1 font-mono text-xs uppercase tracking-wider text-pu">Which brings you here?</p>
       <p className="mb-4 font-sans text-xs font-light text-mu">
-        Pick one to see that track’s courses below — Foundations is open to everyone either way, and you can
+        Pick one to see that track’s courses below. Foundations is open to everyone either way, and you can
         switch anytime.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
@@ -154,7 +154,7 @@ export default function AcademyPage() {
         <p className="mb-2 font-mono text-xs uppercase tracking-wider text-pu">WAAW Academy</p>
         <h1 className="mb-3 font-serif text-3xl text-tx">Courses for founders and investors</h1>
         <p className="mb-4 max-w-2xl font-sans text-sm font-light leading-relaxed text-mu">
-          Structured, self-paced courses — start with Foundations, free for everyone, then move into
+          Structured, self-paced courses: start with Foundations, free for everyone, then move into
           whichever track matches you. Finish a course to unlock the next one in that track. General
           education, not financial, legal, or tax advice.
         </p>

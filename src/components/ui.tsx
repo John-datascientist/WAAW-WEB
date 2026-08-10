@@ -227,7 +227,7 @@ export function VerifiedBadge({ verified }: { verified: boolean }) {
       {open && (
         <span className="absolute left-0 top-full z-10 mt-2 w-64 rounded-md border border-ln bg-card p-3 font-sans text-xs font-light leading-relaxed text-tx shadow-lg">
           {verified
-            ? 'WAAW has reviewed the founder’s identity, company registration, and pitch before listing this deal. It doesn’t mean WAAW has audited every figure the founder reports — see the data room for what’s founder-reported vs. independently confirmed.'
+            ? 'WAAW has reviewed the founder’s identity, company registration, and pitch before listing this deal. It doesn’t mean WAAW has audited every figure the founder reports. See the data room for what’s founder-reported vs. independently confirmed.'
             : 'This deal hasn’t completed WAAW’s review yet. It isn’t listed publicly until it has.'}
         </span>
       )}

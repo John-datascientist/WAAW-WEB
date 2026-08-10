@@ -38,7 +38,7 @@ export function CameraCapture({ label, onSubmit, facingMode = 'user' }: Props) {
     if (!active || !videoRef.current || !streamRef.current) return;
     const video = videoRef.current;
     video.srcObject = streamRef.current;
-    video.play().catch(() => setError('Could not start the camera preview — try again.'));
+    video.play().catch(() => setError('Could not start the camera preview. Try again.'));
   }, [active]);
 
   const start = async () => {
@@ -74,12 +74,12 @@ export function CameraCapture({ label, onSubmit, facingMode = 'user' }: Props) {
           return;
         } catch (err2) {
           console.error('getUserMedia fallback failed:', err2);
-          setError('Could not access the camera — check your browser/device permissions and try again.');
+          setError('Could not access the camera. Check your browser/device permissions and try again.');
         }
       } else if (name === 'SecurityError') {
-        setError('Camera access was blocked for security reasons — this site may not be allowed to use the camera in this context.');
+        setError('Camera access was blocked for security reasons. This site may not be allowed to use the camera in this context.');
       } else {
-        setError('Could not access the camera — check your browser/device permissions and try again.');
+        setError('Could not access the camera. Check your browser/device permissions and try again.');
       }
     }
   };

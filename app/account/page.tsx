@@ -173,7 +173,7 @@ export default function AccountPage() {
 
         <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">Your data</p>
         {exportRequested ? (
-          <p className="font-sans text-xs text-su">✓ Export requested — you&apos;ll receive an email within 30 days.</p>
+          <p className="font-sans text-xs text-su">✓ Export requested. You&apos;ll receive an email within 30 days.</p>
         ) : (
           <button type="button" onClick={handleRequestExport} className="rounded-md border border-ln px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-mu hover:border-pu3">
             Request GDPR/NDPA data export
