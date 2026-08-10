@@ -10,6 +10,20 @@ import { supabase } from '../../src/lib/supabase';
 
 const DEFAULT_PREFS: NotificationPrefs = { commitments: true, deals: true, marketing: false };
 
+const KYC_LABELS: Record<string, string> = {
+  not_started: 'Not started',
+  pending: 'Pending review',
+  verified: 'Verified',
+  rejected: 'Rejected',
+};
+
+const KYC_COLORS: Record<string, string> = {
+  not_started: 'text-mu',
+  pending: 'text-warn',
+  verified: 'text-su',
+  rejected: 'text-da',
+};
+
 export default function AccountPage() {
   const { user, profile, refreshProfile } = useAuth();
   const [referredCount, setReferredCount] = useState(0);
@@ -107,6 +121,23 @@ export default function AccountPage() {
             {profile.role} · {profile.country || 'No country set'}
           </p>
         </div>
+
+        {profile.role === 'investor' && (
+          <>
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-mu">Identity verification</p>
+            <div className="mb-6 flex items-center justify-between rounded-md border border-ln bg-card p-4">
+              <div>
+                <p className={`font-sans text-sm ${KYC_COLORS[profile.kyc_status]}`}>{KYC_LABELS[profile.kyc_status]}</p>
+                <p className="mt-1 font-sans text-xs font-light text-mu">Required (KYC) before you can commit capital to a deal.</p>
+              </div>
+              {profile.kyc_status !== 'verified' && (
+                <Link href="/kyc" className="font-mono text-[10px] uppercase tracking-wider text-pu">
+                  {profile.kyc_status === 'pending' ? 'Check status →' : 'Verify identity →'}
+                </Link>
+              )}
+            </div>
+          </>
+        )}
 
         <Divider />
 
