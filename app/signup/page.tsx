@@ -84,6 +84,7 @@ function SignUpForm() {
   const [name, setName] = useState(draft.name ?? '');
   const [email, setEmail] = useState(draft.email ?? '');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [country, setCountry] = useState(draft.country ?? '');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -101,6 +102,7 @@ function SignUpForm() {
     if (!name.trim()) next.name = 'Enter your full name.';
     if (!isValidEmail(email)) next.email = 'Enter a valid email address.';
     if (password.length < 8) next.password = 'Password must be at least 8 characters.';
+    if (confirmPassword !== password) next.confirmPassword = 'Passwords do not match.';
     if (!country.trim()) next.country = 'Enter your country.';
     setErrors(next);
     if (Object.keys(next).length > 0) return;
@@ -140,6 +142,7 @@ function SignUpForm() {
         <Field label="Full name" value={name} onChange={setName} placeholder="Ada Lovelace" error={errors.name} />
         <Field label="Email" value={email} onChange={setEmail} placeholder="you@example.com" type="email" error={errors.email} />
         <Field label="Password" value={password} onChange={setPassword} placeholder="At least 8 characters" type="password" error={errors.password} />
+        <Field label="Confirm password" value={confirmPassword} onChange={setConfirmPassword} placeholder="Repeat password" type="password" error={errors.confirmPassword} />
         {strength && (
           <div className="-mt-3 mb-5">
             <div className="mb-2 h-1 w-full overflow-hidden rounded-full bg-ln">

@@ -12,12 +12,14 @@ export default function SignInPage() {
   const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    if (typeof window !== 'undefined') window.localStorage.setItem('waaw-remember-me', String(rememberMe));
     const { error } = await signIn(email.trim(), password);
     if (error) { setSubmitting(false); setError(error); return; }
 
@@ -72,6 +74,20 @@ export default function SignInPage() {
       <form onSubmit={handleSubmit}>
         <Field label="Email" value={email} onChange={setEmail} placeholder="you@example.com" type="email" />
         <Field label="Password" value={password} onChange={setPassword} placeholder="••••••••" type="password" error={error ?? undefined} />
+
+        <div className="mb-6 flex items-center justify-between">
+          <label className="flex cursor-pointer items-center gap-2 font-sans text-xs text-mu">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="h-4 w-4 accent-pu"
+            />
+            Remember me
+          </label>
+          <Link href="/forgot-password" className="font-sans text-xs text-pu hover:underline">Forgot password?</Link>
+        </div>
+
         <GoldButton type="submit" disabled={submitting}>
           {submitting ? 'Signing in…' : 'Sign in'}
         </GoldButton>

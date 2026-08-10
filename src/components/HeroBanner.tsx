@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { GhostButton, GoldButton } from './ui';
+import { useAuth } from '../context/AuthContext';
 import { useStartups } from '../lib/useInvestor';
 
 // Dark, oversized-type cover hero (per a reference design the user shared),
@@ -120,8 +121,11 @@ function GlassCube() {
 
 export function HeroBanner() {
   const { startups } = useStartups();
+  const { user, profile, signOut } = useAuth();
   const verifiedCount = startups.length;
   const totalRaised = startups.reduce((sum, s) => sum + (s.raised_amount ?? 0), 0);
+  const homeHref = profile?.role === 'founder' ? '/dashboard' : '/startups';
+  const homeLabel = profile?.role === 'founder' ? 'Dashboard' : 'Portfolio';
 
   return (
     <div className="relative overflow-hidden bg-heroBg">
@@ -139,7 +143,14 @@ export function HeroBanner() {
             <Link href="/learn" className="hover:text-white">How WAAW Works</Link>
             <Link href="/academy" className="hover:text-white">Academy</Link>
             <Link href="/legal/terms" className="hover:text-white">Legal</Link>
-            <Link href="/signin" className="hover:text-white">Sign in</Link>
+            {user ? (
+              <>
+                <Link href={homeHref} className="hover:text-white">{homeLabel}</Link>
+                <button type="button" onClick={() => signOut()} className="hover:text-white">Sign out</button>
+              </>
+            ) : (
+              <Link href="/signin" className="hover:text-white">Sign in</Link>
+            )}
           </nav>
         </div>
       </header>
@@ -191,9 +202,18 @@ export function HeroBanner() {
               commitment moves through protected escrow.
             </p>
             <div className="mb-10 flex flex-wrap items-center gap-4">
-              <GoldButton href="/signup?role=investor">Sign up to invest</GoldButton>
-              <GhostButton inverted href="/startups">Browse startups</GhostButton>
-              <GhostButton inverted href="/signup?role=founder">Register your startup</GhostButton>
+              {user ? (
+                <>
+                  <GoldButton href={homeHref}>{`Go to your ${homeLabel.toLowerCase()}`}</GoldButton>
+                  <GhostButton inverted href="/startups">Browse startups</GhostButton>
+                </>
+              ) : (
+                <>
+                  <GoldButton href="/signup?role=investor">Sign up to invest</GoldButton>
+                  <GhostButton inverted href="/startups">Browse startups</GhostButton>
+                  <GhostButton inverted href="/signup?role=founder">Register your startup</GhostButton>
+                </>
+              )}
             </div>
             <div className="flex flex-wrap items-center gap-6">
               <OrbitBadge />
